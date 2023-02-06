@@ -1,0 +1,83 @@
+train_dataset: 190
+val_dataset: 238
+test_dataset: 238
+ext_dataset: 1020
+No Weights Found!! Starting From Scratch
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+
+  2%|███████                                                                                                                                                                                                                                                                                                                                                                                                | 9/500 [00:03<01:41,  4.85it/s]
+val_position_loss:2.48E-03,
+ext_position_loss:4.02E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+
+  6%|███████████████████████▍                                                                                                                                                                                                                                                                                                                                                                              | 30/500 [00:05<00:43, 10.73it/s]
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:2.04E-03,
+ext_position_loss:2.46E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+ext_position_loss:1.69E-03,
+val_position_loss:1.82E-03,
+
+

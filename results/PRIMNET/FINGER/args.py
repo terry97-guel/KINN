@@ -17,7 +17,7 @@ class ARGS():
     # DATASET
     DATASET: str = "FINGER"                         # DATASET
     TPOSE:tuple = (
-        (0,0,120),
+        (0,0,0.120),
         )
     
     # DATAIO
@@ -36,24 +36,23 @@ class ARGS():
     axis_std:float = 0.1
     
     # NORMALIZATION
-    OUTPUT_NORMALIZE:bool = True
+    OUTPUT_NORMALIZE:bool = False
     
     # SEED
     seed:int = 0
 
     # DIMENSION
-    hdim:tuple = (128,128,128)
+    hdim:tuple = (16,16)
     motor_embed_dim:int = 32
-    pdim:int = 1
     
     # TRAINING
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    w_vec:float = 100.0
-    epochs:int = 150
+    w_vec:float = 0.01
+    epochs:int = 50
     focus_ratio:float = 0.5
-    data_ratio:float = 1.0
+    data_ratio:float = 0.1
     n_workers:int = 2
     batch_size:int = 64
     

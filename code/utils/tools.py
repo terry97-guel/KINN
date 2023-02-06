@@ -2,11 +2,12 @@ import numpy as np
 import torch
 import random
 from typing import List, Dict
+from torch import Tensor
 
 ### Casting ###
 def cast_tensor(array):
     if isinstance(array, torch.Tensor): return array
-    else: torch.tensor(array)
+    else: return torch.tensor(array)
 
 def cast_numpy(tensor):
     if isinstance(tensor, np.ndarray): return tensor
@@ -57,6 +58,10 @@ def bmul_1d(vec_1d, tensor):
     return vec_ * tensor
     
 
+def swap_dim_0_1(x:Tensor):
+    dim = x.dim()
+    return x.permute(1,0, *range(2,dim))
+
 if __name__ == "__main__":
     a = torch.tensor([1,2])
     b = torch.tensor([ [[1,1,1,1],[1,1,1,1],[1,1,1,1]], [[2,2,2,2],[2,2,2,2],[2,2,2,2]] ])
@@ -77,7 +82,7 @@ def get_runname():
 def print_log_dict(log_dictionary):
     log_strs = ""
     for key, item in log_dictionary.items():
-        log_str = "{}:{:.2f}, ".format(key,item)
+        log_str = "{}:{:.2E}, ".format(key,item)
         log_strs = log_strs + log_str
     print(log_strs, "\n")    
 

@@ -1,0 +1,592 @@
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+  1%|▉                                                                                            | 5/500 [00:02<03:30,  2.35it/s]
+train_dataset: 1903
+val_dataset: 238
+test_dataset: 238
+ext_dataset: 1020
+No Weights Found!! Starting From Scratch
+val_total_loss:1.33E+00, val_vector_loss:6.00E+00, val_position_loss:1.33E+00,
+ext_total_loss:1.34E+00, ext_vector_loss:6.00E+00, ext_position_loss:1.34E+00,
+val_total_loss:1.18E+00, val_vector_loss:5.99E+00, val_position_loss:1.18E+00,
+ext_total_loss:1.19E+00, ext_vector_loss:5.99E+00, ext_position_loss:1.19E+00,
+val_total_loss:9.48E-01, val_vector_loss:5.97E+00, val_position_loss:9.48E-01,
+ext_total_loss:8.89E-01, ext_vector_loss:5.95E+00, ext_position_loss:8.89E-01,
+val_total_loss:3.83E-01, val_vector_loss:5.88E+00, val_position_loss:3.83E-01,
+ext_total_loss:4.05E-01, ext_vector_loss:5.82E+00, ext_position_loss:4.05E-01,
+val_total_loss:2.34E-01, val_vector_loss:5.34E+00, val_position_loss:2.34E-01,
+
+  2%|█▊                                                                                          | 10/500 [00:04<03:23,  2.41it/s]
+val_total_loss:7.67E-02, val_vector_loss:4.52E+00, val_position_loss:7.67E-02,
+ext_total_loss:2.63E-01, ext_vector_loss:4.73E+00, ext_position_loss:2.63E-01,
+val_total_loss:9.61E-02, val_vector_loss:4.95E+00, val_position_loss:9.61E-02,
+ext_total_loss:7.55E-02, ext_vector_loss:3.78E+00, ext_position_loss:7.55E-02,
+val_total_loss:3.59E-02, val_vector_loss:4.60E+00, val_position_loss:3.59E-02,
+ext_total_loss:6.18E-02, ext_vector_loss:4.45E+00, ext_position_loss:6.18E-02,
+val_total_loss:4.06E-02, val_vector_loss:5.03E+00, val_position_loss:4.06E-02,
+ext_total_loss:9.97E-02, ext_vector_loss:5.18E+00, ext_position_loss:9.97E-02,
+val_total_loss:3.08E-02, val_vector_loss:5.46E+00, val_position_loss:3.08E-02,
+
+  3%|██▊                                                                                         | 15/500 [00:06<03:34,  2.26it/s]
+val_total_loss:6.17E-03, val_vector_loss:5.18E+00, val_position_loss:6.17E-03,
+ext_total_loss:9.62E-03, ext_vector_loss:5.34E+00, ext_position_loss:9.62E-03,
+val_total_loss:1.01E-02, val_vector_loss:4.62E+00, val_position_loss:1.01E-02,
+ext_total_loss:1.21E-02, ext_vector_loss:4.73E+00, ext_position_loss:1.21E-02,
+val_total_loss:4.36E-03, val_vector_loss:4.17E+00, val_position_loss:4.36E-03,
+ext_total_loss:7.52E-03, ext_vector_loss:4.44E+00, ext_position_loss:7.52E-03,
+val_total_loss:2.06E-03, val_vector_loss:4.77E+00, val_position_loss:2.06E-03,
+
+  4%|███▋                                                                                        | 20/500 [00:08<03:21,  2.38it/s]
+val_total_loss:4.56E-03, val_vector_loss:5.05E+00, val_position_loss:4.56E-03,
+ext_total_loss:9.00E-03, ext_vector_loss:5.16E+00, ext_position_loss:9.00E-03,
+val_total_loss:1.60E-03, val_vector_loss:4.79E+00, val_position_loss:1.60E-03,
+ext_total_loss:3.97E-03, ext_vector_loss:4.91E+00, ext_position_loss:3.97E-03,
+val_total_loss:1.60E-03, val_vector_loss:4.89E+00, val_position_loss:1.60E-03,
+ext_total_loss:2.89E-03, ext_vector_loss:5.07E+00, ext_position_loss:2.89E-03,
+val_total_loss:5.16E-04, val_vector_loss:5.44E+00, val_position_loss:5.16E-04,
+ext_total_loss:1.45E-03, ext_vector_loss:5.47E+00, ext_position_loss:1.45E-03,
+val_total_loss:4.15E-04, val_vector_loss:5.27E+00, val_position_loss:4.15E-04,
+
+  5%|████▍                                                                                       | 24/500 [00:10<03:15,  2.43it/s]
+val_total_loss:4.99E-04, val_vector_loss:5.06E+00, val_position_loss:4.99E-04,
+ext_total_loss:5.79E-04, ext_vector_loss:5.05E+00, ext_position_loss:5.79E-04,
+val_total_loss:1.02E-03, val_vector_loss:4.97E+00, val_position_loss:1.02E-03,
+ext_total_loss:2.22E-03, ext_vector_loss:4.98E+00, ext_position_loss:2.22E-03,
+val_total_loss:2.06E-03, val_vector_loss:4.97E+00, val_position_loss:2.06E-03,
+ext_total_loss:5.19E-03, ext_vector_loss:5.01E+00, ext_position_loss:5.19E-03,
+val_total_loss:3.28E-03, val_vector_loss:5.13E+00, val_position_loss:3.28E-03,
+
+  6%|█████▎                                                                                      | 29/500 [00:12<03:14,  2.42it/s]
+val_total_loss:3.55E-03, val_vector_loss:5.21E+00, val_position_loss:3.55E-03,
+ext_total_loss:4.95E-03, ext_vector_loss:5.24E+00, ext_position_loss:4.95E-03,
+val_total_loss:3.26E-03, val_vector_loss:5.14E+00, val_position_loss:3.26E-03,
+ext_total_loss:4.96E-03, ext_vector_loss:5.18E+00, ext_position_loss:4.96E-03,
+val_total_loss:2.64E-03, val_vector_loss:4.94E+00, val_position_loss:2.64E-03,
+ext_total_loss:3.33E-03, ext_vector_loss:5.01E+00, ext_position_loss:3.33E-03,
+val_total_loss:1.58E-03, val_vector_loss:5.03E+00, val_position_loss:1.58E-03,
+ext_total_loss:2.11E-03, ext_vector_loss:5.06E+00, ext_position_loss:2.11E-03,
+val_total_loss:7.48E-04, val_vector_loss:4.98E+00, val_position_loss:7.48E-04,
+
+  7%|██████▎                                                                                     | 34/500 [00:14<03:14,  2.39it/s]
+val_total_loss:4.16E-04, val_vector_loss:4.85E+00, val_position_loss:4.16E-04,
+ext_total_loss:8.15E-04, ext_vector_loss:4.85E+00, ext_position_loss:8.15E-04,
+val_total_loss:3.82E-04, val_vector_loss:4.91E+00, val_position_loss:3.82E-04,
+ext_total_loss:6.77E-04, ext_vector_loss:4.89E+00, ext_position_loss:6.77E-04,
+val_total_loss:3.55E-04, val_vector_loss:4.86E+00, val_position_loss:3.55E-04,
+ext_total_loss:6.23E-04, ext_vector_loss:4.85E+00, ext_position_loss:6.23E-04,
+val_total_loss:3.30E-04, val_vector_loss:4.85E+00, val_position_loss:3.30E-04,
+ext_total_loss:5.47E-04, ext_vector_loss:4.84E+00, ext_position_loss:5.47E-04,
+val_total_loss:4.43E-04, val_vector_loss:4.80E+00, val_position_loss:4.43E-04,
+
+  8%|███████▏                                                                                    | 39/500 [00:16<03:14,  2.37it/s]
+val_total_loss:6.34E-04, val_vector_loss:4.85E+00, val_position_loss:6.34E-04,
+ext_total_loss:8.59E-04, ext_vector_loss:4.85E+00, ext_position_loss:8.59E-04,
+val_total_loss:1.13E-03, val_vector_loss:5.00E+00, val_position_loss:1.13E-03,
+ext_total_loss:1.36E-03, ext_vector_loss:5.00E+00, ext_position_loss:1.36E-03,
+val_total_loss:1.38E-03, val_vector_loss:4.93E+00, val_position_loss:1.38E-03,
+ext_total_loss:1.67E-03, ext_vector_loss:4.94E+00, ext_position_loss:1.67E-03,
+val_total_loss:6.83E-04, val_vector_loss:4.94E+00, val_position_loss:6.83E-04,
+ext_total_loss:9.18E-04, ext_vector_loss:4.95E+00, ext_position_loss:9.18E-04,
+val_total_loss:4.37E-04, val_vector_loss:4.78E+00, val_position_loss:4.37E-04,
+
+  8%|███████▋                                                                                    | 42/500 [00:18<03:40,  2.08it/s]
+val_total_loss:1.79E-03, val_vector_loss:4.54E+00, val_position_loss:1.79E-03,
+ext_total_loss:1.66E-03, ext_vector_loss:4.55E+00, ext_position_loss:1.66E-03,
+val_total_loss:3.52E-04, val_vector_loss:4.72E+00, val_position_loss:3.52E-04,
+ext_total_loss:3.84E-04, ext_vector_loss:4.73E+00, ext_position_loss:3.84E-04,
+val_total_loss:1.64E-03, val_vector_loss:5.02E+00, val_position_loss:1.64E-03,
+ext_total_loss:1.97E-03, ext_vector_loss:5.03E+00, ext_position_loss:1.97E-03,
+
+  9%|████████▋                                                                                   | 47/500 [00:20<03:18,  2.28it/s]
+ext_total_loss:9.90E-04, ext_vector_loss:4.99E+00, ext_position_loss:9.90E-04,
+val_total_loss:1.08E-03, val_vector_loss:4.50E+00, val_position_loss:1.08E-03,
+ext_total_loss:1.05E-03, ext_vector_loss:4.51E+00, ext_position_loss:1.05E-03,
+val_total_loss:1.42E-03, val_vector_loss:4.43E+00, val_position_loss:1.42E-03,
+ext_total_loss:1.36E-03, ext_vector_loss:4.44E+00, ext_position_loss:1.36E-03,
+val_total_loss:1.01E-04, val_vector_loss:4.86E+00, val_position_loss:1.01E-04,
+ext_total_loss:2.38E-04, ext_vector_loss:4.86E+00, ext_position_loss:2.38E-04,
+val_total_loss:1.71E-03, val_vector_loss:5.04E+00, val_position_loss:1.71E-03,
+
+ 10%|█████████▌                                                                                  | 52/500 [00:22<03:09,  2.36it/s]
+val_total_loss:1.16E-03, val_vector_loss:5.02E+00, val_position_loss:1.16E-03,
+ext_total_loss:1.45E-03, ext_vector_loss:5.02E+00, ext_position_loss:1.45E-03,
+val_total_loss:3.21E-04, val_vector_loss:4.65E+00, val_position_loss:3.21E-04,
+ext_total_loss:3.59E-04, ext_vector_loss:4.66E+00, ext_position_loss:3.59E-04,
+val_total_loss:1.82E-03, val_vector_loss:4.33E+00, val_position_loss:1.82E-03,
+ext_total_loss:1.69E-03, ext_vector_loss:4.34E+00, ext_position_loss:1.69E-03,
+val_total_loss:1.27E-03, val_vector_loss:4.39E+00, val_position_loss:1.27E-03,
+ext_total_loss:1.23E-03, ext_vector_loss:4.39E+00, ext_position_loss:1.23E-03,
+val_total_loss:8.97E-05, val_vector_loss:4.78E+00, val_position_loss:8.97E-05,
+
+ 11%|██████████▎                                                                                 | 56/500 [00:24<03:10,  2.33it/s]
+val_total_loss:1.35E-03, val_vector_loss:5.05E+00, val_position_loss:1.35E-03,
+ext_total_loss:1.66E-03, ext_vector_loss:5.05E+00, ext_position_loss:1.66E-03,
+val_total_loss:2.16E-03, val_vector_loss:5.08E+00, val_position_loss:2.16E-03,
+ext_total_loss:2.50E-03, ext_vector_loss:5.08E+00, ext_position_loss:2.50E-03,
+val_total_loss:2.40E-04, val_vector_loss:4.92E+00, val_position_loss:2.40E-04,
+ext_total_loss:4.31E-04, ext_vector_loss:4.92E+00, ext_position_loss:4.31E-04,
+val_total_loss:9.63E-04, val_vector_loss:4.45E+00, val_position_loss:9.63E-04,
+
+ 12%|███████████▏                                                                                | 61/500 [00:26<03:06,  2.36it/s]
+val_total_loss:2.33E-03, val_vector_loss:4.06E+00, val_position_loss:2.33E-03,
+ext_total_loss:2.28E-03, ext_vector_loss:4.06E+00, ext_position_loss:2.28E-03,
+val_total_loss:1.10E-03, val_vector_loss:4.40E+00, val_position_loss:1.10E-03,
+ext_total_loss:1.09E-03, ext_vector_loss:4.40E+00, ext_position_loss:1.09E-03,
+val_total_loss:1.87E-04, val_vector_loss:4.81E+00, val_position_loss:1.87E-04,
+ext_total_loss:3.64E-04, ext_vector_loss:4.81E+00, ext_position_loss:3.64E-04,
+val_total_loss:2.86E-03, val_vector_loss:5.16E+00, val_position_loss:2.86E-03,
+ext_total_loss:3.22E-03, ext_vector_loss:5.16E+00, ext_position_loss:3.22E-03,
+val_total_loss:1.65E-03, val_vector_loss:5.04E+00, val_position_loss:1.65E-03,
+
+ 13%|███████████▉                                                                                | 65/500 [00:27<02:59,  2.42it/s]
+val_total_loss:1.08E-03, val_vector_loss:4.33E+00, val_position_loss:1.08E-03,
+ext_total_loss:1.06E-03, ext_vector_loss:4.33E+00, ext_position_loss:1.06E-03,
+val_total_loss:3.00E-03, val_vector_loss:4.03E+00, val_position_loss:3.00E-03,
+ext_total_loss:2.92E-03, ext_vector_loss:4.03E+00, ext_position_loss:2.92E-03,
+val_total_loss:1.41E-04, val_vector_loss:4.59E+00, val_position_loss:1.41E-04,
+ext_total_loss:2.75E-04, ext_vector_loss:4.59E+00, ext_position_loss:2.75E-04,
+val_total_loss:4.23E-03, val_vector_loss:5.18E+00, val_position_loss:4.23E-03,
+ext_total_loss:4.65E-03, ext_vector_loss:5.18E+00, ext_position_loss:4.65E-03,
+val_total_loss:3.09E-04, val_vector_loss:4.97E+00, val_position_loss:3.09E-04,
+
+ 14%|████████████▋                                                                               | 69/500 [00:29<03:00,  2.38it/s]
+val_total_loss:4.20E-03, val_vector_loss:3.89E+00, val_position_loss:4.20E-03,
+ext_total_loss:4.07E-03, ext_vector_loss:3.89E+00, ext_position_loss:4.07E-03,
+val_total_loss:5.98E-04, val_vector_loss:4.41E+00, val_position_loss:5.98E-04,
+ext_total_loss:6.51E-04, ext_vector_loss:4.41E+00, ext_position_loss:6.51E-04,
+val_total_loss:4.97E-03, val_vector_loss:5.17E+00, val_position_loss:4.97E-03,
+ext_total_loss:5.42E-03, ext_vector_loss:5.17E+00, ext_position_loss:5.42E-03,
+val_total_loss:2.58E-04, val_vector_loss:4.94E+00, val_position_loss:2.58E-04,
+ext_total_loss:4.62E-04, ext_vector_loss:4.94E+00, ext_position_loss:4.62E-04,
+val_total_loss:5.53E-03, val_vector_loss:3.88E+00, val_position_loss:5.53E-03,
+
+ 15%|█████████████▌                                                                              | 74/500 [00:31<02:58,  2.39it/s]
+val_total_loss:1.47E-04, val_vector_loss:4.87E+00, val_position_loss:1.47E-04,
+ext_total_loss:3.36E-04, ext_vector_loss:4.87E+00, ext_position_loss:3.36E-04,
+val_total_loss:5.12E-03, val_vector_loss:5.15E+00, val_position_loss:5.12E-03,
+ext_total_loss:5.60E-03, ext_vector_loss:5.15E+00, ext_position_loss:5.60E-03,
+val_total_loss:2.46E-03, val_vector_loss:4.03E+00, val_position_loss:2.46E-03,
+ext_total_loss:2.37E-03, ext_vector_loss:4.03E+00, ext_position_loss:2.37E-03,
+val_total_loss:2.00E-03, val_vector_loss:4.03E+00, val_position_loss:2.00E-03,
+
+ 16%|██████████████▌                                                                             | 79/500 [00:33<03:01,  2.31it/s]
+val_total_loss:6.91E-03, val_vector_loss:5.15E+00, val_position_loss:6.91E-03,
+ext_total_loss:7.44E-03, ext_vector_loss:5.15E+00, ext_position_loss:7.44E-03,
+val_total_loss:4.09E-04, val_vector_loss:4.54E+00, val_position_loss:4.09E-04,
+ext_total_loss:4.70E-04, ext_vector_loss:4.54E+00, ext_position_loss:4.70E-04,
+val_total_loss:3.86E-03, val_vector_loss:3.88E+00, val_position_loss:3.86E-03,
+ext_total_loss:3.70E-03, ext_vector_loss:3.88E+00, ext_position_loss:3.70E-03,
+val_total_loss:7.20E-03, val_vector_loss:5.15E+00, val_position_loss:7.20E-03,
+ext_total_loss:7.75E-03, ext_vector_loss:5.15E+00, ext_position_loss:7.75E-03,
+val_total_loss:6.67E-04, val_vector_loss:4.47E+00, val_position_loss:6.67E-04,
+
+ 17%|███████████████▍                                                                            | 84/500 [00:35<02:56,  2.36it/s]
+val_total_loss:3.06E-03, val_vector_loss:3.93E+00, val_position_loss:3.06E-03,
+ext_total_loss:2.92E-03, ext_vector_loss:3.93E+00, ext_position_loss:2.92E-03,
+val_total_loss:7.80E-03, val_vector_loss:5.13E+00, val_position_loss:7.80E-03,
+ext_total_loss:8.36E-03, ext_vector_loss:5.13E+00, ext_position_loss:8.36E-03,
+val_total_loss:3.39E-03, val_vector_loss:3.91E+00, val_position_loss:3.39E-03,
+ext_total_loss:3.23E-03, ext_vector_loss:3.91E+00, ext_position_loss:3.23E-03,
+val_total_loss:2.52E-04, val_vector_loss:4.67E+00, val_position_loss:2.52E-04,
+ext_total_loss:3.22E-04, ext_vector_loss:4.67E+00, ext_position_loss:3.22E-04,
+val_total_loss:4.60E-03, val_vector_loss:5.09E+00, val_position_loss:4.60E-03,
+
+ 18%|████████████████▏                                                                           | 88/500 [00:37<02:56,  2.34it/s]
+val_total_loss:7.81E-03, val_vector_loss:3.82E+00, val_position_loss:7.81E-03,
+ext_total_loss:7.49E-03, ext_vector_loss:3.82E+00, ext_position_loss:7.49E-03,
+val_total_loss:2.68E-03, val_vector_loss:5.01E+00, val_position_loss:2.68E-03,
+ext_total_loss:3.08E-03, ext_vector_loss:5.01E+00, ext_position_loss:3.08E-03,
+val_total_loss:3.00E-04, val_vector_loss:4.88E+00, val_position_loss:3.00E-04,
+ext_total_loss:5.26E-04, ext_vector_loss:4.88E+00, ext_position_loss:5.26E-04,
+val_total_loss:4.23E-03, val_vector_loss:3.81E+00, val_position_loss:4.23E-03,
+
+ 19%|█████████████████                                                                           | 93/500 [00:39<02:55,  2.32it/s]
+val_total_loss:6.95E-03, val_vector_loss:5.07E+00, val_position_loss:6.95E-03,
+ext_total_loss:7.46E-03, ext_vector_loss:5.07E+00, ext_position_loss:7.46E-03,
+val_total_loss:2.25E-03, val_vector_loss:3.93E+00, val_position_loss:2.25E-03,
+ext_total_loss:2.16E-03, ext_vector_loss:3.93E+00, ext_position_loss:2.16E-03,
+val_total_loss:1.25E-04, val_vector_loss:4.61E+00, val_position_loss:1.25E-04,
+ext_total_loss:2.71E-04, ext_vector_loss:4.61E+00, ext_position_loss:2.71E-04,
+val_total_loss:3.39E-03, val_vector_loss:4.98E+00, val_position_loss:3.39E-03,
+ext_total_loss:3.80E-03, ext_vector_loss:4.98E+00, ext_position_loss:3.80E-03,
+val_total_loss:5.91E-03, val_vector_loss:3.87E+00, val_position_loss:5.91E-03,
+
+ 20%|██████████████████                                                                          | 98/500 [00:41<02:49,  2.37it/s]
+val_total_loss:1.52E-03, val_vector_loss:4.92E+00, val_position_loss:1.52E-03,
+ext_total_loss:1.83E-03, ext_vector_loss:4.92E+00, ext_position_loss:1.83E-03,
+val_total_loss:5.45E-04, val_vector_loss:4.85E+00, val_position_loss:5.45E-04,
+ext_total_loss:7.80E-04, ext_vector_loss:4.85E+00, ext_position_loss:7.80E-04,
+val_total_loss:4.06E-03, val_vector_loss:3.80E+00, val_position_loss:4.06E-03,
+ext_total_loss:3.90E-03, ext_vector_loss:3.80E+00, ext_position_loss:3.90E-03,
+val_total_loss:2.14E-03, val_vector_loss:4.82E+00, val_position_loss:2.14E-03,
+ext_total_loss:2.52E-03, ext_vector_loss:4.82E+00, ext_position_loss:2.52E-03,
+val_total_loss:2.60E-04, val_vector_loss:4.77E+00, val_position_loss:2.60E-04,
+
+ 20%|██████████████████▌                                                                        | 102/500 [00:43<02:49,  2.34it/s]
+val_total_loss:2.88E-03, val_vector_loss:3.91E+00, val_position_loss:2.88E-03,
+ext_total_loss:2.75E-03, ext_vector_loss:3.91E+00, ext_position_loss:2.75E-03,
+val_total_loss:4.65E-04, val_vector_loss:4.71E+00, val_position_loss:4.65E-04,
+ext_total_loss:6.94E-04, ext_vector_loss:4.71E+00, ext_position_loss:6.94E-04,
+val_total_loss:1.03E-03, val_vector_loss:4.72E+00, val_position_loss:1.03E-03,
+ext_total_loss:1.32E-03, ext_vector_loss:4.72E+00, ext_position_loss:1.32E-03,
+val_total_loss:3.34E-04, val_vector_loss:4.42E+00, val_position_loss:3.34E-04,
+ext_total_loss:4.12E-04, ext_vector_loss:4.42E+00, ext_position_loss:4.12E-04,
+val_total_loss:1.04E-03, val_vector_loss:4.24E+00, val_position_loss:1.04E-03,
+
+ 21%|███████████████████▍                                                                       | 107/500 [00:45<02:44,  2.38it/s]
+val_total_loss:2.43E-04, val_vector_loss:4.43E+00, val_position_loss:2.43E-04,
+ext_total_loss:3.18E-04, ext_vector_loss:4.43E+00, ext_position_loss:3.18E-04,
+val_total_loss:2.28E-04, val_vector_loss:4.47E+00, val_position_loss:2.28E-04,
+ext_total_loss:4.34E-04, ext_vector_loss:4.47E+00, ext_position_loss:4.34E-04,
+val_total_loss:5.15E-04, val_vector_loss:4.48E+00, val_position_loss:5.15E-04,
+ext_total_loss:7.71E-04, ext_vector_loss:4.48E+00, ext_position_loss:7.71E-04,
+val_total_loss:4.83E-04, val_vector_loss:4.49E+00, val_position_loss:4.83E-04,
+
+ 22%|████████████████████▍                                                                      | 112/500 [00:47<02:53,  2.24it/s]
+val_total_loss:2.17E-04, val_vector_loss:4.50E+00, val_position_loss:2.17E-04,
+ext_total_loss:4.02E-04, ext_vector_loss:4.50E+00, ext_position_loss:4.02E-04,
+val_total_loss:1.35E-04, val_vector_loss:4.45E+00, val_position_loss:1.35E-04,
+ext_total_loss:2.45E-04, ext_vector_loss:4.45E+00, ext_position_loss:2.45E-04,
+val_total_loss:5.73E-04, val_vector_loss:4.43E+00, val_position_loss:5.73E-04,
+ext_total_loss:5.99E-04, ext_vector_loss:4.43E+00, ext_position_loss:5.99E-04,
+val_total_loss:3.95E-04, val_vector_loss:4.31E+00, val_position_loss:3.95E-04,
+ext_total_loss:4.44E-04, ext_vector_loss:4.31E+00, ext_position_loss:4.44E-04,
+val_total_loss:1.21E-04, val_vector_loss:4.25E+00, val_position_loss:1.21E-04,
+
+ 23%|█████████████████████▎                                                                     | 117/500 [00:49<02:43,  2.35it/s]
+val_total_loss:5.37E-04, val_vector_loss:4.23E+00, val_position_loss:5.37E-04,
+ext_total_loss:7.89E-04, ext_vector_loss:4.23E+00, ext_position_loss:7.89E-04,
+val_total_loss:1.46E-04, val_vector_loss:4.28E+00, val_position_loss:1.46E-04,
+ext_total_loss:3.22E-04, ext_vector_loss:4.28E+00, ext_position_loss:3.22E-04,
+val_total_loss:6.66E-04, val_vector_loss:4.49E+00, val_position_loss:6.66E-04,
+ext_total_loss:6.84E-04, ext_vector_loss:4.49E+00, ext_position_loss:6.84E-04,
+val_total_loss:1.26E-04, val_vector_loss:4.24E+00, val_position_loss:1.26E-04,
+ext_total_loss:2.31E-04, ext_vector_loss:4.24E+00, ext_position_loss:2.31E-04,
+val_total_loss:5.34E-04, val_vector_loss:4.12E+00, val_position_loss:5.34E-04,
+
+ 24%|██████████████████████                                                                     | 121/500 [00:51<02:41,  2.34it/s]
+val_total_loss:1.28E-04, val_vector_loss:4.17E+00, val_position_loss:1.28E-04,
+ext_total_loss:2.96E-04, ext_vector_loss:4.17E+00, ext_position_loss:2.96E-04,
+val_total_loss:7.89E-04, val_vector_loss:4.48E+00, val_position_loss:7.89E-04,
+ext_total_loss:7.95E-04, ext_vector_loss:4.48E+00, ext_position_loss:7.95E-04,
+val_total_loss:8.47E-05, val_vector_loss:4.10E+00, val_position_loss:8.47E-05,
+ext_total_loss:2.31E-04, ext_vector_loss:4.10E+00, ext_position_loss:2.31E-04,
+val_total_loss:5.01E-04, val_vector_loss:4.02E+00, val_position_loss:5.01E-04,
+ext_total_loss:7.33E-04, ext_vector_loss:4.02E+00, ext_position_loss:7.33E-04,
+val_total_loss:9.63E-05, val_vector_loss:4.14E+00, val_position_loss:9.63E-05,
+
+ 25%|██████████████████████▉                                                                    | 126/500 [00:53<02:34,  2.42it/s]
+val_total_loss:7.03E-04, val_vector_loss:4.36E+00, val_position_loss:7.03E-04,
+ext_total_loss:7.26E-04, ext_vector_loss:4.36E+00, ext_position_loss:7.26E-04,
+val_total_loss:9.00E-05, val_vector_loss:3.98E+00, val_position_loss:9.00E-05,
+ext_total_loss:2.34E-04, ext_vector_loss:3.98E+00, ext_position_loss:2.34E-04,
+val_total_loss:4.50E-04, val_vector_loss:3.88E+00, val_position_loss:4.50E-04,
+ext_total_loss:6.78E-04, ext_vector_loss:3.88E+00, ext_position_loss:6.78E-04,
+val_total_loss:1.87E-04, val_vector_loss:3.92E+00, val_position_loss:1.87E-04,
+
+ 26%|███████████████████████▊                                                                   | 131/500 [00:55<02:34,  2.39it/s]
+val_total_loss:2.41E-04, val_vector_loss:4.19E+00, val_position_loss:2.41E-04,
+ext_total_loss:3.22E-04, ext_vector_loss:4.19E+00, ext_position_loss:3.22E-04,
+val_total_loss:4.80E-04, val_vector_loss:4.29E+00, val_position_loss:4.80E-04,
+ext_total_loss:5.28E-04, ext_vector_loss:4.29E+00, ext_position_loss:5.28E-04,
+val_total_loss:1.58E-04, val_vector_loss:3.84E+00, val_position_loss:1.58E-04,
+ext_total_loss:3.51E-04, ext_vector_loss:3.84E+00, ext_position_loss:3.51E-04,
+val_total_loss:4.53E-04, val_vector_loss:3.82E+00, val_position_loss:4.53E-04,
+ext_total_loss:6.87E-04, ext_vector_loss:3.82E+00, ext_position_loss:6.87E-04,
+val_total_loss:9.81E-05, val_vector_loss:3.94E+00, val_position_loss:9.81E-05,
+
+ 27%|████████████████████████▊                                                                  | 136/500 [00:57<02:30,  2.41it/s]
+val_total_loss:6.31E-04, val_vector_loss:4.23E+00, val_position_loss:6.31E-04,
+ext_total_loss:6.63E-04, ext_vector_loss:4.23E+00, ext_position_loss:6.63E-04,
+val_total_loss:1.05E-04, val_vector_loss:3.94E+00, val_position_loss:1.05E-04,
+ext_total_loss:2.34E-04, ext_vector_loss:3.94E+00, ext_position_loss:2.34E-04,
+val_total_loss:4.99E-04, val_vector_loss:3.86E+00, val_position_loss:4.99E-04,
+ext_total_loss:7.33E-04, ext_vector_loss:3.86E+00, ext_position_loss:7.33E-04,
+val_total_loss:1.05E-04, val_vector_loss:3.93E+00, val_position_loss:1.05E-04,
+ext_total_loss:2.61E-04, ext_vector_loss:3.93E+00, ext_position_loss:2.61E-04,
+val_total_loss:6.77E-04, val_vector_loss:4.13E+00, val_position_loss:6.77E-04,
+
+ 28%|█████████████████████████▍                                                                 | 140/500 [00:59<02:32,  2.35it/s]
+val_total_loss:1.07E-04, val_vector_loss:3.86E+00, val_position_loss:1.07E-04,
+ext_total_loss:2.73E-04, ext_vector_loss:3.86E+00, ext_position_loss:2.73E-04,
+val_total_loss:4.05E-04, val_vector_loss:3.85E+00, val_position_loss:4.05E-04,
+ext_total_loss:6.25E-04, ext_vector_loss:3.85E+00, ext_position_loss:6.25E-04,
+val_total_loss:3.40E-04, val_vector_loss:4.02E+00, val_position_loss:3.40E-04,
+ext_total_loss:4.07E-04, ext_vector_loss:4.02E+00, ext_position_loss:4.07E-04,
+val_total_loss:1.55E-04, val_vector_loss:3.88E+00, val_position_loss:1.55E-04,
+ext_total_loss:2.63E-04, ext_vector_loss:3.88E+00, ext_position_loss:2.63E-04,
+val_total_loss:5.10E-04, val_vector_loss:3.82E+00, val_position_loss:5.10E-04,
+
+ 29%|██████████████████████████▍                                                                | 145/500 [01:01<02:30,  2.36it/s]
+val_total_loss:1.24E-04, val_vector_loss:3.91E+00, val_position_loss:1.24E-04,
+ext_total_loss:2.37E-04, ext_vector_loss:3.91E+00, ext_position_loss:2.37E-04,
+val_total_loss:3.75E-04, val_vector_loss:3.88E+00, val_position_loss:3.75E-04,
+ext_total_loss:4.41E-04, ext_vector_loss:3.88E+00, ext_position_loss:4.41E-04,
+val_total_loss:5.12E-04, val_vector_loss:3.84E+00, val_position_loss:5.12E-04,
+ext_total_loss:7.40E-04, ext_vector_loss:3.84E+00, ext_position_loss:7.40E-04,
+val_total_loss:9.02E-05, val_vector_loss:3.82E+00, val_position_loss:9.02E-05,
+
+ 30%|███████████████████████████▎                                                               | 150/500 [01:04<02:28,  2.36it/s]
+val_total_loss:3.61E-04, val_vector_loss:3.92E+00, val_position_loss:3.61E-04,
+ext_total_loss:4.24E-04, ext_vector_loss:3.92E+00, ext_position_loss:4.24E-04,
+val_total_loss:4.54E-04, val_vector_loss:3.88E+00, val_position_loss:4.54E-04,
+ext_total_loss:6.64E-04, ext_vector_loss:3.88E+00, ext_position_loss:6.64E-04,
+val_total_loss:2.31E-04, val_vector_loss:3.58E+00, val_position_loss:2.31E-04,
+ext_total_loss:4.02E-04, ext_vector_loss:3.58E+00, ext_position_loss:4.02E-04,
+val_total_loss:1.86E-04, val_vector_loss:3.97E+00, val_position_loss:1.86E-04,
+ext_total_loss:2.73E-04, ext_vector_loss:3.97E+00, ext_position_loss:2.73E-04,
+val_total_loss:3.07E-04, val_vector_loss:4.09E+00, val_position_loss:3.07E-04,
+
+ 31%|████████████████████████████                                                               | 154/500 [01:05<02:25,  2.38it/s]
+val_total_loss:4.37E-04, val_vector_loss:3.96E+00, val_position_loss:4.37E-04,
+ext_total_loss:4.92E-04, ext_vector_loss:3.96E+00, ext_position_loss:4.92E-04,
+val_total_loss:2.40E-04, val_vector_loss:3.70E+00, val_position_loss:2.40E-04,
+ext_total_loss:4.52E-04, ext_vector_loss:3.70E+00, ext_position_loss:4.52E-04,
+val_total_loss:2.22E-04, val_vector_loss:3.76E+00, val_position_loss:2.22E-04,
+ext_total_loss:4.16E-04, ext_vector_loss:3.76E+00, ext_position_loss:4.16E-04,
+val_total_loss:4.17E-04, val_vector_loss:3.84E+00, val_position_loss:4.17E-04,
+
+ 32%|████████████████████████████▉                                                              | 159/500 [01:07<02:22,  2.39it/s]
+val_total_loss:8.49E-05, val_vector_loss:3.78E+00, val_position_loss:8.49E-05,
+ext_total_loss:2.27E-04, ext_vector_loss:3.78E+00, ext_position_loss:2.27E-04,
+val_total_loss:3.76E-04, val_vector_loss:3.80E+00, val_position_loss:3.76E-04,
+ext_total_loss:5.86E-04, ext_vector_loss:3.80E+00, ext_position_loss:5.86E-04,
+val_total_loss:3.10E-04, val_vector_loss:3.63E+00, val_position_loss:3.10E-04,
+ext_total_loss:4.10E-04, ext_vector_loss:3.63E+00, ext_position_loss:4.10E-04,
+val_total_loss:2.31E-04, val_vector_loss:4.00E+00, val_position_loss:2.31E-04,
+ext_total_loss:3.31E-04, ext_vector_loss:4.00E+00, ext_position_loss:3.31E-04,
+val_total_loss:1.54E-04, val_vector_loss:3.75E+00, val_position_loss:1.54E-04,
+
+ 33%|█████████████████████████████▊                                                             | 164/500 [01:09<02:19,  2.40it/s]
+val_total_loss:2.55E-04, val_vector_loss:3.57E+00, val_position_loss:2.55E-04,
+ext_total_loss:4.56E-04, ext_vector_loss:3.57E+00, ext_position_loss:4.56E-04,
+val_total_loss:3.31E-04, val_vector_loss:3.80E+00, val_position_loss:3.31E-04,
+ext_total_loss:5.30E-04, ext_vector_loss:3.80E+00, ext_position_loss:5.30E-04,
+val_total_loss:3.52E-04, val_vector_loss:3.73E+00, val_position_loss:3.52E-04,
+ext_total_loss:4.35E-04, ext_vector_loss:3.73E+00, ext_position_loss:4.35E-04,
+val_total_loss:1.47E-04, val_vector_loss:3.87E+00, val_position_loss:1.47E-04,
+ext_total_loss:2.82E-04, ext_vector_loss:3.87E+00, ext_position_loss:2.82E-04,
+val_total_loss:1.89E-04, val_vector_loss:3.71E+00, val_position_loss:1.89E-04,
+
+ 34%|██████████████████████████████▌                                                            | 168/500 [01:11<02:25,  2.29it/s]
+val_total_loss:1.43E-04, val_vector_loss:3.60E+00, val_position_loss:1.43E-04,
+ext_total_loss:2.94E-04, ext_vector_loss:3.60E+00, ext_position_loss:2.94E-04,
+val_total_loss:2.04E-04, val_vector_loss:3.90E+00, val_position_loss:2.04E-04,
+ext_total_loss:3.45E-04, ext_vector_loss:3.90E+00, ext_position_loss:3.45E-04,
+val_total_loss:3.70E-04, val_vector_loss:3.84E+00, val_position_loss:3.70E-04,
+ext_total_loss:4.34E-04, ext_vector_loss:3.84E+00, ext_position_loss:4.34E-04,
+val_total_loss:9.58E-05, val_vector_loss:3.73E+00, val_position_loss:9.58E-05,
+
+ 35%|███████████████████████████████▍                                                           | 173/500 [01:13<02:19,  2.34it/s]
+val_total_loss:2.17E-04, val_vector_loss:3.77E+00, val_position_loss:2.17E-04,
+ext_total_loss:4.03E-04, ext_vector_loss:3.77E+00, ext_position_loss:4.03E-04,
+val_total_loss:4.82E-04, val_vector_loss:3.74E+00, val_position_loss:4.82E-04,
+ext_total_loss:5.49E-04, ext_vector_loss:3.74E+00, ext_position_loss:5.49E-04,
+val_total_loss:3.87E-04, val_vector_loss:3.83E+00, val_position_loss:3.87E-04,
+ext_total_loss:5.83E-04, ext_vector_loss:3.83E+00, ext_position_loss:5.83E-04,
+val_total_loss:1.66E-04, val_vector_loss:3.59E+00, val_position_loss:1.66E-04,
+ext_total_loss:3.07E-04, ext_vector_loss:3.59E+00, ext_position_loss:3.07E-04,
+val_total_loss:2.29E-04, val_vector_loss:3.96E+00, val_position_loss:2.29E-04,
+
+ 36%|████████████████████████████████▍                                                          | 178/500 [01:16<02:15,  2.37it/s]
+val_total_loss:8.55E-05, val_vector_loss:3.74E+00, val_position_loss:8.55E-05,
+ext_total_loss:2.25E-04, ext_vector_loss:3.74E+00, ext_position_loss:2.25E-04,
+val_total_loss:9.75E-05, val_vector_loss:3.66E+00, val_position_loss:9.75E-05,
+ext_total_loss:2.55E-04, ext_vector_loss:3.66E+00, ext_position_loss:2.55E-04,
+val_total_loss:2.68E-04, val_vector_loss:3.77E+00, val_position_loss:2.68E-04,
+ext_total_loss:4.61E-04, ext_vector_loss:3.77E+00, ext_position_loss:4.61E-04,
+val_total_loss:3.12E-04, val_vector_loss:3.60E+00, val_position_loss:3.12E-04,
+ext_total_loss:4.18E-04, ext_vector_loss:3.60E+00, ext_position_loss:4.18E-04,
+val_total_loss:3.01E-04, val_vector_loss:3.97E+00, val_position_loss:3.01E-04,
+
+ 36%|█████████████████████████████████                                                          | 182/500 [01:17<02:14,  2.37it/s]
+val_total_loss:1.30E-04, val_vector_loss:3.60E+00, val_position_loss:1.30E-04,
+ext_total_loss:2.97E-04, ext_vector_loss:3.60E+00, ext_position_loss:2.97E-04,
+val_total_loss:1.96E-04, val_vector_loss:3.68E+00, val_position_loss:1.96E-04,
+ext_total_loss:3.97E-04, ext_vector_loss:3.68E+00, ext_position_loss:3.97E-04,
+val_total_loss:1.18E-04, val_vector_loss:3.77E+00, val_position_loss:1.18E-04,
+ext_total_loss:2.73E-04, ext_vector_loss:3.77E+00, ext_position_loss:2.73E-04,
+val_total_loss:2.96E-04, val_vector_loss:3.75E+00, val_position_loss:2.96E-04,
+
+ 37%|██████████████████████████████████                                                         | 187/500 [01:19<02:15,  2.31it/s]
+val_total_loss:2.75E-04, val_vector_loss:3.66E+00, val_position_loss:2.75E-04,
+ext_total_loss:4.94E-04, ext_vector_loss:3.66E+00, ext_position_loss:4.94E-04,
+val_total_loss:1.01E-04, val_vector_loss:3.70E+00, val_position_loss:1.01E-04,
+ext_total_loss:2.31E-04, ext_vector_loss:3.70E+00, ext_position_loss:2.31E-04,
+val_total_loss:1.45E-04, val_vector_loss:3.69E+00, val_position_loss:1.45E-04,
+ext_total_loss:2.63E-04, ext_vector_loss:3.69E+00, ext_position_loss:2.63E-04,
+val_total_loss:2.46E-04, val_vector_loss:3.66E+00, val_position_loss:2.46E-04,
+ext_total_loss:4.52E-04, ext_vector_loss:3.66E+00, ext_position_loss:4.52E-04,
+val_total_loss:2.07E-04, val_vector_loss:3.65E+00, val_position_loss:2.07E-04,
+
+ 38%|██████████████████████████████████▊                                                        | 191/500 [01:21<02:19,  2.21it/s]
+val_total_loss:1.02E-04, val_vector_loss:3.78E+00, val_position_loss:1.02E-04,
+ext_total_loss:2.43E-04, ext_vector_loss:3.78E+00, ext_position_loss:2.43E-04,
+val_total_loss:1.40E-04, val_vector_loss:3.73E+00, val_position_loss:1.40E-04,
+ext_total_loss:3.15E-04, ext_vector_loss:3.73E+00, ext_position_loss:3.15E-04,
+val_total_loss:2.41E-04, val_vector_loss:3.68E+00, val_position_loss:2.41E-04,
+ext_total_loss:3.31E-04, ext_vector_loss:3.68E+00, ext_position_loss:3.31E-04,
+val_total_loss:2.23E-04, val_vector_loss:3.90E+00, val_position_loss:2.23E-04,
+ext_total_loss:3.54E-04, ext_vector_loss:3.90E+00, ext_position_loss:3.54E-04,
+val_total_loss:1.73E-04, val_vector_loss:3.55E+00, val_position_loss:1.73E-04,
+
+ 39%|███████████████████████████████████▋                                                       | 196/500 [01:23<02:11,  2.32it/s]
+val_total_loss:2.81E-04, val_vector_loss:3.78E+00, val_position_loss:2.81E-04,
+ext_total_loss:4.73E-04, ext_vector_loss:3.78E+00, ext_position_loss:4.73E-04,
+val_total_loss:1.44E-04, val_vector_loss:3.68E+00, val_position_loss:1.44E-04,
+ext_total_loss:2.60E-04, ext_vector_loss:3.68E+00, ext_position_loss:2.60E-04,
+val_total_loss:9.34E-05, val_vector_loss:3.75E+00, val_position_loss:9.34E-05,
+ext_total_loss:2.39E-04, ext_vector_loss:3.75E+00, ext_position_loss:2.39E-04,
+val_total_loss:1.15E-04, val_vector_loss:3.73E+00, val_position_loss:1.15E-04,
+
+ 40%|████████████████████████████████████▌                                                      | 201/500 [01:25<02:06,  2.36it/s]
+val_total_loss:1.89E-04, val_vector_loss:3.71E+00, val_position_loss:1.89E-04,
+ext_total_loss:2.87E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.87E-04,
+val_total_loss:2.25E-04, val_vector_loss:3.78E+00, val_position_loss:2.25E-04,
+ext_total_loss:4.08E-04, ext_vector_loss:3.78E+00, ext_position_loss:4.08E-04,
+val_total_loss:1.95E-04, val_vector_loss:3.57E+00, val_position_loss:1.95E-04,
+ext_total_loss:3.21E-04, ext_vector_loss:3.57E+00, ext_position_loss:3.21E-04,
+val_total_loss:2.85E-04, val_vector_loss:3.98E+00, val_position_loss:2.85E-04,
+ext_total_loss:3.72E-04, ext_vector_loss:3.98E+00, ext_position_loss:3.72E-04,
+val_total_loss:2.29E-04, val_vector_loss:3.62E+00, val_position_loss:2.29E-04,
+
+ 41%|█████████████████████████████████████▎                                                     | 205/500 [01:27<02:04,  2.36it/s]
+val_total_loss:1.85E-04, val_vector_loss:3.83E+00, val_position_loss:1.85E-04,
+ext_total_loss:3.38E-04, ext_vector_loss:3.83E+00, ext_position_loss:3.38E-04,
+val_total_loss:1.15E-04, val_vector_loss:3.62E+00, val_position_loss:1.15E-04,
+ext_total_loss:2.91E-04, ext_vector_loss:3.62E+00, ext_position_loss:2.91E-04,
+val_total_loss:1.14E-04, val_vector_loss:3.77E+00, val_position_loss:1.14E-04,
+ext_total_loss:2.30E-04, ext_vector_loss:3.77E+00, ext_position_loss:2.30E-04,
+val_total_loss:1.77E-04, val_vector_loss:3.85E+00, val_position_loss:1.77E-04,
+ext_total_loss:2.74E-04, ext_vector_loss:3.85E+00, ext_position_loss:2.74E-04,
+val_total_loss:1.18E-04, val_vector_loss:3.66E+00, val_position_loss:1.18E-04,
+
+ 42%|██████████████████████████████████████▏                                                    | 210/500 [01:29<02:07,  2.28it/s]
+val_total_loss:1.92E-04, val_vector_loss:3.77E+00, val_position_loss:1.92E-04,
+ext_total_loss:3.75E-04, ext_vector_loss:3.77E+00, ext_position_loss:3.75E-04,
+val_total_loss:2.47E-04, val_vector_loss:3.86E+00, val_position_loss:2.47E-04,
+ext_total_loss:3.25E-04, ext_vector_loss:3.86E+00, ext_position_loss:3.25E-04,
+val_total_loss:1.81E-04, val_vector_loss:3.78E+00, val_position_loss:1.81E-04,
+ext_total_loss:3.54E-04, ext_vector_loss:3.78E+00, ext_position_loss:3.54E-04,
+val_total_loss:1.04E-04, val_vector_loss:3.79E+00, val_position_loss:1.04E-04,
+
+ 43%|███████████████████████████████████████▏                                                   | 215/500 [01:32<02:02,  2.32it/s]
+val_total_loss:1.02E-04, val_vector_loss:3.71E+00, val_position_loss:1.02E-04,
+ext_total_loss:2.27E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.27E-04,
+val_total_loss:1.44E-04, val_vector_loss:3.73E+00, val_position_loss:1.44E-04,
+ext_total_loss:3.20E-04, ext_vector_loss:3.73E+00, ext_position_loss:3.20E-04,
+val_total_loss:2.20E-04, val_vector_loss:3.68E+00, val_position_loss:2.20E-04,
+ext_total_loss:3.16E-04, ext_vector_loss:3.68E+00, ext_position_loss:3.16E-04,
+val_total_loss:1.74E-04, val_vector_loss:3.71E+00, val_position_loss:1.74E-04,
+ext_total_loss:3.64E-04, ext_vector_loss:3.71E+00, ext_position_loss:3.64E-04,
+val_total_loss:1.43E-04, val_vector_loss:3.83E+00, val_position_loss:1.43E-04,
+
+ 44%|███████████████████████████████████████▊                                                   | 219/500 [01:33<02:01,  2.32it/s]
+val_total_loss:1.25E-04, val_vector_loss:3.80E+00, val_position_loss:1.25E-04,
+ext_total_loss:2.69E-04, ext_vector_loss:3.80E+00, ext_position_loss:2.69E-04,
+val_total_loss:9.25E-05, val_vector_loss:3.75E+00, val_position_loss:9.25E-05,
+ext_total_loss:2.42E-04, ext_vector_loss:3.75E+00, ext_position_loss:2.42E-04,
+val_total_loss:1.29E-04, val_vector_loss:3.66E+00, val_position_loss:1.29E-04,
+ext_total_loss:2.49E-04, ext_vector_loss:3.66E+00, ext_position_loss:2.49E-04,
+val_total_loss:1.86E-04, val_vector_loss:3.79E+00, val_position_loss:1.86E-04,
+ext_total_loss:3.59E-04, ext_vector_loss:3.79E+00, ext_position_loss:3.59E-04,
+val_total_loss:2.07E-04, val_vector_loss:3.73E+00, val_position_loss:2.07E-04,
+
+ 45%|████████████████████████████████████████▊                                                  | 224/500 [01:35<01:57,  2.34it/s]
+val_total_loss:1.77E-04, val_vector_loss:3.67E+00, val_position_loss:1.77E-04,
+ext_total_loss:3.74E-04, ext_vector_loss:3.67E+00, ext_position_loss:3.74E-04,
+val_total_loss:1.51E-04, val_vector_loss:3.75E+00, val_position_loss:1.51E-04,
+ext_total_loss:2.53E-04, ext_vector_loss:3.75E+00, ext_position_loss:2.53E-04,
+val_total_loss:1.56E-04, val_vector_loss:3.79E+00, val_position_loss:1.56E-04,
+ext_total_loss:3.20E-04, ext_vector_loss:3.79E+00, ext_position_loss:3.20E-04,
+val_total_loss:9.26E-05, val_vector_loss:3.72E+00, val_position_loss:9.26E-05,
+
+ 46%|█████████████████████████████████████████▋                                                 | 229/500 [01:37<01:55,  2.35it/s]
+val_total_loss:8.41E-05, val_vector_loss:3.71E+00, val_position_loss:8.41E-05,
+ext_total_loss:2.30E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.30E-04,
+val_total_loss:9.80E-05, val_vector_loss:3.77E+00, val_position_loss:9.80E-05,
+ext_total_loss:2.42E-04, ext_vector_loss:3.77E+00, ext_position_loss:2.42E-04,
+val_total_loss:9.98E-05, val_vector_loss:3.68E+00, val_position_loss:9.98E-05,
+ext_total_loss:2.33E-04, ext_vector_loss:3.68E+00, ext_position_loss:2.33E-04,
+val_total_loss:1.24E-04, val_vector_loss:3.79E+00, val_position_loss:1.24E-04,
+ext_total_loss:2.80E-04, ext_vector_loss:3.79E+00, ext_position_loss:2.80E-04,
+val_total_loss:1.17E-04, val_vector_loss:3.75E+00, val_position_loss:1.17E-04,
+
+ 47%|██████████████████████████████████████████▌                                                | 234/500 [01:40<01:53,  2.35it/s]
+val_total_loss:1.17E-04, val_vector_loss:3.71E+00, val_position_loss:1.17E-04,
+ext_total_loss:2.90E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.90E-04,
+val_total_loss:1.57E-04, val_vector_loss:3.66E+00, val_position_loss:1.57E-04,
+ext_total_loss:2.67E-04, ext_vector_loss:3.66E+00, ext_position_loss:2.67E-04,
+val_total_loss:1.80E-04, val_vector_loss:3.80E+00, val_position_loss:1.80E-04,
+ext_total_loss:3.49E-04, ext_vector_loss:3.80E+00, ext_position_loss:3.49E-04,
+val_total_loss:1.79E-04, val_vector_loss:3.70E+00, val_position_loss:1.79E-04,
+ext_total_loss:2.78E-04, ext_vector_loss:3.70E+00, ext_position_loss:2.78E-04,
+val_total_loss:1.53E-04, val_vector_loss:3.73E+00, val_position_loss:1.53E-04,
+
+ 48%|███████████████████████████████████████████▎                                               | 238/500 [01:41<01:53,  2.30it/s]
+val_total_loss:1.78E-04, val_vector_loss:3.83E+00, val_position_loss:1.78E-04,
+ext_total_loss:2.72E-04, ext_vector_loss:3.83E+00, ext_position_loss:2.72E-04,
+val_total_loss:1.37E-04, val_vector_loss:3.74E+00, val_position_loss:1.37E-04,
+ext_total_loss:3.14E-04, ext_vector_loss:3.74E+00, ext_position_loss:3.14E-04,
+val_total_loss:1.41E-04, val_vector_loss:3.63E+00, val_position_loss:1.41E-04,
+ext_total_loss:2.67E-04, ext_vector_loss:3.63E+00, ext_position_loss:2.67E-04,
+val_total_loss:1.50E-04, val_vector_loss:3.84E+00, val_position_loss:1.50E-04,
+
+ 49%|████████████████████████████████████████████▏                                              | 243/500 [01:43<01:51,  2.31it/s]
+val_total_loss:1.13E-04, val_vector_loss:3.63E+00, val_position_loss:1.13E-04,
+ext_total_loss:2.64E-04, ext_vector_loss:3.63E+00, ext_position_loss:2.64E-04,
+val_total_loss:1.56E-04, val_vector_loss:3.87E+00, val_position_loss:1.56E-04,
+ext_total_loss:2.63E-04, ext_vector_loss:3.87E+00, ext_position_loss:2.63E-04,
+val_total_loss:1.01E-04, val_vector_loss:3.65E+00, val_position_loss:1.01E-04,
+ext_total_loss:2.59E-04, ext_vector_loss:3.65E+00, ext_position_loss:2.59E-04,
+val_total_loss:1.25E-04, val_vector_loss:3.76E+00, val_position_loss:1.25E-04,
+ext_total_loss:2.92E-04, ext_vector_loss:3.76E+00, ext_position_loss:2.92E-04,
+val_total_loss:1.26E-04, val_vector_loss:3.76E+00, val_position_loss:1.26E-04,
+
+ 50%|█████████████████████████████████████████████▏                                             | 248/500 [01:46<01:48,  2.33it/s]
+val_total_loss:1.03E-04, val_vector_loss:3.68E+00, val_position_loss:1.03E-04,
+ext_total_loss:2.77E-04, ext_vector_loss:3.68E+00, ext_position_loss:2.77E-04,
+val_total_loss:8.93E-05, val_vector_loss:3.69E+00, val_position_loss:8.93E-05,
+ext_total_loss:2.32E-04, ext_vector_loss:3.69E+00, ext_position_loss:2.32E-04,
+val_total_loss:1.01E-04, val_vector_loss:3.79E+00, val_position_loss:1.01E-04,
+ext_total_loss:2.38E-04, ext_vector_loss:3.79E+00, ext_position_loss:2.38E-04,
+val_total_loss:8.72E-05, val_vector_loss:3.73E+00, val_position_loss:8.72E-05,
+ext_total_loss:2.36E-04, ext_vector_loss:3.73E+00, ext_position_loss:2.36E-04,
+val_total_loss:9.84E-05, val_vector_loss:3.76E+00, val_position_loss:9.84E-05,
+
+ 50%|█████████████████████████████████████████████▊                                             | 252/500 [01:47<01:44,  2.37it/s]
+val_total_loss:1.01E-04, val_vector_loss:3.74E+00, val_position_loss:1.01E-04,
+ext_total_loss:2.59E-04, ext_vector_loss:3.74E+00, ext_position_loss:2.59E-04,
+val_total_loss:8.43E-05, val_vector_loss:3.73E+00, val_position_loss:8.43E-05,
+ext_total_loss:2.25E-04, ext_vector_loss:3.73E+00, ext_position_loss:2.25E-04,
+val_total_loss:1.29E-04, val_vector_loss:3.79E+00, val_position_loss:1.29E-04,
+ext_total_loss:2.35E-04, ext_vector_loss:3.79E+00, ext_position_loss:2.35E-04,
+val_total_loss:1.00E-04, val_vector_loss:3.69E+00, val_position_loss:1.00E-04,
+
+ 51%|██████████████████████████████████████████████▊                                            | 257/500 [01:49<01:43,  2.34it/s]
+val_total_loss:1.03E-04, val_vector_loss:3.79E+00, val_position_loss:1.03E-04,
+ext_total_loss:2.31E-04, ext_vector_loss:3.79E+00, ext_position_loss:2.31E-04,
+val_total_loss:1.08E-04, val_vector_loss:3.79E+00, val_position_loss:1.08E-04,
+ext_total_loss:2.57E-04, ext_vector_loss:3.79E+00, ext_position_loss:2.57E-04,
+val_total_loss:8.47E-05, val_vector_loss:3.71E+00, val_position_loss:8.47E-05,
+ext_total_loss:2.35E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.35E-04,
+val_total_loss:8.75E-05, val_vector_loss:3.72E+00, val_position_loss:8.75E-05,
+ext_total_loss:2.25E-04, ext_vector_loss:3.72E+00, ext_position_loss:2.25E-04,
+val_total_loss:1.01E-04, val_vector_loss:3.77E+00, val_position_loss:1.01E-04,
+ 52%|██████████████████████████████████████████████▉                                            | 258/500 [01:50<01:43,  2.33it/s]
+Traceback (most recent call last):
+  File "code/main.py", line 184, in <module>
+    main(ARGS)
+  File "code/main.py", line 102, in main
+    train_log_dict = update_primnet(model, batch, args, TRAIN = True, sampler = train_sampler)
+  File "/home/taerim/PRIMNET-V2/code/utils/update.py", line 49, in update_primnet
+    total_loss.backward()
+  File "/usr/local/lib/python3.8/dist-packages/torch/_tensor.py", line 488, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.8/dist-packages/torch/autograd/__init__.py", line 197, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+val_total_loss:1.05E-04, val_vector_loss:3.71E+00, val_position_loss:1.05E-04,
+ext_total_loss:2.24E-04, ext_vector_loss:3.71E+00, ext_position_loss:2.24E-04,

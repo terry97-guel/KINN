@@ -6,37 +6,36 @@ from utils.pyart import angle_axis_numpy, angle_numpy, pr2t, r2t, rpy2r, t2p
 from utils.tools import unnormalize_tensor, normalize_tensor
 from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
 
-TPOSE = {
-    "ABAQUS":
-        [[-3.6081e+01, -4.5336e+01, -1.4693e-37],
-         [-4.0160e+01, -4.8704e+01,  2.9617e+02],
-         [-5.9577e+01, -6.7365e+01,  5.9097e+02],
-         [-9.5752e+01, -1.0279e+02,  8.8284e+02],
-         [-1.4831e+02, -1.5461e+02,  1.1705e+03],
-         [-2.1341e+02, -2.1897e+02,  1.4545e+03],
-         [-2.8393e+02, -2.8877e+02,  1.7373e+03]],
+# TPOSE = {
+#     "ABAQUS":
+#         [[-3.6081e+01, -4.5336e+01, -1.4693e-37],
+#          [-4.0160e+01, -4.8704e+01,  2.9617e+02],
+#          [-5.9577e+01, -6.7365e+01,  5.9097e+02],
+#          [-9.5752e+01, -1.0279e+02,  8.8284e+02],
+#          [-1.4831e+02, -1.5461e+02,  1.1705e+03],
+#          [-2.1341e+02, -2.1897e+02,  1.4545e+03],
+#          [-2.8393e+02, -2.8877e+02,  1.7373e+03]],
     
-    "FINGER":
-         [0,0,120],
+#     "FINGER":
+#          [0,0,120],
     
-    "SOROSIM1D":
-        [[00.0000,  0, 10],
-         [13.3333,  0, 10],
-         [26.6667,  0, 10],
-         [40.0000,  0, 10],
-         [53.3333,  0, 10],
-         [66.6667,  0, 10],
-         [80.0000,  0, 10],
-         [93.3333,  0, 10],
-         [106.6667, 0, 10],
-         [120.0000, 0, 10]],
-}
+#     "SOROSIM1D":
+#         [[00.0000,  0, 10],
+#          [13.3333,  0, 10],
+#          [26.6667,  0, 10],
+#          [40.0000,  0, 10],
+#          [53.3333,  0, 10],
+#          [66.6667,  0, 10],
+#          [80.0000,  0, 10],
+#          [93.3333,  0, 10],
+#          [106.6667, 0, 10],
+#          [120.0000, 0, 10]],
+# }
 
 
 def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     device = torch.device(args.device)
     position_std, position_mean = model.get_buffer("position_std"), model.get_buffer("position_mean")
-    motor_dim = args.motor_dim
     
     ## Set p_offset, rpy_offset ###
     Tpose = torch.FloatTensor(args.TPOSE).to(device)
@@ -46,9 +45,9 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     R              = torch.eye(3).to(device)
     joints = model.FK_LAYER.joints
 
-    assert len(args.joint_seqs) // args.pdim
+    assert len(args.joint_seqs) // args.marker_num
     
-    joint_idxs_chunk = np.split(np.arange(len(args.joint_seqs)), args.pdim)
+    joint_idxs_chunk = np.split(np.arange(len(args.joint_seqs)), args.marker_num)
     
     for chunk_idx, joint_idxs in enumerate(joint_idxs_chunk):
         end_pose = Tpose[chunk_idx].reshape(3,1)
@@ -72,20 +71,37 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
                 R = R @ rpy2r(rpy_offset)
 
     # Asserting Tpose has been set up correctly
-    tpose_res = model(OUTPUT_NORMALIZE= True)[-1][0].flatten()
-    tpose = Tpose[-1]
-    
-    assert tpose_res.shape == tpose.shape
-    
-    similarity = torch.cosine_similarity(tpose_res, tpose, dim=0)
-    assert similarity > 0.95
+    ## 1st
+    # q_values = model.forward_q(motor_control=torch.zeros(16,args.motor_dim))
+    t_position = model(motor_control = torch.zeros(16,args.motor_dim))
 
-    from torch.linalg import norm as torch_norm
-    similarity = (torch_norm(tpose_res) - torch_norm(tpose))/torch_norm(tpose)
-    assert similarity < 0.05
+
+    ## 2nd
+    joint_se3 = model.FK_LAYER.forward_kinematics(q_values=torch.zeros(16,len(args.joint_seqs)))
+    t_position = model.unnormalize(joint_se3, True)
     
+
+    aux_joints = len(args.joint_seqs) // args.marker_num
+    # assertion of proper initalization
+    for i in range(len(args.joint_seqs)):
+        if (i+1)%aux_joints == 0:
+            prim_idx = i//aux_joints            
+            t_position_EE = t_position[0, prim_idx].flatten()
+            t_position_GT = Tpose[prim_idx]
+
+            assert t_position_EE.shape == t_position_GT.shape
+            
+            similarity = torch.cosine_similarity(t_position_EE, t_position_GT, dim=0)
+            assert similarity > 0.95
+
+            from torch.linalg import norm as torch_norm
+            
+            similarity = (torch_norm(t_position_EE) - torch_norm(t_position_GT))/torch_norm(t_position_GT)
+            assert similarity < 0.05
+            
     return model
 
+'''
 def SET_TPOSE(model, args):
     Tpose = np.array(TPOSE[args.DATASET])
     
@@ -158,4 +174,4 @@ def SET_TPOSE(model, args):
         print("FK result: \n", primary_joint_position[0])
         print("IK target: \n", Tpose)
         print("IK Error : \n", primary_joint_position[0] - Tpose)
-    
+'''

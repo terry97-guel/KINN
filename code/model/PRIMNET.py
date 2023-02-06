@@ -11,7 +11,7 @@ import torch.nn as nn
 from utils.pyart import pr2t, rpy2r, t2r, t2p, rodrigues, r2quat
 from configs.template import PRIMNET_ARGS_TEMPLATE
 from torch.nn import init
-from utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor, bmul_1d
+from utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor, bmul_1d, swap_dim_0_1
 from utils.pyart import check_ps
 
 
@@ -140,7 +140,6 @@ class Rjoint(nn.Module):
 class FK_LAYER(nn.Module):
     def __init__(self,args: PRIMNET_ARGS_TEMPLATE):
         super(FK_LAYER, self).__init__()
-        pdim = args.pdim
         joint_seqs = args.joint_seqs
         
         joints = []
@@ -166,24 +165,30 @@ class FK_LAYER(nn.Module):
             
             q_values.append(q_value)
         
-        return torch.stack(q_values)
+        # Output with Batch first
+        return torch.stack(q_values, dim=1)
         
-        
-    def forward(self,act_embeds):
-        batch_size = act_embeds.shape[0]; device = act_embeds.device
-        
-        q_values = self.forward_q(act_embeds)
+    def forward_kinematics(self, q_values):
+        batch_size = q_values.shape[0]; device = q_values.device
         
         outs = []
         out = eye_batch(batch_size, dim=4).to(device)
-        for joint,q_value in zip(self.joints, q_values):
+        for joint,q_value in zip(self.joints, swap_dim_0_1(q_values)):
+            assert len(q_value) == batch_size
+            
             T_offset, T_joint = joint(q_value)
             out = out @ T_offset @ T_joint
             outs.append(out)
         
-        return outs 
+        outs = torch.stack(outs, dim=1)
+        assert outs.shape==(batch_size,len(self.joints),4,4)
         
-
+        return outs
+        
+    def forward(self,act_embeds):
+        q_values = self.forward_q(act_embeds)
+        return self.forward_kinematics(q_values)
+    
 
 
 class ACT_EMBED(nn.Module):
@@ -195,7 +200,7 @@ class ACT_EMBED(nn.Module):
         hdim.append(args.motor_embed_dim)
         # hdim.append(len(args.joint_seqs))
 
-        layers = get_linear_layer(hdim, args.actv)
+        layers = get_linear_layer(tuple(hdim), args.actv)
         self.layers = torch.nn.Sequential(*layers)
     
     def forward(self,motor_control):
@@ -219,9 +224,9 @@ class PRIMNET(nn.Module):
         self.FK_LAYER   = FK_LAYER(args)
 
         self.register_motor_std_mean(torch.ones(args.motor_dim), torch.zeros(args.motor_dim))
-        self.register_position_std_mean(torch.ones(3), torch.zeros(3))
+        self.register_position_std_mean(torch.ones(3,1), torch.zeros(3,1))
         self.optimizer = torch.optim.Adam(self.parameters(), lr=args.lr, weight_decay=args.wd, betas=(0.5,0.9), eps=1e-4)
-        
+        self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=100, gamma=args.lrd)
         
     def forward(self, motor_control=torch.zeros(16,4), OUTPUT_NORMALIZE = True):
         device = motor_control.device; batch_size = motor_control.shape[0]
@@ -235,28 +240,51 @@ class PRIMNET(nn.Module):
         
         # Forward
         act_embeds = self.ACT_EMBED(motor_control)
-        joint_transformation_list = self.FK_LAYER(act_embeds)
+        joint_se3 = self.FK_LAYER(act_embeds)
         
-        # Output Scale
+        return self.unnormalize(joint_se3, OUTPUT_NORMALIZE)
+    
+    def forward_q(self, motor_control=torch.zeros(16,4)):
+        device = motor_control.device; batch_size = motor_control.shape[0]
+        primary_joint_number  = self.primary_joint_number
+        total_joint_number    = self.total_joint_number
+        
+        # Input Scale
+        motor_control = self.normalize(motor_control)
+        
+        # Forward
+        act_embeds = self.ACT_EMBED(motor_control)
+        q_values = self.FK_LAYER.forward_q(act_embeds)
+        
+        return q_values
+    
+    def unnormalize(self, joint_se3, OUTPUT_NORMALIZE = True):
+        # Get position from joint_se3
         joint_positions = []
         position_mean, position_std = self.get_buffer("position_mean"), self.get_buffer("position_std")
-        for joint_transformation in joint_transformation_list:
-            joint_position_ = t2p(joint_transformation)
+        for joint_se3_ in swap_dim_0_1(joint_se3):
+            joint_position_ = t2p(joint_se3_)
             
+            # Output Scale
             if OUTPUT_NORMALIZE:
                 joint_position_ = unnormalize_tensor(joint_position_, mean = position_mean, std= position_std)
                 
             joint_positions.append(joint_position_)
             
-        return joint_positions
+        return torch.stack(joint_positions, dim=1)
+    
+    def normalize(self, motor_control):
+        motor_std, motor_mean = self.get_buffer("motor_std"), self.get_buffer("motor_mean")
+        return normalize_tensor(motor_control,motor_mean,motor_std)
     
     def register_motor_std_mean(self,motor_std, motor_mean):
         self.register_buffer("motor_std",motor_std)
         self.register_buffer("motor_mean",motor_mean)
         
     def register_position_std_mean(self, position_std, position_mean):
-        position_std = position_std.reshape(3,1)
-        position_mean = position_mean.reshape(3,1)
+        assert position_mean.shape == (3,1)
+        assert position_std.shape == (3,1)
+        
         self.register_buffer("position_std",position_std)
         self.register_buffer("position_mean",position_mean)
         
