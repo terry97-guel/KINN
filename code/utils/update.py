@@ -33,12 +33,14 @@ def update_primnet(model:PRIMNET, batch, args:PRIMNET_ARGS_TEMPLATE, TRAIN = Tru
             assert joint_position_.shape == target_position_.shape
             position_loss = position_loss + p_loss_fn(joint_position_, target_position_)
         
+            # if i == len(args.joint_seqs)-1:
+            #     print("here")
         if i< len(args.joint_seqs)-1:
             next_joint_position_ = joint_position[:,i+1]
             
             assert joint_position_.shape == next_joint_position_.shape
             
-            vector_loss = vector_loss + torch.cosine_similarity(joint_position_,next_joint_position_).squeeze(-1)
+            vector_loss = vector_loss + (1-torch.cosine_similarity(joint_position_,next_joint_position_).squeeze(-1))
 
     assert position_loss.shape == vector_loss.shape
     total_loss = position_loss + vector_loss * args.w_vec

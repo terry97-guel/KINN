@@ -43,21 +43,21 @@ class ARGS():
 
     # DIMENSION
     hdim:tuple = (16,16)
-    motor_embed_dim:int = 32
+    motor_embed_dim:int = 4
     
     # TRAINING
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    w_vec:float = 0.01
-    epochs:int = 50
-    focus_ratio:float = 0.5
-    data_ratio:float = 0.1
+    w_vec:float = 1e-3
+    epochs:int = 500
+    focus_ratio:float = 0.0
+    data_ratio:float = 1.0
     n_workers:int = 2
     batch_size:int = 64
     
     # ARCHITECTURE
-    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
+    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
     joint_seqs:tuple = (
         "F",
         "R",

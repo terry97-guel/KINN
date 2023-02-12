@@ -92,7 +92,7 @@ class Pjoint(nn.Module):
         init.normal_(self.axis,0,args.p_offset_std)
         
         hdim = [args.motor_embed_dim, 1]
-        self.q_layer = get_linear_layer(hdim, torch.nn.Identity)
+        self.q_layer = get_linear_layer(hdim, torch.nn.Identity, bias='none')
             
     def get_q_value(self, act_embed):
         return self.q_layer(act_embed).squeeze(1)
@@ -122,7 +122,7 @@ class Rjoint(nn.Module):
         init.normal_(self.axis,0,args.p_offset_std)
         
         hdim = [args.motor_embed_dim,1]
-        self.q_layer    = get_linear_layer(hdim, torch.nn.Identity)
+        self.q_layer    = get_linear_layer(hdim, torch.nn.Identity, bias='none')
 
     def get_q_value(self, act_embed):
         return self.q_layer(act_embed).squeeze(1)
@@ -195,13 +195,15 @@ class ACT_EMBED(nn.Module):
     def __init__(self,args: PRIMNET_ARGS_TEMPLATE):
         super(ACT_EMBED,self).__init__()
         self.args = args
+        args = self.args
         hdim = list(args.hdim)
         hdim.insert(0, args.motor_dim)
         hdim.append(args.motor_embed_dim)
         # hdim.append(len(args.joint_seqs))
 
-        layers = get_linear_layer(tuple(hdim), args.actv)
-        self.layers = torch.nn.Sequential(*layers)
+        self.layers = get_linear_layer(tuple(hdim), args.actv, bias='none')
+        # self.layers = get_linear_layer(tuple(hdim), torch.nn.Identity, bias='none')
+        
     
     def forward(self,motor_control):
         q_values = self.layers(motor_control)
@@ -228,22 +230,23 @@ class PRIMNET(nn.Module):
         self.optimizer = torch.optim.Adam(self.parameters(), lr=args.lr, weight_decay=args.wd, betas=(0.5,0.9), eps=1e-4)
         self.scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size=100, gamma=args.lrd)
         
-    def forward(self, motor_control=torch.zeros(16,4), OUTPUT_NORMALIZE = True):
+    def forward(self, motor_control=torch.zeros(16,4), OUTPUT_NORMALIZE = True, OUTPUT_POSITION = True):
         device = motor_control.device; batch_size = motor_control.shape[0]
         primary_joint_number  = self.primary_joint_number
         total_joint_number    = self.total_joint_number
         
         # Input Scale
-        motor_std, motor_mean = self.get_buffer("motor_std"), self.get_buffer("motor_mean")
-        
-        motor_control = normalize_tensor(motor_control,motor_mean,motor_std)
+        motor_control = self.normalize(motor_control)
         
         # Forward
         act_embeds = self.ACT_EMBED(motor_control)
         joint_se3 = self.FK_LAYER(act_embeds)
         
-        return self.unnormalize(joint_se3, OUTPUT_NORMALIZE)
-    
+        if OUTPUT_POSITION:
+            return self.t2p(joint_se3, OUTPUT_NORMALIZE)
+        else:
+            return joint_se3
+        
     def forward_q(self, motor_control=torch.zeros(16,4)):
         device = motor_control.device; batch_size = motor_control.shape[0]
         primary_joint_number  = self.primary_joint_number
@@ -258,23 +261,23 @@ class PRIMNET(nn.Module):
         
         return q_values
     
-    def unnormalize(self, joint_se3, OUTPUT_NORMALIZE = True):
+    def t2p(self, joint_se3, OUTPUT_NORMALIZE = True):
         # Get position from joint_se3
         joint_positions = []
-        position_mean, position_std = self.get_buffer("position_mean"), self.get_buffer("position_std")
+        # position_mean, position_std = self.get_buffer("position_mean"), self.get_buffer("position_std")
         for joint_se3_ in swap_dim_0_1(joint_se3):
             joint_position_ = t2p(joint_se3_)
             
-            # Output Scale
-            if OUTPUT_NORMALIZE:
-                joint_position_ = unnormalize_tensor(joint_position_, mean = position_mean, std= position_std)
+            # # Output Scale
+            # if OUTPUT_NORMALIZE:
+            #     joint_position_ = unnormalize_tensor(joint_position_, mean = position_mean, std= position_std)
                 
             joint_positions.append(joint_position_)
             
         return torch.stack(joint_positions, dim=1)
     
     def normalize(self, motor_control):
-        motor_std, motor_mean = self.get_buffer("motor_std"), self.get_buffer("motor_mean")
+        motor_std, motor_mean = 20*self.get_buffer("motor_std"), self.get_buffer("motor_mean")
         return normalize_tensor(motor_control,motor_mean,motor_std)
     
     def register_motor_std_mean(self,motor_std, motor_mean):
@@ -288,6 +291,8 @@ class PRIMNET(nn.Module):
         self.register_buffer("position_std",position_std)
         self.register_buffer("position_mean",position_mean)
         
+    def save_weights(self, epoch):
+        torch.save(self.state_dict(), f"{self.args.SAVE_WEIGHT_PATH}/epoch_{epoch+1}.pth")
 
 
 # %%

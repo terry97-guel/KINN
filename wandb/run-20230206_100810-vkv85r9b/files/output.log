@@ -1,0 +1,47 @@
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+  1%|▉                                                                                                | 5/500 [00:02<03:33,  2.32it/s]
+train_dataset: 1903
+val_dataset: 238
+test_dataset: 238
+ext_dataset: 1020
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 15%|██████████████                                                                                  | 73/500 [00:32<03:11,  2.23it/s]
+Traceback (most recent call last):
+  File "code/main.py", line 184, in <module>
+    main(ARGS)
+  File "code/main.py", line 103, in main
+    train_log_dict = update_primnet(model, batch, args, TRAIN = True, sampler = train_sampler)
+  File "/home/taerim/PRIMNET-V2/code/utils/update.py", line 21, in update_primnet
+    joint_position = model.forward(motor_control, OUTPUT_NORMALIZE = args.OUTPUT_NORMALIZE)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 243, in forward
+    joint_se3 = self.FK_LAYER(act_embeds)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 190, in forward
+    return self.forward_kinematics(q_values)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 179, in forward_kinematics
+    T_offset, T_joint = joint(q_value)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 134, in forward
+    R        = rodrigues(self.axis,q_value)
+  File "/home/taerim/PRIMNET-V2/code/utils/pyart.py", line 276, in rodrigues
+    if torch.norm(w) < eps:
+KeyboardInterrupt

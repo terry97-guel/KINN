@@ -43,7 +43,8 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
 
     ### WANDB ###
     if args.WANDB:
-        set_wandb(pname = args.pname, runname=args.runname)
+        runname = f"[{args.MODEL}]"+args.runname
+        set_wandb(pname = args.pname, runname=runname)
 
     ### Logger ###
     csvlogger = CSVLogger(args.SAVE_RESULT_PATH/"log.csv")
@@ -63,7 +64,7 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     if args.MODEL == "PRIMNET":
         model = PRIMNET(args=args).to(args.device)
         model.register_motor_std_mean(motor_std, motor_mean)
-        model.register_position_std_mean(pos_std, pos_mean)
+        # model.register_position_std_mean(pos_std, pos_mean)
         
         if args.EVEN_JOINT:
             model = INITALZE_EVEN_JOINTS(model, args)
@@ -71,7 +72,7 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     elif args.MODEL == "FC_PRIMNET":
         model = FC_PRIMNET(args=args).to(args.device)
         model.register_motor_std_mean(motor_std, motor_mean)
-        model.register_position_std_mean(pos_std, pos_mean)
+        # model.register_position_std_mean(pos_std, pos_mean)
         
         
     # elif args.MODEL == "PCC_PRIMNET":
@@ -109,7 +110,6 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
         
         train_log_dict = average_dict(train_dict_list)
         if args.WANDB: wandb.log(train_log_dict, step=epoch+1)
-        csvlogger.log(train_log_dict)
         
         # Evaluation - val_dataset
         batch = val_sampler.sample_all()
@@ -122,8 +122,8 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
         
             
         if args.WANDB: wandb.log(val_log_dict, step=epoch+1)
-        csvlogger.log(val_log_dict)
-        print_log_dict(val_log_dict)
+        if RUNMODE is not RUN:
+            print_log_dict(val_log_dict)
         
         # Evaluation - test_dataset
         batch = test_sampler.sample_all()
@@ -135,7 +135,6 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
         test_log_dict = prefix_dict(test_log_dict,"test")
 
         if args.WANDB: wandb.log(test_log_dict, step=epoch+1)
-        csvlogger.log(test_log_dict)
 
         # Evaluation - ext_dataset
         batch = ext_sampler.sample_all()
@@ -145,12 +144,13 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
             ext_log_dict = update_fc_primnet(model, batch, args, TRAIN = False)
         else: raise LookupError(f"model should be one of ['PRIMNET', 'FC_PRIMNET', 'PCC_PRIMNET'] \n, Found {args.MODEL}")
         ext_log_dict = prefix_dict(ext_log_dict,"ext")
-        print_log_dict(ext_log_dict)
+        if RUNMODE is not RUN:
+            print_log_dict(ext_log_dict)
         
         if args.WANDB: wandb.log(ext_log_dict, step=epoch+1)
-        csvlogger.log(ext_log_dict)
+        csvlogger.log(train_log_dict, val_log_dict, test_log_dict, ext_log_dict)
     
-        
+        model.save_weights(epoch)
 
     
 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="PRIMNET/ABAQUS.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS]
+    parser.add_argument("--configs", default="FC_PRIMNET/ABAQUS_32.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
@@ -178,8 +178,8 @@ if __name__ == "__main__":
     Path.mkdir(ARGS.SAVE_WEIGHT_PATH,exist_ok=True, parents=True)
     Path.mkdir(ARGS.SAVE_RESULT_PATH,exist_ok=True, parents=True)
     
-    if RUNMODE is not RUN:
-        ARGS.WANDB = False
+    # if RUNMODE is not RUN:
+    #     ARGS.WANDB = False
     
     main(ARGS)
 

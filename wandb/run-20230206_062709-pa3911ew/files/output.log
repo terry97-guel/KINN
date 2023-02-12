@@ -1,0 +1,106 @@
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+  1%|▉                                                                                            | 5/500 [00:02<03:30,  2.36it/s]
+train_dataset: 1903
+val_dataset: 238
+test_dataset: 238
+ext_dataset: 1020
+No Weights Found!! Starting From Scratch
+val_total_loss:1.07E-03, val_vector_loss:1.22E-03, val_position_loss:1.07E-03,
+ext_total_loss:1.31E-03, ext_vector_loss:3.35E-03, ext_position_loss:1.31E-03,
+val_total_loss:1.57E-03, val_vector_loss:1.70E-03, val_position_loss:1.57E-03,
+ext_total_loss:1.80E-03, ext_vector_loss:4.53E-03, ext_position_loss:1.80E-03,
+val_total_loss:2.79E-03, val_vector_loss:4.72E-03, val_position_loss:2.78E-03,
+ext_total_loss:3.20E-03, ext_vector_loss:9.38E-03, ext_position_loss:3.19E-03,
+val_total_loss:2.79E-03, val_vector_loss:2.12E-02, val_position_loss:2.77E-03,
+ext_total_loss:2.67E-03, ext_vector_loss:4.28E-02, ext_position_loss:2.63E-03,
+val_total_loss:2.21E-03, val_vector_loss:5.48E-03, val_position_loss:2.21E-03,
+
+  2%|█▊                                                                                          | 10/500 [00:04<03:19,  2.46it/s]
+val_total_loss:2.67E-03, val_vector_loss:2.50E-02, val_position_loss:2.64E-03,
+ext_total_loss:3.03E-03, ext_vector_loss:2.79E-02, ext_position_loss:3.00E-03,
+val_total_loss:3.05E-03, val_vector_loss:1.12E-01, val_position_loss:2.94E-03,
+ext_total_loss:2.87E-03, ext_vector_loss:1.12E-01, ext_position_loss:2.76E-03,
+val_total_loss:3.19E-03, val_vector_loss:4.26E-02, val_position_loss:3.15E-03,
+ext_total_loss:3.62E-03, ext_vector_loss:4.44E-02, ext_position_loss:3.58E-03,
+val_total_loss:3.60E-03, val_vector_loss:2.52E-02, val_position_loss:3.57E-03,
+ext_total_loss:3.48E-03, ext_vector_loss:2.67E-02, ext_position_loss:3.46E-03,
+val_total_loss:3.87E-03, val_vector_loss:5.55E-02, val_position_loss:3.81E-03,
+
+  3%|██▊                                                                                         | 15/500 [00:06<03:23,  2.38it/s]
+val_total_loss:3.91E-03, val_vector_loss:7.73E-02, val_position_loss:3.83E-03,
+ext_total_loss:3.67E-03, ext_vector_loss:8.16E-02, ext_position_loss:3.59E-03,
+val_total_loss:3.58E-03, val_vector_loss:5.04E-02, val_position_loss:3.53E-03,
+ext_total_loss:4.04E-03, ext_vector_loss:5.19E-02, ext_position_loss:3.98E-03,
+val_total_loss:3.47E-03, val_vector_loss:3.94E-02, val_position_loss:3.43E-03,
+ext_total_loss:3.23E-03, ext_vector_loss:4.32E-02, ext_position_loss:3.19E-03,
+val_total_loss:2.81E-03, val_vector_loss:6.15E-02, val_position_loss:2.75E-03,
+ext_total_loss:3.22E-03, ext_vector_loss:6.30E-02, ext_position_loss:3.15E-03,
+val_total_loss:2.64E-03, val_vector_loss:7.43E-02, val_position_loss:2.56E-03,
+
+  4%|███▋                                                                                        | 20/500 [00:08<03:15,  2.46it/s]
+val_total_loss:2.43E-03, val_vector_loss:7.96E-02, val_position_loss:2.35E-03,
+ext_total_loss:2.67E-03, ext_vector_loss:7.99E-02, ext_position_loss:2.59E-03,
+val_total_loss:2.68E-03, val_vector_loss:5.81E-02, val_position_loss:2.62E-03,
+ext_total_loss:2.82E-03, ext_vector_loss:6.04E-02, ext_position_loss:2.76E-03,
+val_total_loss:3.24E-03, val_vector_loss:7.32E-02, val_position_loss:3.17E-03,
+ext_total_loss:3.23E-03, ext_vector_loss:7.28E-02, ext_position_loss:3.16E-03,
+val_total_loss:4.28E-03, val_vector_loss:3.45E-02, val_position_loss:4.25E-03,
+ext_total_loss:4.64E-03, ext_vector_loss:3.59E-02, ext_position_loss:4.60E-03,
+val_total_loss:5.03E-03, val_vector_loss:1.10E-01, val_position_loss:4.92E-03,
+
+  5%|████▌                                                                                       | 25/500 [00:10<03:11,  2.47it/s]
+val_total_loss:4.75E-03, val_vector_loss:4.32E-02, val_position_loss:4.70E-03,
+ext_total_loss:5.14E-03, ext_vector_loss:4.43E-02, ext_position_loss:5.10E-03,
+val_total_loss:3.63E-03, val_vector_loss:1.08E-01, val_position_loss:3.53E-03,
+ext_total_loss:3.54E-03, ext_vector_loss:1.14E-01, ext_position_loss:3.42E-03,
+val_total_loss:2.51E-03, val_vector_loss:5.40E-02, val_position_loss:2.45E-03,
+ext_total_loss:2.81E-03, ext_vector_loss:5.52E-02, ext_position_loss:2.76E-03,
+val_total_loss:1.86E-03, val_vector_loss:5.00E-02, val_position_loss:1.81E-03,
+ext_total_loss:1.87E-03, ext_vector_loss:5.53E-02, ext_position_loss:1.82E-03,
+val_total_loss:2.02E-03, val_vector_loss:6.64E-02, val_position_loss:1.96E-03,
+
+  6%|█████▏                                                                                      | 28/500 [00:11<03:18,  2.37it/s]
+val_total_loss:2.72E-03, val_vector_loss:2.24E-02, val_position_loss:2.70E-03,
+ext_total_loss:2.91E-03, ext_vector_loss:2.47E-02, ext_position_loss:2.88E-03,
+val_total_loss:3.08E-03, val_vector_loss:1.42E-01, val_position_loss:2.94E-03,
+ext_total_loss:3.01E-03, ext_vector_loss:1.42E-01, ext_position_loss:2.87E-03,
+val_total_loss:3.21E-03, val_vector_loss:2.70E-02, val_position_loss:3.18E-03,
+ext_total_loss:3.57E-03, ext_vector_loss:2.87E-02, ext_position_loss:3.54E-03,
+val_total_loss:2.57E-03, val_vector_loss:1.46E-01, val_position_loss:2.42E-03,
+
+  7%|██████                                                                                      | 33/500 [00:13<03:10,  2.45it/s]
+val_total_loss:1.81E-03, val_vector_loss:4.76E-02, val_position_loss:1.77E-03,
+ext_total_loss:2.13E-03, ext_vector_loss:5.09E-02, ext_position_loss:2.08E-03,
+val_total_loss:1.78E-03, val_vector_loss:6.09E-02, val_position_loss:1.71E-03,
+ext_total_loss:1.74E-03, ext_vector_loss:6.88E-02, ext_position_loss:1.67E-03,
+val_total_loss:2.40E-03, val_vector_loss:6.96E-02, val_position_loss:2.33E-03,
+ext_total_loss:2.55E-03, ext_vector_loss:7.67E-02, ext_position_loss:2.47E-03,
+val_total_loss:3.47E-03, val_vector_loss:5.13E-02, val_position_loss:3.42E-03,
+ext_total_loss:3.63E-03, ext_vector_loss:5.69E-02, ext_position_loss:3.57E-03,
+val_total_loss:3.57E-03, val_vector_loss:1.12E-01, val_position_loss:3.46E-03,
+  7%|██████▎                                                                                     | 34/500 [00:14<03:19,  2.33it/s]
+Traceback (most recent call last):
+  File "code/main.py", line 185, in <module>
+    main(ARGS)
+  File "code/main.py", line 118, in main
+    val_log_dict = update_primnet(model, batch, args, TRAIN = False)
+  File "/home/taerim/PRIMNET-V2/code/utils/update.py", line 21, in update_primnet
+    joint_position = model.forward(motor_control, OUTPUT_NORMALIZE = args.OUTPUT_NORMALIZE)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 243, in forward
+    joint_se3 = self.FK_LAYER(act_embeds)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 190, in forward
+    return self.forward_kinematics(q_values)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 179, in forward_kinematics
+    T_offset, T_joint = joint(q_value)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1194, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/taerim/PRIMNET-V2/code/model/PRIMNET.py", line 134, in forward
+    R        = rodrigues(self.axis,q_value)
+  File "/home/taerim/PRIMNET-V2/code/utils/pyart.py", line 279, in rodrigues
+    if abs(torch.norm(w)-1) > eps:
+KeyboardInterrupt

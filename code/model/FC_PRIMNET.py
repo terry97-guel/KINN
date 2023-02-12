@@ -45,3 +45,6 @@ class FC_PRIMNET(nn.Module):
         
         self.register_buffer("position_std",position_std)
         self.register_buffer("position_mean",position_mean)
+
+    def save_weights(self, epoch):
+        torch.save(self.state_dict(), f"{self.args.SAVE_WEIGHT_PATH}/epoch_{epoch+1}.pth")

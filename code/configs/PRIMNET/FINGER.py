@@ -12,7 +12,7 @@ class ARGS():
     # LOG
     WANDB:bool = True
     pname:str = "PRIMNET_v2.1"                      # WANDB project Name
-    runname:str = "PRIM/FINGER"                         # WANDB runname. If unspecified, set to datetime.
+    runname:str = "FINGER"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET
     DATASET: str = "FINGER"                         # DATASET

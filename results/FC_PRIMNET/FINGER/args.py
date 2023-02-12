@@ -33,30 +33,21 @@ class ARGS():
     seed:int = 0
 
     # DIMENSION
-    hdim:tuple = (128,128,128)
-    motor_embed_dim:int = 32
+    hdim:tuple = (16,16)
+    motor_embed_dim:int = 4
     
     # TRAINING
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    epochs:int = 50
-    focus_ratio:float = 0.5
-    data_ratio:float = 0.1
+    epochs:int = 500
+    focus_ratio:float = 0.0
+    data_ratio:float = 1.0
     n_workers:int = 2
     batch_size:int = 64
     
     # ARCHITECTURE
-    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
-    joint_seqs:tuple = (
-        "F",
-        "R",
-        "P",
-        "R",
-        "R",
-        "P",
-        "R"
-    )
+    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
     marker_num:int = 1
     motor_dim:int = 4
     

@@ -1,0 +1,18 @@
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+Traceback (most recent call last):
+  File "code/main.py", line 184, in <module>
+    main(ARGS)
+  File "code/main.py", line 70, in main
+    model = INITALZE_EVEN_JOINTS(model, args)
+  File "/home/taerim/PRIMNET-V2/code/utils/initalize.py", line 78, in INITALZE_EVEN_JOINTS
+    t_position = model.unnormalize(joint_se3, False)
+  File "/usr/local/lib/python3.8/dist-packages/torch/nn/modules/module.py", line 1269, in __getattr__
+    raise AttributeError("'{}' object has no attribute '{}'".format(
+AttributeError: 'PRIMNET' object has no attribute 'unnormalize'
+train_dataset: 3160
+val_dataset: 395
+test_dataset: 395
+ext_dataset: 1694
