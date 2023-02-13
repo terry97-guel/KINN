@@ -381,7 +381,7 @@ from tqdm import tqdm
 scale_rate = 50
 l_tar = 0.15
 
-VIZ = False
+VIZ = True
 RUN = True
 
 if VIZ:
@@ -489,7 +489,7 @@ if RUN:
             np.linspace(rpy_EE_tar_init, rpy_EE_tar_end, traj_n),
             np.linspace(p_EE_tar_init, p_EE_tar_end, traj_n))):
         
-        print(p_EE_tar)
+        # print(p_EE_tar)
         
         R_EE_tar = rpy2r_np(rpy_EE_tar)
         
@@ -592,7 +592,7 @@ if RUN:
             motor_control_np = motor_control_np+ dq[6:] * scale_rate
             
             if VIZ:
-                render_time = 0.5
+                render_time = 0.1
                 frequency = 60
                 rate = rospy.Rate(frequency)
                 max_rendering = frequency * render_time
