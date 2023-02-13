@@ -6,10 +6,13 @@ from path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
 
 
 BASEDIR, RUNMODE = get_BASERDIR(".")
-if BASEDIR.absolute().name == "control":
+if RUNMODE is JUPYTER:
     print("Going up one level")
     os.chdir("..")
-    BASEDIR, RUNMODE = get_BASERDIR(".")
+elif RUNMODE is DEBUG:
+    os.chdir((BASEDIR/"code").__str__())
+
+BASEDIR, RUNMODE = get_BASERDIR(".")
 print("Current working directory:", os.getcwd())
 
 sys.path.append(str(BASEDIR))
@@ -179,7 +182,7 @@ def t2p_np(T):
 
 # %%
 
-
+RUN = False
 scale_rate = 50
 
 if RUN:
@@ -378,7 +381,7 @@ from tqdm import tqdm
 scale_rate = 50
 l_tar = 0.15
 
-VIZ = True
+VIZ = False
 RUN = True
 
 if VIZ:
@@ -454,7 +457,7 @@ if RUN:
     motor_control = torch.FloatTensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
     
     p_plat = chain_ur.joint[-1].p; R_plat = chain_ur.joint[-1].R
-    
+    print(p_plat)
     p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
     p_EE_cur = p_EE_cur.detach().to(device)
     R_EE_cur = R_plat
@@ -465,11 +468,11 @@ if RUN:
     
     ## 나중에 지울것 ##
     qs_tar = np.array([0, -44, 63, -139, -92, 0]).astype(np.float32) / 180 * PI
-    chain_ur = update_ur_q(chain_ur, qs)
+    chain_ur = update_ur_q(chain_ur, qs_tar)
     motor_control = torch.FloatTensor(scale_rate * np.array([0,0,0,1000]).astype(np.float32)).unsqueeze(0).to(device)
 
     p_plat = chain_ur.joint[-1].p; R_plat = chain_ur.joint[-1].R
-    
+    print(p_plat)
     p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
     p_EE_cur = p_EE_cur.detach().to(device)
     R_EE_cur = R_plat
