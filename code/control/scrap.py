@@ -378,16 +378,18 @@ from tqdm import tqdm
 scale_rate = 50
 l_tar = 0.15
 
-VIZ = False
+VIZ = True
 RUN = True
 
 if VIZ:
+    import rospy
     from rospy import Publisher
     from kinematics.structure_utils import  \
         get_p_chain, get_R_chain, get_rpy_from_R_mat, get_mesh_chain, get_scale, get_link_color, get_viz_ingredients
     from kinematics.rviz import publish_viz_robot, publish_viz_markers
     from visualization_msgs.msg import Marker, MarkerArray
     
+    rospy.init_node("VIZ_ROBOT")
     pub_robot     = Publisher(f'viz_robot', MarkerArray, queue_size=10)
     pub_markers   = Publisher(f'viz_markers', MarkerArray, queue_size=10)
     
@@ -587,7 +589,18 @@ if RUN:
             motor_control_np = motor_control_np+ dq[6:] * scale_rate
             
             if VIZ:
-                publish_robot(chain_ur, pub_robot)
+                render_time = 0.5
+                frequency = 60
+                rate = rospy.Rate(frequency)
+                max_rendering = frequency * render_time
+                
+                rendering = 0
+                while not rospy.is_shutdown():
+                    if rendering == max_rendering: break
+
+                    publish_robot(chain_ur, pub_robot)
+                    rendering = rendering + 1
+                    rate.sleep()
             
             # break
         # break
