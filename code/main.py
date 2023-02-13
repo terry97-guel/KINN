@@ -37,6 +37,7 @@ from model.FC_PRIMNET import FC_PRIMNET
 from typing import Union
 
 from utils.dataloader import get_dataset, Sampler
+# %%
 def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE]):
     ### SEED ###
     set_seed(args.seed)

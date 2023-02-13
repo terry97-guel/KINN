@@ -4,19 +4,15 @@ import sys
 import os
 from path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
 
-_, RUNMODE = get_BASERDIR(Path(__file__).parent)
 
-if RUNMODE is JUPYTER:
+BASEDIR, RUNMODE = get_BASERDIR(".")
+if BASEDIR.absolute().name == "control":
+    print("Going up one level")
     os.chdir("..")
-elif RUNMODE is DEBUG:
-    pass
-elif RUNMODE is RUN:
-    pass
-
-BASEDIR, _ = get_BASERDIR(Path(__file__).parent)
+    BASEDIR, RUNMODE = get_BASERDIR(".")
+print("Current working directory:", os.getcwd())
 
 sys.path.append(str(BASEDIR))
-BASEDIR, RUNMODE
 
 
 
@@ -163,6 +159,28 @@ def skew_np(vec):
         [-y, x, 0]
     ])
 
+def r2rpy_np(R):
+    assert R.shape == (3,3)
+    r = np.arctan2(R[2,1], R[2,2])
+    p = np.arctan2(-R[2,0], np.sqrt(R[2,1]**2 + R[2,2]**2))
+    y = np.arctan2(R[1,0], R[0,0])
+
+    rpy = np.array([r,p,y]).reshape(-1)
+    return rpy
+
+
+def t2r_np(T):
+    R = T[0:3,0:3]
+    return R
+    
+def t2p_np(T):
+    p = T[0:3,3]
+    return p.reshape(3,1)
+
+# %%
+
+
+scale_rate = 50
 
 if RUN:
     """APPROACH"""
@@ -185,10 +203,11 @@ if RUN:
 
     from tqdm import tqdm
     pbar = tqdm(generator())
+    iternum = 0
     for _ in pbar:
         # FK UR & soro
         chain_ur = update_ur_q(chain_ur, qs)
-        motor_control = torch.tensor(motor_control_np).unsqueeze(0).to(device)
+        motor_control = torch.tensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
         T_EE_cur = get_EE_hybrid(chain_ur, soro, qs, motor_control)
         p_EE_cur, R_EE_cur = t2pr_np(T_EE_cur)
         
@@ -235,7 +254,7 @@ if RUN:
         from torch.autograd.functional import jacobian
         from functools import partial
         
-        p_J_soro = jacobian(partial(get_EE_hybrid_grad, chain_ur, soro, qs), motor_control)[:,0,0,:].detach().cpu().numpy() * 1000
+        p_J_soro = jacobian(partial(get_EE_hybrid_grad, chain_ur, soro, qs), motor_control)[:,0,0,:].detach().cpu().numpy() * scale_rate
         J_soro = np.vstack([p_J_soro, np.zeros((3,4))])
         
         ## Sphere constraint
@@ -255,14 +274,14 @@ if RUN:
         grasp_err = l_grasp - u.T @ p_plat_EE
         
         ## Motor constraint
-        margin = 200
+        margin = 200/scale_rate
         llimit = (motor_control_np < margin).any()
         J_llimit = np.eye(4)[motor_control_np < margin]
         llimit_err = (margin-motor_control_np)[motor_control_np < margin].reshape(-1,1)
         
-        ulimit = (motor_control_np > 2000-margin).any()
-        J_ulimit = np.eye(4)[motor_control_np > 2000-margin]
-        ulimit_err = ((2000-margin)-motor_control_np)[motor_control_np > 2000-margin].reshape(-1,1)
+        ulimit = (motor_control_np > 2000/scale_rate-margin).any()
+        J_ulimit = np.eye(4)[motor_control_np > 2000/scale_rate-margin]
+        ulimit_err = ((2000/scale_rate-margin)-motor_control_np)[motor_control_np > 2000/scale_rate-margin].reshape(-1,1)
 
         # print("J_UR.shape :", J_UR.shape)
         # print("p_J_soro.shape :", p_J_soro.shape)
@@ -342,15 +361,292 @@ if RUN:
                         
         labmda_ = 0.1
         J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl)
+        
+        
         dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
 
         dq = step_size * dq_raw
         
         dq = dq.astype(np.float32).flatten()
         qs = qs + dq[:6]
-        motor_control_np = motor_control_np+ dq[6:]
-    
+        motor_control_np = motor_control_np+ dq[6:] * scale_rate
+
 
 
 # %%
+from tqdm import tqdm
+scale_rate = 50
+l_tar = 0.15
+
+VIZ = False
+RUN = True
+
+if VIZ:
+    from rospy import Publisher
+    from kinematics.structure_utils import  \
+        get_p_chain, get_R_chain, get_rpy_from_R_mat, get_mesh_chain, get_scale, get_link_color, get_viz_ingredients
+    from kinematics.rviz import publish_viz_robot, publish_viz_markers
+    from visualization_msgs.msg import Marker, MarkerArray
     
+    pub_robot     = Publisher(f'viz_robot', MarkerArray, queue_size=10)
+    pub_markers   = Publisher(f'viz_markers', MarkerArray, queue_size=10)
+    
+    def publish_robot(chain:CHAIN, pub_robot:Publisher):
+        # update_q_chain(self.chain.joint, q_list, self.ctrl_joint_num)
+        chain.fk_chain(1)
+        p_list     = get_p_chain(chain.joint)
+        R_list     = get_R_chain(chain.joint)
+        rpy_list   = get_rpy_from_R_mat(R_list)
+        mesh_list  = get_mesh_chain(chain.link)
+        scale_list = get_scale(chain.link)
+        color_list = get_link_color(chain.link)
+        viz_links  =  get_viz_ingredients(p_list, rpy_list, mesh_list, scale_list, color_list)
+        viz_trg_robot = publish_viz_robot(viz_links)
+        pub_robot.publish(viz_trg_robot)
+
+    def publish_markers(obj, pub_markers:Publisher):
+        viz_obj = publish_viz_markers(obj)
+        pub_markers.publish(viz_obj)
+    
+
+def generator():
+    while True:
+        yield
+
+# %%
+from model.PRIMNET import PRIMNET, Fjoint, Tjoint, Rjoint, Pjoint
+from jacobian import jacobian
+from functools import partial
+
+# Init values
+qs= np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
+motor_control_np = np.array([0,0,0,0]).astype(np.float32)
+
+qs_list = []
+motor_list = []
+target_position_list = []
+target_rpy_list = []
+traj_n = 10
+
+
+def forward_model(p_plat, R_plat, soro, motor_control):
+    p_plat = torch.FloatTensor(p_plat)
+    R_plat = torch.FloatTensor(R_plat)
+    p_soro_ = soro(motor_control)[0, -1]
+    p_EE = p_plat + R_plat @ p_soro_
+    return p_EE
+
+def get_hybrid_grad_auto(p_plat, R_plat, soro, motor_control):
+    dp_dm, p_EE = jacobian(partial(forward_model, p_plat, R_plat, soro), motor_control)
+    return (
+        np.array(dp_dm[:,0,0,:].detach().to(device)).astype(np.float32) * scale_rate,
+        np.array(p_EE[0].detach().to(device)).astype(np.float32)
+        )
+
+    
+if RUN:
+    """APPROCAH"""
+    grasp_dir = 1
+    
+    chain_ur = update_ur_q(chain_ur, qs)
+    motor_control = torch.FloatTensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
+    
+    p_plat = chain_ur.joint[-1].p; R_plat = chain_ur.joint[-1].R
+    
+    p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
+    p_EE_cur = p_EE_cur.detach().to(device)
+    R_EE_cur = R_plat
+    
+    grasp_init = 0.0
+    rpy_EE_tar_init = r2rpy_np(R_EE_cur)
+    p_EE_tar_init =  p_EE_cur
+    
+    ## 나중에 지울것 ##
+    qs_tar = np.array([0, -44, 63, -139, -92, 0]).astype(np.float32) / 180 * PI
+    chain_ur = update_ur_q(chain_ur, qs)
+    motor_control = torch.FloatTensor(scale_rate * np.array([0,0,0,1000]).astype(np.float32)).unsqueeze(0).to(device)
+
+    p_plat = chain_ur.joint[-1].p; R_plat = chain_ur.joint[-1].R
+    
+    p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
+    p_EE_cur = p_EE_cur.detach().to(device)
+    R_EE_cur = R_plat
+    ## 나중에 지울것 ##
+
+    grasp_end = -0.8
+    rpy_EE_tar_end = r2rpy_np(R_EE_cur)
+    p_EE_tar_end = p_EE_cur
+    
+    traj_n_ = 10
+    for (grasp, rpy_EE_tar, p_EE_tar) in \
+        tqdm(zip(\
+            np.linspace(grasp_init, grasp_end, traj_n),\
+            np.linspace(rpy_EE_tar_init, rpy_EE_tar_end, traj_n),
+            np.linspace(p_EE_tar_init, p_EE_tar_end, traj_n))):
+        
+        print(p_EE_tar)
+        
+        R_EE_tar = rpy2r_np(rpy_EE_tar)
+        
+        pbar = tqdm(generator())
+        for _ in pbar:
+            ## FK UR & SORO
+            chain_ur = update_ur_q(chain_ur, qs)
+            motor_control = torch.tensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
+            p_plat = chain_ur.joint[-1].p; R_plat = chain_ur.joint[-1].R
+
+            dp_dm, p_EE = get_hybrid_grad_auto(p_plat, R_plat, soro, motor_control)
+            # dq_dm, p_EE_cur = get_hybrid_grad_explicit(p_plat, R_plat, soro, motor_control)
+            R_EE_cur = R_plat
+            p_EE_cur = p_EE
+            
+            ## IK for UR
+            # get ik_error
+            p_ik_err = get_p_ik_err(p_EE_cur, p_EE_tar)
+            w_ik_err = get_w_ik_err(R_EE_cur, R_EE_tar)
+
+            ## get jacobian
+            # position jacobian
+            p_J_UR = []
+            for joint in chain_ur.joint[1:7]:
+                assert joint.type == 'revolute'
+                
+                J_ = skew_np(joint.a)@(p_EE_cur-joint.p)
+                p_J_UR.append(J_)
+            p_J_UR = np.hstack(p_J_UR)
+            
+            # angular jacobian
+            w_J_UR = []
+            for joint in chain_ur.joint[1:7]:
+                assert joint.type == 'revolute'
+                
+                J_ = joint.R@joint.a
+                w_J_UR.append(J_)
+            w_J_UR  = np.hstack(w_J_UR)
+            
+            J_UR = np.vstack([p_J_UR, w_J_UR])
+
+            p_J_soro = dp_dm
+            J_soro = np.vstack([p_J_soro, np.zeros((3,4))])
+
+            from numpy.linalg import norm
+            
+            pbar.set_description(
+                "p_ik_err:{:.2E}".format(norm(p_ik_err)))
+                
+            # Break
+            if norm(p_ik_err) < 3e-3:
+                break
+            
+            # Or Solve & Update
+            A = []
+            b = []
+            A.append(np.hstack([J_UR, J_soro]))
+            b.append(np.vstack([p_ik_err,w_ik_err]))
+
+            
+            A = np.vstack(A).astype(np.float32)
+            b = np.vstack(b).astype(np.float32)
+            
+            # print(A.shape)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            # print(b.shape)
+            
+            J_use=A; ik_err=b; step_size=0.1; lambda_rate = 0.01
+            
+            lambda_min = 1e-6
+            lambda_max = 1e-3
+            
+            ik_err_avg = np.mean(abs(ik_err))
+            # Damping Term 
+            lambda_ = lambda_rate * ik_err_avg + lambda_min 
+            lambda_ = np.maximum(lambda_, lambda_max)
+
+            n_ctrl = (J_use).shape[1]
+            # Lamda Scheduling 
+            J_culumn_sum = abs(np.sum(J_use, axis =0))
+
+            # for j in range(len(J_culumn_sum)):
+            #     for i in J_culumn_sum:
+            #         idx_nz = j
+            #         J_use_nz = J_use[:,idx_nz].reshape(1, -1)
+            #         det_J = np.linalg.det(np.matmul(J_use_nz, J_use_nz.T))
+            #         if i >0.1:
+            #             if det_J > 1e-3:
+            #                 lambda_=1e-4
+            #             elif det_J < 1e-20:
+            #                 lambda_ = lambda_max
+                            
+            labmda_ = 0.1
+            J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl).astype(np.float32)
+            dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
+
+            dq = step_size * dq_raw
+            
+            dq = dq.flatten()
+            qs = qs + dq[:6]
+            motor_control_np = motor_control_np+ dq[6:] * scale_rate
+            
+            if VIZ:
+                publish_robot(chain_ur, pub_robot)
+            
+            # break
+        # break
+        # def get_EE_hybrid_grad_auto(chain_ur:CHAIN, soro:PRIMNET, qs, motor_control):
+        #     chain_ur = update_ur_q(chain_ur, qs)
+        #     p_plat_ = torch.FloatTensor(chain_ur.joint[-1].p)
+        #     R_plat_ = torch.FloatTensor(chain_ur.joint[-1].R)
+
+        #     p_soro_ = soro(motor_control)[0, -1]
+        #     p_EE_ = p_plat_ + R_plat_ @ p_soro_
+            
+        #     return p_EE_
+        
+        
+        # def forward_q(model:PRIMNET, motor_control):
+        #     motor_control = model.normalize(motor_control)
+
+        #     # Forward
+        #     act_embeds = model.ACT_EMBED.layers(motor_control)
+        #     q_values = model.FK_LAYER.forward_q(act_embeds)[0]
+        #     return q_values
+
+        # dq_dm, q_values_tuple = jacobian(partial(forward_q, model), motor_control)
+        
+        # def get_EE_hybrid_grad_explicit(chain_ur:CHAIN, soro:PRIMNET, qs, motor_control):
+        #     chain_ur = update_ur_q(chain_ur, qs)
+        #     p_plat_ = torch.FloatTensor(chain_ur.joint[-1].p)
+        #     R_plat_ = torch.FloatTensor(chain_ur.joint[-1].R)
+            
+        #     p_soro_ = soro(motor_control)[0, -1]
+        #     p_EE_ = p_plat_ + R_plat_ @ p_soro_
+            
+        #     return p_EE_
+        
+        
+        # @ torch.jit.script_if_tracing
+        # def kinematic_grad(model:PRIMNET, q_values):
+        #     with torch.no_grad():
+        #         joint_se3 = model.FK_LAYER.forward_kinematics(q_values)
+
+        #         joint_position =  model.t2p(joint_se3, OUTPUT_NORMALIZE=False)[0,:,:,0]
+        #         joint_rotation = t2r_np(joint_se3[0])
+
+        #         EE_pos = joint_position[-1]
+
+        #         jac_explicit = torch.zeros(3, len(model.FK_LAYER.joints))
+
+        #         for idx,joint in enumerate(model.FK_LAYER.joints):
+        #             if isinstance(joint, Fjoint):
+        #                 continue
+        #             elif isinstance(joint, Tjoint):
+        #                 continue
+        #             elif isinstance(joint, Rjoint):
+        #                 pos_diff = EE_pos - joint_position[idx]
+        #                 jac_explicit[:, idx] = torch.cross(joint_rotation[idx] @ joint.axis.data[:,0], pos_diff)
+        #                 # print('here')
+        #             elif isinstance(joint, Pjoint):
+        #                 pos_diff = EE_pos - joint_position[idx]
+        #                 jac_explicit[:,idx] = joint_rotation[idx] @ joint.axis.data[:,0]
+            
+        #     return jac_explicit
+# %%

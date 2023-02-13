@@ -25,7 +25,7 @@ def get_BASERDIR(path):
         get_ipython().__class__.__name__
         print("Running on Jupyter...")
         RUNMODE = JUPYTER
-        return BASEDIR, RUNMODE
+        return BASEDIR.absolute(), RUNMODE
     except: 
         gettrace = getattr(sys, 'gettrace', None)
             
@@ -41,7 +41,7 @@ def get_BASERDIR(path):
             print("Can't Recognize Running Configuration")
             sys.exit(0)
     
-        return BASEDIR, RUNMODE
+        return BASEDIR.absolute(), RUNMODE
 
 
 # def chdir_level(path,level):
