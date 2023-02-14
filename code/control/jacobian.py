@@ -274,6 +274,6 @@ def jacobian(func, inputs, create_graph=False, strict=False, vectorize=False, st
 
         jacobian = _grad_postprocess(jacobian, create_graph)
 
-        return _tuple_postprocess(jacobian, (is_outputs_tuple, is_inputs_tuple)), outputs
+        return _tuple_postprocess(jacobian, (is_outputs_tuple, is_inputs_tuple)), tuple([output.detach() for output in outputs])
 
 
