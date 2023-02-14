@@ -49,7 +49,7 @@ class ARGS():
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    w_vec:float = 1e-1
+    w_vec:float = 5e-3
     epochs:int = 500
     focus_ratio:float = 0.0
     data_ratio:float = 1.0
