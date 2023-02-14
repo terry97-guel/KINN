@@ -5,10 +5,10 @@ import os
 from path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
 
 
-BASEDIR, RUNMODE = get_BASERDIR(".")
+BASEDIR, RUNMODE = get_BASERDIR(__file__)
 if RUNMODE is JUPYTER:
     print("Going up one level")
-    os.chdir("..")
+    os.chdir((BASEDIR/"..").__str__())
 elif RUNMODE is DEBUG:
     os.chdir((BASEDIR/"code").__str__())
 
@@ -980,6 +980,7 @@ if RUN:
                     if rendering == max_rendering: break
 
                     publish_robot(pub_robot, chain_ur)
+                    publish_soro(pub_markers, chain_ur, soro, motor_control)
                     rendering = rendering + 1
                     rate.sleep()
             pbar.update()
