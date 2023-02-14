@@ -37,7 +37,7 @@ args = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
 
 
 soro = PRIMNET(args=args).to(args.device)
-soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_500.pth"))
+soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_100.pth"))
 device = args.device
 # %%
 import numpy as np

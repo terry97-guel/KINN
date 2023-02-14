@@ -1,0 +1,105 @@
+{
+    "os": "Linux-5.15.0-60-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2023-02-14T13:18:36.061081",
+    "startedAt": "2023-02-14T13:18:35.208956",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/terry/Rilab/sOftrobot/PRIMNET-V2/code/main.py",
+    "codePath": "code/main.py",
+    "git": {
+        "remote": "https://github.com/terry97-guel/PRIMNET-V2.git",
+        "commit": "1808707e710697395ae9292c21489f2a8965d04c"
+    },
+    "email": "taerimyoon@korea.ac.kr",
+    "root": "/home/terry/Rilab/sOftrobot/PRIMNET-V2",
+    "host": "terry-TFG155",
+    "username": "terry",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3197.0355833333338,
+        "min": 800.0,
+        "max": 4100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3169.916,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3263.941,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3288.76,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3264.9,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3294.479,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3220.547,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3163.903,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3252.968,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3252.959,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3249.4,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3253.009,
+            "min": 800.0,
+            "max": 4100.0
+        },
+        {
+            "current": 3284.778,
+            "min": 800.0,
+            "max": 4100.0
+        }
+    ],
+    "disk": {
+        "total": 914.8291778564453,
+        "used": 35.150794982910156
+    },
+    "gpu": "NVIDIA GeForce GTX 1050 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1050 Ti",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 15.484748840332031
+    }
+}
