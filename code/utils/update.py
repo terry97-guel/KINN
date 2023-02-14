@@ -14,6 +14,8 @@ def p_loss_fn(x,y):
     return loss
 
 def update_primnet(model:PRIMNET, batch, args:PRIMNET_ARGS_TEMPLATE, TRAIN = True, sampler:Sampler = None):
+    
+    
     target_position = batch["position"]
     
     motor_control = batch["motor_control"]
@@ -21,26 +23,33 @@ def update_primnet(model:PRIMNET, batch, args:PRIMNET_ARGS_TEMPLATE, TRAIN = Tru
     joint_position = model.forward(motor_control, OUTPUT_NORMALIZE = args.OUTPUT_NORMALIZE)
     
     aux_joints = len(args.joint_seqs) // args.marker_num
+    device = target_position.device
+    batch_size = target_position.shape[0]
     # Position loss & Vector loss
     position_loss = 0.0
     vector_loss = 0.0
+    
+    prev_target_position_ = torch.zeros((batch_size,3,1), device = device, dtype=torch.float32)
+    
     for i in range(len(args.joint_seqs)):
         joint_position_ = joint_position[:,i]
         
-        if (i+1)%aux_joints == 0:
+        if i % aux_joints == 0:
             target_position_ = target_position[:, i//aux_joints, :]
             
+        if (i+1)%aux_joints == 0:
             assert joint_position_.shape == target_position_.shape
             position_loss = position_loss + p_loss_fn(joint_position_, target_position_)
         
-            # if i == len(args.joint_seqs)-1:
-            #     print("here")
         if i< len(args.joint_seqs)-1:
             next_joint_position_ = joint_position[:,i+1]
             
             assert joint_position_.shape == next_joint_position_.shape
             
-            vector_loss = vector_loss + (1-torch.cosine_similarity(joint_position_,next_joint_position_).squeeze(-1))
+            diff_joint_ = next_joint_position_ - joint_position_
+            diff_joint_target_ = target_position_ - prev_target_position_
+            
+            vector_loss = vector_loss + (1-torch.cosine_similarity(diff_joint_,diff_joint_target_).squeeze(-1))
 
     assert position_loss.shape == vector_loss.shape
     total_loss = position_loss + vector_loss * args.w_vec
