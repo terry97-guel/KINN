@@ -49,7 +49,7 @@ def update_primnet(model:PRIMNET, batch, args:PRIMNET_ARGS_TEMPLATE, TRAIN = Tru
             diff_joint_ = next_joint_position_ - joint_position_
             diff_joint_target_ = target_position_ - prev_target_position_
             
-            vector_loss = vector_loss + (1-torch.cosine_similarity(diff_joint_,diff_joint_target_).squeeze(-1))
+            vector_loss = vector_loss + (1 - torch.bmm(diff_joint_.transpose(1, 2), diff_joint_target_).squeeze())
 
     assert position_loss.shape == vector_loss.shape
     total_loss = position_loss + vector_loss * args.w_vec
