@@ -6,11 +6,8 @@ from path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
 
 
 BASEDIR, RUNMODE = get_BASERDIR(__file__)
-if RUNMODE is JUPYTER:
-    print("Going up one level")
-    os.chdir((BASEDIR/"..").__str__())
-elif RUNMODE is DEBUG:
-    os.chdir((BASEDIR/"code").__str__())
+print("Going up one level")
+os.chdir((BASEDIR/"..").__str__())
 
 BASEDIR, RUNMODE = get_BASERDIR(".")
 print("Current working directory:", os.getcwd())
@@ -37,7 +34,7 @@ args = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
 
 
 soro = PRIMNET(args=args).to(args.device)
-soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_100.pth"))
+soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_200.pth"))
 device = args.device
 # %%
 import numpy as np
@@ -181,204 +178,8 @@ def t2p_np(T):
     return p.reshape(3,1)
 
 # %%
-
-RUN = False
-scale_rate = 50
-
-if RUN:
-    """APPROACH"""
-    qs = np.array([0,0,0,0,0,0]).astype(np.float32)
-    motor_control_np = np.array([0,0,0,0]).astype(np.float32)
-    
-    grasp = 0.5
-    rpy_EE_tar = np.array([PI, 0, 0])
-    R_EE_tar = rpy2r_np(rpy_EE_tar)
-    p_EE_tar = np.array([0.35,0,0.3]).reshape(3,1)
-    
-    
-    l_tar = 0.15
-    K_grasp = 1e9
-    
-    
-    def generator():
-        while True:
-            yield
-
-    from tqdm import tqdm
-    pbar = tqdm(generator())
-    iternum = 0
-    for _ in pbar:
-        # FK UR & soro
-        chain_ur = update_ur_q(chain_ur, qs)
-        motor_control = torch.tensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
-        T_EE_cur = get_EE_hybrid(chain_ur, soro, qs, motor_control)
-        p_EE_cur, R_EE_cur = t2pr_np(T_EE_cur)
-        
-        
-        
-        ## IK for UR
-        # get ik_error        
-        p_ik_err = get_p_ik_err(p_EE_cur, p_EE_tar)
-        w_ik_err = get_w_ik_err(R_EE_cur, R_EE_tar)
-        
-
-        # get jacobian
-        p_J_UR = []
-        for joint in chain_ur.joint[1:7]:
-            assert joint.type == 'revolute'
-            
-            J_ = skew_np(joint.a) @ (p_EE_cur - joint.p)
-            p_J_UR.append(J_)
-        
-        p_J_UR = np.hstack(p_J_UR)
-        
-        w_J_UR = []
-        for joint in chain_ur.joint[1:7]:
-            assert joint.type == 'revolute'
-            
-            J_ = joint.R @ joint.a
-            w_J_UR.append(J_)
-            
-        w_J_UR = np.hstack(w_J_UR)
-        
-        J_UR = np.vstack([p_J_UR, w_J_UR])
-        
-        def get_EE_hybrid_grad(chain_ur:CHAIN, soro:PRIMNET, qs, motor_control):
-            chain_ur = update_ur_q(chain_ur, qs)
-            p_plat_ = torch.FloatTensor(chain_ur.joint[-1].p)
-            R_plat_ = torch.FloatTensor(chain_ur.joint[-1].R)
-
-            p_soro_ = soro(motor_control)[0, -1]
-            p_EE_ = p_plat_ + R_plat_ @ p_soro_
-            
-            return p_EE_
-        
-        ## IK for SORO
-        from torch.autograd.functional import jacobian
-        from functools import partial
-        
-        p_J_soro = jacobian(partial(get_EE_hybrid_grad, chain_ur, soro, qs), motor_control)[:,0,0,:].detach().cpu().numpy() * scale_rate
-        J_soro = np.vstack([p_J_soro, np.zeros((3,4))])
-        
-        ## Sphere constraint
-        p_plat_EE = p_EE_cur - chain_ur.joint[8].p
-        sph_l = np.linalg.norm(p_plat_EE)
-        sph_err = np.array([1/2* (l_tar**2-sph_l**2)]).reshape(1,1)
-        
-        J_sph = p_plat_EE.T @ p_J_soro
-        ## Grasp constraint
-        grasp = 0.5
-        grasp_dir = 0
-        
-        l_grasp = 0.04 * grasp
-        u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1)
-        J_grasp = u.T @ p_J_soro
-        
-        grasp_err = l_grasp - u.T @ p_plat_EE
-        
-        ## Motor constraint
-        margin = 200/scale_rate
-        llimit = (motor_control_np < margin).any()
-        J_llimit = np.eye(4)[motor_control_np < margin]
-        llimit_err = (margin-motor_control_np)[motor_control_np < margin].reshape(-1,1)
-        
-        ulimit = (motor_control_np > 2000/scale_rate-margin).any()
-        J_ulimit = np.eye(4)[motor_control_np > 2000/scale_rate-margin]
-        ulimit_err = ((2000/scale_rate-margin)-motor_control_np)[motor_control_np > 2000/scale_rate-margin].reshape(-1,1)
-
-        # print("J_UR.shape :", J_UR.shape)
-        # print("p_J_soro.shape :", p_J_soro.shape)
-        # print("J_sph.shape :", J_sph.shape)
-        # print("J_grasp.shape :", J_grasp.shape)
-        # print("J_llimit.shape :", J_llimit.shape)
-        # print("J_ulimit.shape :", J_ulimit.shape)
-        
-        from numpy.linalg import norm
-        
-        pbar.set_description(
-            "p_ik_err:{:.2E},\
-                w_ik_err:{:.2E},\
-                    grasp_err:{:.2E},\
-                        sph_err:{:.2E}".format(
-                            norm(p_ik_err),
-                            norm(w_ik_err),
-                            norm(grasp_err),
-                            norm(sph_err)
-                        ))
-            
-        # Break
-        if norm(p_ik_err) < 3e-3 and\
-            norm(w_ik_err) < 0.01 and\
-                norm(grasp_err) < 0.01 and\
-                    norm(sph_err) < 0.01:
-            break
-        # Or Solve & Update
-        A = []
-        b = []
-        A.append(np.hstack([J_UR, J_soro]))
-        A.append(np.hstack([np.zeros((1,6)), J_grasp]))
-        A.append(np.hstack([np.zeros((1,6)), J_sph]))
-        
-        b.append(np.vstack([p_ik_err,w_ik_err]))
-        b.append(grasp_err)
-        b.append(sph_err)
-        if llimit:
-            oor_motor_num = J_llimit.shape[0]
-            A.append(np.hstack([np.zeros((oor_motor_num,6)), J_llimit]))
-            b.append(llimit_err)
-        if ulimit:
-            oor_motor_num = J_ulimit.shape[0]
-            A.append(np.hstack([np.zeros((oor_motor_num,6)), J_ulimit]))
-            b.append(ulimit_err)
-        
-        A = np.vstack(A)
-        b = np.vstack(b)
-        
-        # print(A.shape)
-        # print(b.shape)
-        
-        J_use=A; ik_err=b; step_size=0.1; lambda_rate = 0.01
-        
-        lambda_min = 1e-6
-        lambda_max = 1e-3
-        
-        ik_err_avg = np.mean(abs(ik_err))
-        # Damping Term 
-        lambda_ = lambda_rate * ik_err_avg + lambda_min 
-        lambda_ = np.maximum(lambda_, lambda_max)
-
-        n_ctrl = (J_use).shape[1]
-        # Lamda Scheduling 
-        J_culumn_sum = abs(np.sum(J_use, axis =0))
-
-        for j in range(len(J_culumn_sum)):
-            for i in J_culumn_sum:
-                idx_nz = j
-                J_use_nz = J_use[:,idx_nz].reshape(1, -1)
-                det_J = np.linalg.det(np.matmul(J_use_nz, J_use_nz.T))
-                if i >0.1:
-                    if det_J > 1e-3:
-                        lambda_=1e-4
-                    elif det_J < 1e-20:
-                        lambda_ = lambda_max
-                        
-        labmda_ = 0.1
-        J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl)
-        
-        
-        dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
-
-        dq = step_size * dq_raw
-        
-        dq = dq.astype(np.float32).flatten()
-        qs = qs + dq[:6]
-        motor_control_np = motor_control_np+ dq[6:] * scale_rate
-
-
-
-# %%
 from tqdm import tqdm
-scale_rate = 50
+scale_rate = 30
 l_tar = 0.15
 
 VIZ = True
@@ -486,15 +287,7 @@ from jacobian import jacobian
 from functools import partial
 from numpy.linalg import norm
 
-# Init values
-qs= np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
-motor_control_np = np.array([0,0,0,0]).astype(np.float32)
 
-qs_list = []
-motor_list = []
-target_position_list = []
-target_rpy_list = []
-traj_n = 10
 
 
 def forward_model(p_plat, R_plat, soro, motor_control):
@@ -561,34 +354,25 @@ def get_hybrid_grad_explicit(p_plat, R_plat, soro:PRIMNET, motor_control):
 
 
 # %%
-"""
-import time
-n = 100
-p_plat = np.zeros((3,1), dtype=np.float32)
-R_plat = np.eye(3, dtype=np.float32)
-motor_control = torch.FloatTensor([[0,0,0,0]]).to(device)
+# Init values
+qs= np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
+motor_control_np = np.array([0,0,0,0]).astype(np.float32)
 
-start_time = time.time()
-for _ in range(n):
-    get_hybrid_grad_auto(p_plat, R_plat, soro, motor_control)
-end_time = time.time()
-autograd_time = end_time - start_time
-print("[AutoGrad]:{:2f}".format(autograd_time))
+qs_list = []
+motor_list = []
+target_position_list = []
+target_rpy_list = []
+traj_n = 10
+grasp_dir = 1
 
-start_time = time.time()
-for _ in range(n):
-    get_hybrid_grad_explicit(p_plat, R_plat, soro, motor_control)
-end_time = time.time()
-explicit_time = end_time-start_time
-print("[Explicit]:{:2f}".format(explicit_time))
+RUN1 = False
+RUN2 = False
+RUN3 = True
 
-"""
 # %%
     
-if True:
+if RUN1:
     """APPROCAH"""
-    grasp_dir = 1
-    
     chain_ur = update_ur_q(chain_ur, qs)
     motor_control = torch.FloatTensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
     
@@ -601,22 +385,11 @@ if True:
     rpy_EE_tar_init = r2rpy_np(R_EE_cur)
     p_EE_tar_init =  p_EE_cur
     
-    ## 나중에 지울것 ##
-    # qs_tar = np.array([0, -44, 63, -139, -92, 0]).astype(np.float32) / 180 * PI
-    # chain_ur = update_ur_q(chain_ur, qs_tar)
-    # motor_control = torch.FloatTensor(np.array([0,0,0,1000]).astype(np.float32)).unsqueeze(0).to(device)
-
-    # p_plat = chain_ur.joint[-1].p.astype(np.float32); R_plat = chain_ur.joint[-1].R.astype(np.float32)
-    # p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
-    # p_EE_cur = p_EE_cur.detach().cpu().numpy()
-    # R_EE_cur = R_plat
-    ## 나중에 지울것 ##
 
     grasp_end = -0.8
     rpy_EE_tar_end = np.array([-2.61693358, -0.03022852, -1.58825493], dtype=np.float32)
     p_EE_tar_end = np.array([1.0205003, 0.13381146,0.6415896], dtype=np.float32).reshape(3,1)
     
-    traj_n_ = 10
     for (grasp, rpy_EE_tar, p_EE_tar) in \
         tqdm(zip(\
             np.linspace(grasp_init, grasp_end, traj_n),\
@@ -675,10 +448,7 @@ if True:
             
             J_sph = p_plat_EE.T @ p_J_soro
             ## Grasp constraint
-            grasp = 0.5
-            grasp_dir = 0
-            
-            l_grasp = 0.04 * grasp
+            l_grasp = 0.03 * grasp
             u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
             J_grasp = u.T @ p_J_soro
             
@@ -784,12 +554,12 @@ if True:
                     rate.sleep()
             
             pbar.update()
+        qs_list.append(qs)
+        motor_list.append(motor_control_np)
 
 # %%
-if RUN:
+if RUN2:
     """SCRAP"""
-    grasp_dir = 1
-    
     chain_ur = update_ur_q(chain_ur, qs)
     motor_control = torch.FloatTensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
     
@@ -801,23 +571,11 @@ if RUN:
     grasp_init = -0.8
     rpy_EE_tar_init = np.array([-2.61693358, -0.03022852, -1.58825493], dtype=np.float32)
     p_EE_tar_init = np.array([1.0205003, 0.13381146,0.6415896], dtype=np.float32).reshape(3,1)
-    
-    ## 나중에 지울것 ##
-    # qs_tar = np.array([0, -33, 58, -150, -92, 0]).astype(np.float32) / 180 * PI
-    # chain_ur = update_ur_q(chain_ur, qs_tar)
-    # motor_control = torch.FloatTensor(np.array([0,0,1000,0]).astype(np.float32)).unsqueeze(0).to(device)
-
-    # p_plat = chain_ur.joint[-1].p.astype(np.float32); R_plat = chain_ur.joint[-1].R.astype(np.float32)
-    # p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
-    # p_EE_cur = p_EE_cur.detach().cpu().numpy()
-    # R_EE_cur = R_plat
-    ## 나중에 지울것 ##
 
     grasp_end = 0.8
     rpy_EE_tar_end = np.array([-2.52964497, -0.02859196, -1.59082341], dtype=np.float32)
     p_EE_tar_end = np.array([1.0784122,0.09696829,0.57288957], dtype=np.float32).reshape(3,1)
     
-    traj_n_ = 10
     for (grasp, rpy_EE_tar, p_EE_tar) in \
         tqdm(zip(\
             np.linspace(grasp_init, grasp_end, traj_n),\
@@ -876,10 +634,7 @@ if RUN:
             
             J_sph = p_plat_EE.T @ p_J_soro
             ## Grasp constraint
-            grasp = 0.5
-            grasp_dir = 0
-            
-            l_grasp = 0.04 * grasp
+            l_grasp = 0.03 * grasp
             u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
             J_grasp = u.T @ p_J_soro
             
@@ -984,12 +739,12 @@ if RUN:
                     rendering = rendering + 1
                     rate.sleep()
             pbar.update()
+        qs_list.append(qs)
+        motor_list.append(motor_control_np)
 
 # %%
-if RUN:
+if RUN3:
     """SCRAP"""
-    grasp_dir = 1
-    
     chain_ur = update_ur_q(chain_ur, qs)
     motor_control = torch.FloatTensor(scale_rate * motor_control_np).unsqueeze(0).to(device)
     
@@ -998,12 +753,12 @@ if RUN:
     p_EE_cur = p_EE_cur.detach().to(device)
     R_EE_cur = R_plat
     
-    grasp_init = -0.8
-    rpy_EE_tar_init = np.array([-2.61693358, -0.03022852, -1.58825493], dtype=np.float32)
-    p_EE_tar_init = np.array([1.0205003, 0.13381146,0.6415896], dtype=np.float32).reshape(3,1)
-    
-    ## 나중에 지울것 ##
-    # qs_tar = np.array([0, -33, 58, -150, -92, 0]).astype(np.float32) / 180 * PI
+    grasp_init = 0.8
+    rpy_EE_tar_init = np.array([-2.52964497, -0.02859196, -1.59082341], dtype=np.float32)
+    p_EE_tar_init = np.array([1.0784122,0.09696829,0.57288957], dtype=np.float32).reshape(3,1)
+
+    # 나중에 지울것 ##
+    # qs_tar = np.array([0, -76, 124, -150, -93, 11]).astype(np.float32) / 180 * PI
     # chain_ur = update_ur_q(chain_ur, qs_tar)
     # motor_control = torch.FloatTensor(np.array([0,0,1000,0]).astype(np.float32)).unsqueeze(0).to(device)
 
@@ -1011,13 +766,12 @@ if RUN:
     # p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
     # p_EE_cur = p_EE_cur.detach().cpu().numpy()
     # R_EE_cur = R_plat
-    ## 나중에 지울것 ##
+    # 나중에 지울것 ##
 
     grasp_end = 0.8
-    rpy_EE_tar_end = np.array([-2.52964497, -0.02859196, -1.59082341], dtype=np.float32)
-    p_EE_tar_end = np.array([1.0784122,0.09696829,0.57288957], dtype=np.float32).reshape(3,1)
+    rpy_EE_tar_end = np.array([-2.92525983, -0.01058054, -1.76943171], dtype=np.float32)
+    p_EE_tar_end = np.array([0.6300348, 0.1085189, 0.52285707], dtype=np.float32).reshape(3,1)
     
-    traj_n_ = 10
     for (grasp, rpy_EE_tar, p_EE_tar) in \
         tqdm(zip(\
             np.linspace(grasp_init, grasp_end, traj_n),\
@@ -1076,10 +830,7 @@ if RUN:
             
             J_sph = p_plat_EE.T @ p_J_soro
             ## Grasp constraint
-            grasp = 0.5
-            grasp_dir = 0
-            
-            l_grasp = 0.04 * grasp
+            l_grasp = 0.03 * grasp
             u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
             J_grasp = u.T @ p_J_soro
             
@@ -1179,7 +930,10 @@ if RUN:
                 while not rospy.is_shutdown():
                     if rendering == max_rendering: break
 
-                    publish_robot(chain_ur, pub_robot)
+                    publish_robot(pub_robot,chain_ur)
+                    publish_soro(pub_markers, chain_ur, soro, motor_control)
                     rendering = rendering + 1
                     rate.sleep()
             pbar.update()
+        qs_list.append(qs)
+        motor_list.append(motor_control_np)
