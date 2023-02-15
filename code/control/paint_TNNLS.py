@@ -46,11 +46,12 @@ from kinematics.class_structure import CHAIN
 chain_ur = CHAIN(file_name = file_name)
 
 
-from soro_kinematics import update_ur_q, forward_model, r2rpy_np, solve_ik_traj
+from soro_kinematics import update_ur_q, forward_model, r2rpy_np, solve_ik_traj, viz_robot
 
 # %%
 # Init values
 qs= np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
+chain_ur = update_ur_q(chain_ur, qs)
 motor_control_np = np.array([0,0,0,0]).astype(np.float32)
 
 qs_list = []
@@ -67,6 +68,266 @@ VIZ = True
 
 
 # %%
+from matplotlib import pyplot as plt
+z_down = 0.53624987
+z_up = z_down + 50/1000 # 50mm up
+
+rpy_EE_tar = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00], dtype=np.float32)
+
+letter_pos_list = []
+
+# T
+letter_pos_list.append(np.array([-0,-2], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0,-40], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-0, -20], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-58,-13], dtype=np.float32)/1000)
+
+# N
+letter_pos_list.append(np.array([-58,-48], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0 ,-87], dtype=np.float32)/1000)
+
+# N
+letter_pos_list.append(np.array([-58,-100], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0 ,-139], dtype=np.float32)/1000)
+
+
+# L
+letter_pos_list.append(np.array([-0 ,-160], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-58,-152], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-58,-152], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-58,-184], dtype=np.float32)/1000)
+
+
+
+letter_pos_array = np.vstack(letter_pos_list) - np.array([0,-2], dtype=np.float32)/1000 + np.array([0.82545507,0.09943377])
+
+
+pos_list = []
+grasp_list = []
+grasp_dir_list  = []
+
+
+for i in range(0, len(letter_pos_array), 2):
+    letter_pos_1 = letter_pos_array[i]
+    letter_pos_2 = letter_pos_array[i+1]
+    
+    pos_1 = np.array([letter_pos_1[0], letter_pos_1[1], z_up], dtype=np.float32)
+    pos_2 = np.array([letter_pos_1[0], letter_pos_1[1], z_down], dtype=np.float32)
+    pos_3 = np.array([letter_pos_2[0], letter_pos_2[1], z_down], dtype=np.float32)
+    pos_4 = np.array([letter_pos_2[0], letter_pos_2[1], z_up], dtype=np.float32)
+
+    R = chain_ur.joint[8].R
+
+    grasp_dir = R.T @ (pos_3-pos_2)
+    grasp_dir = grasp_dir/np.linalg.norm(grasp_dir)
+
+    grasp_dir_list.extend([grasp_dir]*4)
+    grasp_list.extend([-0.5,-0.5,0.5,0.5])
+    pos_list.extend([pos_1, pos_2, pos_3, pos_4])
+
+pos_array = np.vstack(pos_list)
+grasp_array = np.array(grasp_list, dtype=np.float32)
+grasp_dir_array = np.vstack(grasp_dir_list)
+
+
+print(pos_array)
+# %%
+from soro_kinematics import make_markers
+p_EE_cur_list = []
+obj_info_list = []
+
+assert len(pos_array) == len(grasp_array) == len(grasp_dir_array)
+
+try: 
+    for idx in range(len(pos_array)-1):
+        grasp_init = grasp_array[idx]
+        grasp_end  = grasp_array[idx+1]
+
+        p_EE_tar_init = pos_array[idx].reshape(3,1)
+        p_EE_tar_end  = pos_array[idx+1].reshape(3,1)
+
+        grasp_dir = grasp_dir_array[idx]
+
+        qs_list_, motor_list_, qs, motor_control_np, p_EE_cur_list_ = \
+            solve_ik_traj(chain_ur, qs, 
+                        soro, motor_control_np, 
+                        grasp_init, rpy_EE_tar, p_EE_tar_init, grasp_end, rpy_EE_tar, p_EE_tar_end, grasp_dir, 
+                        traj_n=10,scale_rate=scale_rate, step_size = 0.12,VIZ=True)
+        
+        if VIZ and (idx-1)%4==0:
+        # if VIZ:
+            for marker_idx, p_EE_cur_ in enumerate(p_EE_cur_list_):
+                
+                radius = 0.01
+                obj_info_list.append(
+                    make_markers(name=f"maker_{marker_idx}",
+                                type="sphere",  
+                                pos=p_EE_cur_.flatten().tolist(),
+                                rot=[0,0,0], 
+                                size=[radius, radius, radius], 
+                                color=[1,0,0,1])) 
+
+
+            motor_control = torch.tensor(scale_rate * motor_control_np).unsqueeze(0).cpu()
+            viz_robot(chain_ur, soro, motor_control, obj_info_list, render_time = 1)
+            p_EE_cur_list.extend(p_EE_cur_list_)
+
+        qs_list.extend(qs_list_)
+        motor_list.extend(motor_list_)
+except KeyboardInterrupt:
+    qs_array = np.array(qs_list, dtype=np.float32)
+    motor_array = torch.tensor(motor_list) * scale_rate
+    p_EE_cur_array = np.array(p_EE_cur_list, dtype=np.float32)
+
+    np.save((BASEDIR/"control/planned_traj/paint/qs_array.npy").__str__(), qs_array)
+    np.save((BASEDIR/"control/planned_traj/paint/motor_array.npy").__str__(), motor_array.detach().cpu().numpy())
+    np.save((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy").__str__(), p_EE_cur_array)
+
+
+
+
+# %%
+
+qs_array = np.array(qs_list, dtype=np.float32)
+motor_array = torch.tensor(motor_list) * scale_rate
+p_EE_cur_array = np.array(p_EE_cur_list, dtype=np.float32)
+
+np.save((BASEDIR/"control/planned_traj/paint/qs_array.npy").__str__(), qs_array)
+np.save((BASEDIR/"control/planned_traj/paint/motor_array.npy").__str__(), motor_array.detach().cpu().numpy())
+np.save((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy").__str__(), p_EE_cur_array)
+
+
+# %%
+from soro_kinematics import viz_robot, update_ur_q, make_markers
+import numpy as np
+import torch
+
+
+qs_array       = np.load((BASEDIR/"control/planned_traj/paint/qs_array.npy").__str__())
+motor_array    = np.load((BASEDIR/"control/planned_traj/paint/motor_array.npy").__str__())
+p_EE_cur_array = np.load((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy").__str__())
+
+
+motor_array = torch.tensor(motor_array)
+
+
+obj_info_list = []
+for idx in range(len(qs_array)):
+    update_ur_q(chain_ur, qs_array[idx])
+    
+    if (idx//10)%4==1:    
+        radius = 0.01
+
+        marker_idx = (idx//40)*10 + idx%10
+        p_EE_cur_ = p_EE_cur_array[marker_idx]
+        obj_info_list.append(
+            make_markers(name=f"maker_{marker_idx}",
+                            type="sphere",  
+                            pos=p_EE_cur_.flatten().tolist(),
+                            rot=[0,0,0], 
+                            size=[radius, radius, radius], 
+                            color=[1,0,0,1])) 
+
+    motor_control = torch.tensor(motor_array[idx]).unsqueeze(0)
+    viz_robot(chain_ur, soro, motor_control, obj_info_list, render_time = 0.1)
+
+print("here")
+
+
+
+
+
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# %%
+letter_pos_list.append(np.array([-2,-0, z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-2,-0, z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-40,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-40,-0,z_up], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-20,-0,z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-20,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-13,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-13,-58,z_up], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-48,-58,z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-48,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-56,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-80,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-87,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-87,-0,z_up], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-100,-58,z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-100,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-108,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-132,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-139,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-139,-0,z_up], dtype=np.float32)/1000)
+
+letter_pos_list.append(np.array([-100,-58,z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-100,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-108,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-132,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-139,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-139,-0,z_up], dtype=np.float32)/1000)
+
+
+letter_pos_list.append(np.array([-160,-0,z_up], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-160,-0,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-152,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-184,-58,z_down], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-184,-58,z_up], dtype=np.float32)/1000)
+
+
+letter_pos_list = np.vstack(letter_pos_list) - np.array([-2,0,0], dtype=np.float32)/1000 + np.array([0.82545507,0.09943377, .0])
+
+
+
+grasp_list.insert(0, 0)
+p_init = np.array([0.59898293, 0.13959704, 0.7965294], dtype=np.float32)
+p_tar_array = np.vstack([p_init, letter_pos_list])
+
+
+# %%
+
+
+
+
+# %%
 if RUN1:
     """APPROCAH"""
     grasp_dir = 0
@@ -80,22 +341,13 @@ if RUN1:
     R_EE_cur = R_plat
     
     grasp_init = 0.0
-    rpy_EE_tar_init = r2rpy_np(R_EE_cur)
-    p_EE_tar_init =  p_EE_cur
-    
-    qs_tar = np.array([-0.6, -57.6, 109.6, -179.4, -100.5, 0.0]).astype(np.float32) / 180 * PI
-    chain_ur = update_ur_q(chain_ur, qs_tar)
-    motor_control = torch.FloatTensor(np.array([0,0,0,1000]).astype(np.float32)).unsqueeze(0).cpu()
-
-    p_plat = chain_ur.joint[-1].p.astype(np.float32); R_plat = chain_ur.joint[-1].R.astype(np.float32)
-    p_EE_cur = forward_model(p_plat, R_plat, soro, motor_control)
-    p_EE_cur = p_EE_cur.detach().cpu().numpy()
-    R_EE_cur = R_plat
+    rpy_EE_tar_init = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00], dtype=np.float32)
+    p_EE_tar_init =  np.array([0.59898293, 0.13959704, 0.7965294], dtype=np.float32)
 
 
     grasp_end = -1
     rpy_EE_tar_end = rpy_EE_tar_init
-    p_EE_tar_end = p_EE_cur + np.array([0,0,-8]).reshape(3,1)/1000
+    p_EE_tar_end = np.array([0.82545507,0.09943377,z_down], dtype=np.float32)
     
     qs_list_, motor_list_, qs, motor_control_np = \
         solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_init, p_EE_tar_init, grasp_end, rpy_EE_tar_end, p_EE_tar_end, grasp_dir, traj_n=10,scale_rate=scale_rate, VIZ=VIZ)

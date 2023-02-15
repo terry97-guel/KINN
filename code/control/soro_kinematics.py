@@ -163,12 +163,17 @@ if VIZ:
     from kinematics.rviz import publish_viz_robot, publish_viz_markers
     from visualization_msgs.msg import Marker, MarkerArray
     
-    rospy.init_node("VIZ_ROBOT")
-    pub_robot     = Publisher(f'viz_robot', MarkerArray, queue_size=10)
-    pub_markers   = Publisher(f'viz_markers', MarkerArray, queue_size=10)
-    pub_frame     = Publisher(f'viz_frame', MarkerArray, queue_size=10)
+    import rosnode
+    node_names = rosnode.get_node_names()
 
-    def publish_robot(pub_robot:Publisher,chain:CHAIN):
+    if "VIZ_ROBOT" not in node_names:
+        rospy.init_node("VIZ_ROBOT")
+        pub_robot     = Publisher(f'viz_robot', MarkerArray, queue_size=10)
+        pub_soro      = Publisher(f'viz_soro', MarkerArray, queue_size=10)
+        pub_marker    = Publisher(f'viz_marker', MarkerArray, queue_size=10)
+
+
+    def publish_robot(chain:CHAIN):
         chain.fk_chain(1)
         p_list     = get_p_chain(chain.joint)
         R_list     = get_R_chain(chain.joint)
@@ -180,7 +185,7 @@ if VIZ:
         viz_trg_robot = publish_viz_robot(viz_links)
         pub_robot.publish(viz_trg_robot)
 
-    def publish_soro(pub_markers:Publisher,chain_ur:CHAIN, soro:PRIMNET, motor_control):
+    def publish_soro(chain_ur:CHAIN, soro:PRIMNET, motor_control):
         obs_info_lst = []
         
         black = [0.1,0.1,0.1,0.3]
@@ -207,7 +212,11 @@ if VIZ:
             obs_info_lst.append(get_cylinder_from_axis(pos_fr, pos_to, 0.02, white, name))
 
         viz_obj = publish_viz_markers(obs_info_lst)
-        pub_markers.publish(viz_obj)
+        pub_soro.publish(viz_obj)
+    
+    def publish_markers(obs_info_lst):
+        viz_obj = publish_viz_markers(obs_info_lst)
+        pub_marker.publish(viz_obj)
 
     def make_markers(name, type, pos, rot, size, color): 
         return {"name":name, "type":type, "info":pos+rot+size, "color":color}
@@ -322,12 +331,15 @@ def get_hybrid_grad_explicit(p_plat, R_plat, soro:PRIMNET, motor_control, scale_
     p_EE = p_plat + R_plat @ p_soro
     return R_plat@dp_dq@dq_dm* scale_rate, p_EE
 
-def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_init, p_EE_tar_init, grasp_end, rpy_EE_tar_end, p_EE_tar_end, grasp_dir,traj_n=10,scale_rate=30, VIZ=False):
+def solve_ik_traj(chain_ur, qs, 
+                  soro, motor_control_np, 
+                  grasp_init, rpy_EE_tar_init, p_EE_tar_init, grasp_end, rpy_EE_tar_end, p_EE_tar_end, grasp_dir,
+                  traj_n=10,scale_rate=30, step_size=0.1, VIZ=False):
     l_tar = 0.15
     
     qs_list = []
     motor_list = []
-
+    p_EE_cur_list = []
     for (grasp, rpy_EE_tar, p_EE_tar) in \
         tqdm(zip(\
             np.linspace(grasp_init, grasp_end, traj_n),\
@@ -387,7 +399,13 @@ def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_i
             J_sph = p_plat_EE.T @ p_J_soro
             ## Grasp constraint
             l_grasp = 0.03 * grasp
-            u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
+            assert np.abs(np.linalg.norm(grasp_dir) - 1) < 1e-3
+            assert grasp_dir.shape == (3,)
+            R_ = chain_ur.joint[8].R.astype(np.float32)
+            u = (grasp_dir[0] * R_[:,0] + grasp_dir[1] * R_[:,1] + grasp_dir[2] * R_[:,2] ).reshape(3,1)
+
+            # u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
+            
             J_grasp = u.T @ p_J_soro
             
             grasp_err = l_grasp - u.T @ p_plat_EE
@@ -417,7 +435,7 @@ def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_i
             # Break
             if norm(p_ik_err) < 3e-3 and\
                 norm(w_ik_err) < 0.01 and\
-                    norm(grasp_err) < 0.01 and\
+                    norm(grasp_err) < 0.02 and\
                         norm(sph_err) < 0.01:
                 break
             # Or Solve & Update
@@ -442,7 +460,7 @@ def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_i
             A = np.vstack(A).astype(np.float32)
             b = np.vstack(b).astype(np.float32)
             
-            J_use=A; ik_err=b; step_size=0.1; lambda_rate = 0.01
+            J_use=A; ik_err=b; lambda_rate = 0.01
             
             lambda_min = 1e-6
             lambda_max = 1e-3
@@ -470,6 +488,9 @@ def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_i
             J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl).astype(np.float32)
             dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
 
+            if  (np.linalg.norm(dq_raw[6:] * scale_rate) < 3e-2) and norm(grasp_err) > 0.02:
+                # qs = np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
+                motor_control_np = np.zeros_like(motor_control_np)
             dq = step_size * dq_raw
             
             dq = dq.flatten()
@@ -479,12 +500,13 @@ def solve_ik_traj(chain_ur, qs, soro, motor_control_np, grasp_init, rpy_EE_tar_i
             if VIZ:
                 viz_robot(chain_ur, soro, motor_control)
             pbar.update()
+        p_EE_cur_list.append(p_EE_cur)
         qs_list.append(qs)
         motor_list.append(motor_control_np)
-    return qs_list, motor_list, qs, motor_control_np
+    return qs_list, motor_list, qs, motor_control_np, p_EE_cur_list
 
 
-def viz_robot(chain_ur, soro, motor_control, render_time = 0.1):
+def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0.1):
     
     frequency = 60
     rate = rospy.Rate(frequency)
@@ -494,8 +516,9 @@ def viz_robot(chain_ur, soro, motor_control, render_time = 0.1):
     while not rospy.is_shutdown():
         if rendering == max_rendering: break
 
-        publish_robot(pub_robot, chain_ur)
-        publish_soro(pub_markers, chain_ur, soro, motor_control)
-        # publish_frame()
+        publish_robot(chain_ur)
+        publish_soro(chain_ur, soro, motor_control)
+        if obj_info_list is not None:
+            publish_markers(obj_info_list)
         rendering = rendering + 1
         rate.sleep()
