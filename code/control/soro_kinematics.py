@@ -336,7 +336,7 @@ def solve_ik_traj(chain_ur, qs,
                   grasp_init, rpy_EE_tar_init, p_EE_tar_init, grasp_end, rpy_EE_tar_end, p_EE_tar_end, grasp_dir,
                   traj_n=10,scale_rate=30, step_size=0.1, VIZ=False):
     l_tar = 0.15
-    
+    step_size_original = step_size
     qs_list = []
     motor_list = []
     p_EE_cur_list = []
@@ -350,7 +350,9 @@ def solve_ik_traj(chain_ur, qs,
         
         R_EE_tar = rpy2r_np(rpy_EE_tar)
         
-        pbar = tqdm(generator())
+        pbar = tqdm(generator(), leave=True)
+        update_number = 0
+        step_size = step_size_original
         for _ in pbar:
             ## FK UR & SORO
             chain_ur = update_ur_q(chain_ur, qs)
@@ -403,7 +405,7 @@ def solve_ik_traj(chain_ur, qs,
             assert grasp_dir.shape == (3,)
             R_ = chain_ur.joint[8].R.astype(np.float32)
             u = (grasp_dir[0] * R_[:,0] + grasp_dir[1] * R_[:,1] + grasp_dir[2] * R_[:,2] ).reshape(3,1)
-
+            # u = grasp_dir
             # u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
             
             J_grasp = u.T @ p_J_soro
@@ -422,20 +424,22 @@ def solve_ik_traj(chain_ur, qs,
 
             
             pbar.set_description(
-                "p_ik_err:{:.2E},\
-                    w_ik_err:{:.2E},\
-                        grasp_err:{:.2E},\
-                            sph_err:{:.2E}".format(
-                                norm(p_ik_err),
-                                norm(w_ik_err),
-                                norm(grasp_err),
-                                norm(sph_err)
-                            ))
-                
+                "update_number:{}, \
+                    p_ik_err:{:.2E},\
+                        w_ik_err:{:.2E},\
+                            grasp_err:{:.2E},\
+                                sph_err:{:.2E}".format(
+                                    update_number,
+                                    norm(p_ik_err),
+                                    norm(w_ik_err),
+                                    norm(grasp_err),
+                                    norm(sph_err)
+                                ))
+                    
             # Break
             if norm(p_ik_err) < 3e-3 and\
                 norm(w_ik_err) < 0.01 and\
-                    norm(grasp_err) < 0.02 and\
+                    norm(grasp_err) < 0.015 and\
                         norm(sph_err) < 0.01:
                 break
             # Or Solve & Update
@@ -446,7 +450,7 @@ def solve_ik_traj(chain_ur, qs,
             A.append(np.hstack([np.zeros((1,6),dtype=np.float32), J_sph]))
             
             b.append(np.vstack([p_ik_err,w_ik_err]))
-            b.append(grasp_err)
+            b.append(100*grasp_err)
             b.append(sph_err)
             if llimit:
                 oor_motor_num = J_llimit.shape[0]
@@ -488,9 +492,18 @@ def solve_ik_traj(chain_ur, qs,
             J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl).astype(np.float32)
             dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
 
-            if  (np.linalg.norm(dq_raw[6:] * scale_rate) < 3e-2) and norm(grasp_err) > 0.02:
-                # qs = np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
-                motor_control_np = np.zeros_like(motor_control_np)
+            # if  (np.linalg.norm(dq_raw[6:] * scale_rate) < 3e-2) and norm(grasp_err) > 0.015:
+            #     # qs = np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
+            #     motor_control_np = np.zeros_like(motor_control_np)
+
+            if norm(p_ik_err) < 3e-3 and update_number > 100:
+                break
+
+                
+            # if update_number % 100 == 99:
+                # motor_control_np = np.zeros_like(motor_control_np)
+                # update_number = 0
+            step_size = step_size * 0.99
             dq = step_size * dq_raw
             
             dq = dq.flatten()
@@ -500,6 +513,7 @@ def solve_ik_traj(chain_ur, qs,
             if VIZ:
                 viz_robot(chain_ur, soro, motor_control)
             pbar.update()
+            update_number = update_number + 1
         p_EE_cur_list.append(p_EE_cur)
         qs_list.append(qs)
         motor_list.append(motor_control_np)
@@ -522,3 +536,5 @@ def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0
             publish_markers(obj_info_list)
         rendering = rendering + 1
         rate.sleep()
+
+# %%

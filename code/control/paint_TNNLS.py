@@ -58,7 +58,7 @@ qs_list = []
 motor_list = []
 target_position_list = []
 target_rpy_list = []
-traj_n = 10
+traj_n = 3
 scale_rate = 30
 
 RUN1 = True
@@ -77,40 +77,58 @@ rpy_EE_tar = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00], dtype
 letter_pos_list = []
 
 # T
-letter_pos_list.append(np.array([-0,-2], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-0,-40], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0,-2+10], dtype=np.float32)/1000)
+letter_pos_list.append(np.array([-0,-40-10], dtype=np.float32)/1000)
 
 letter_pos_list.append(np.array([-0, -20], dtype=np.float32)/1000)
 letter_pos_list.append(np.array([-58,-13], dtype=np.float32)/1000)
 
-# N
-letter_pos_list.append(np.array([-58,-48], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
+# # N
+# letter_pos_list.append(np.array([-58,-48], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
 
-letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-56], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
 
-letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-0 ,-87], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-80], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-87], dtype=np.float32)/1000)
 
-# N
-letter_pos_list.append(np.array([-58,-100], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
+# # N
+# letter_pos_list.append(np.array([-58,-100], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
 
-letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-108], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
 
-letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-0 ,-139], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-132], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0 ,-139], dtype=np.float32)/1000)
 
 
-# L
-letter_pos_list.append(np.array([-0 ,-160], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-58,-152], dtype=np.float32)/1000)
+# # L
+# letter_pos_list.append(np.array([-0 ,-160], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-152], dtype=np.float32)/1000)
 
-letter_pos_list.append(np.array([-58,-152], dtype=np.float32)/1000)
-letter_pos_list.append(np.array([-58,-184], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-152-12], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58,-184-22], dtype=np.float32)/1000)
 
+# # S
+# letter_pos_list.append(np.array([-6, -232], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-0, -218], dtype=np.float32)/1000)
+
+# letter_pos_list.append(np.array([-0, -218], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-13, -201], dtype=np.float32)/1000)
+
+# letter_pos_list.append(np.array([-13, -201], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-26, -214], dtype=np.float32)/1000)
+
+# letter_pos_list.append(np.array([-26, -214], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-47, -229], dtype=np.float32)/1000)
+
+# letter_pos_list.append(np.array([-47, -229], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-58, -214], dtype=np.float32)/1000)
+
+# letter_pos_list.append(np.array([-58, -214], dtype=np.float32)/1000)
+# letter_pos_list.append(np.array([-53,-198], dtype=np.float32)/1000)
 
 
 letter_pos_array = np.vstack(letter_pos_list) - np.array([0,-2], dtype=np.float32)/1000 + np.array([0.82545507,0.09943377])
@@ -122,6 +140,7 @@ grasp_dir_list  = []
 
 
 for i in range(0, len(letter_pos_array), 2):
+    # if not i in [6]: continue
     letter_pos_1 = letter_pos_array[i]
     letter_pos_2 = letter_pos_array[i+1]
     
@@ -130,13 +149,14 @@ for i in range(0, len(letter_pos_array), 2):
     pos_3 = np.array([letter_pos_2[0], letter_pos_2[1], z_down], dtype=np.float32)
     pos_4 = np.array([letter_pos_2[0], letter_pos_2[1], z_up], dtype=np.float32)
 
-    R = chain_ur.joint[8].R
+    # R = chain_ur.joint[8].R
 
-    grasp_dir = R.T @ (pos_3-pos_2)
+    grasp_dir = (pos_3-pos_2)
     grasp_dir = grasp_dir/np.linalg.norm(grasp_dir)
 
     grasp_dir_list.extend([grasp_dir]*4)
-    grasp_list.extend([-0.5,-0.5,0.5,0.5])
+    # grasp_list.extend([-0.5,-0.5,0.5,0.0])
+    grasp_list.extend([0,0,0,0])
     pos_list.extend([pos_1, pos_2, pos_3, pos_4])
 
 pos_array = np.vstack(pos_list)
@@ -154,6 +174,9 @@ assert len(pos_array) == len(grasp_array) == len(grasp_dir_array)
 
 try: 
     for idx in range(len(pos_array)-1):
+        if idx % 4 == 0: 
+            motor_control_np = np.array([0,0,0,0]).astype(np.float32)
+
         grasp_init = grasp_array[idx]
         grasp_end  = grasp_array[idx+1]
 
@@ -166,7 +189,7 @@ try:
             solve_ik_traj(chain_ur, qs, 
                         soro, motor_control_np, 
                         grasp_init, rpy_EE_tar, p_EE_tar_init, grasp_end, rpy_EE_tar, p_EE_tar_end, grasp_dir, 
-                        traj_n=10,scale_rate=scale_rate, step_size = 0.12,VIZ=True)
+                        traj_n=traj_n,scale_rate=scale_rate, step_size = 0.10,VIZ=True)
         
         if VIZ and (idx-1)%4==0:
         # if VIZ:
@@ -193,6 +216,7 @@ except KeyboardInterrupt:
     motor_array = torch.tensor(motor_list) * scale_rate
     p_EE_cur_array = np.array(p_EE_cur_list, dtype=np.float32)
 
+    Path.mkdir((BASEDIR/"control/planned_traj/paint"), parents=True, exist_ok=True)
     np.save((BASEDIR/"control/planned_traj/paint/qs_array.npy").__str__(), qs_array)
     np.save((BASEDIR/"control/planned_traj/paint/motor_array.npy").__str__(), motor_array.detach().cpu().numpy())
     np.save((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy").__str__(), p_EE_cur_array)
@@ -200,12 +224,11 @@ except KeyboardInterrupt:
 
 
 
-# %%
-
 qs_array = np.array(qs_list, dtype=np.float32)
 motor_array = torch.tensor(motor_list) * scale_rate
 p_EE_cur_array = np.array(p_EE_cur_list, dtype=np.float32)
 
+Path.mkdir((BASEDIR/"control/planned_traj/paint"), parents=True, exist_ok=True)
 np.save((BASEDIR/"control/planned_traj/paint/qs_array.npy").__str__(), qs_array)
 np.save((BASEDIR/"control/planned_traj/paint/motor_array.npy").__str__(), motor_array.detach().cpu().numpy())
 np.save((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy").__str__(), p_EE_cur_array)
@@ -224,15 +247,18 @@ p_EE_cur_array = np.load((BASEDIR/"control/planned_traj/paint/p_EE_cur_array.npy
 
 motor_array = torch.tensor(motor_array)
 
+# motor_array = motor_array[:10]
+# qs_array = qs_array[:10]
+# p_EE_cur_array = p_EE_cur_array[:10]
 
 obj_info_list = []
 for idx in range(len(qs_array)):
     update_ur_q(chain_ur, qs_array[idx])
     
-    if (idx//10)%4==1:    
+    if (idx//traj_n)%4==1:    
         radius = 0.01
 
-        marker_idx = (idx//40)*10 + idx%10
+        marker_idx = (idx//(4*traj_n))*traj_n + idx%traj_n
         p_EE_cur_ = p_EE_cur_array[marker_idx]
         obj_info_list.append(
             make_markers(name=f"maker_{marker_idx}",
@@ -243,7 +269,7 @@ for idx in range(len(qs_array)):
                             color=[1,0,0,1])) 
 
     motor_control = torch.tensor(motor_array[idx]).unsqueeze(0)
-    viz_robot(chain_ur, soro, motor_control, obj_info_list, render_time = 0.1)
+    viz_robot(chain_ur, soro, motor_control, obj_info_list, render_time = 1)
 
 print("here")
 
