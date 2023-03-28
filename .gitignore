@@ -1,2 +1,4 @@
 temp/dataset/FINGER_DATASET/unused
 *.pyc
+results/FC_PRIMNET/FINGER/weights/*.pth
+results/PCC_PRIMNET/ABAQUS32/weights/epoch_275.pth
