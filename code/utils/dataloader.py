@@ -53,17 +53,17 @@ def get_dataset(data_path, data_ratio=1.0):
         data = json.load(f)
     
     train_data = data["train"]
-    data_len = int(len(train_data['position']) * data_ratio)
+    # data_len = int(len(train_data['position']) * data_ratio)
     
-    motor_control = cast_tensor(train_data['motor_control'])
-    position      = cast_tensor(train_data['position'])
+    # motor_control = cast_tensor(train_data['motor_control'])
+    # position      = cast_tensor(train_data['position'])
     
-    motor_control_norm = torch.norm(motor_control, dim = 1)
-    idx = torch.argsort(motor_control_norm)[:data_len]
+    # motor_control_norm = torch.norm(motor_control, dim = 1)
+    # idx = torch.argsort(motor_control_norm)[:data_len]
     
     
-    train_data['motor_control'] = motor_control[idx]
-    train_data['position'] = position[idx]
+    # train_data['motor_control'] = motor_control[idx]
+    # train_data['position'] = position[idx]
     
     val_data = data["val"]
     test_data = data["test"]

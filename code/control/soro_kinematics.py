@@ -155,6 +155,8 @@ def t2p_np(T):
 # %%
 from tqdm import tqdm
 
+p_offset = np.array([-0.0059, -0.0067, 0]).astype(np.float32)
+
 if VIZ:
     import rospy
     from rospy import Publisher
@@ -199,10 +201,13 @@ if VIZ:
         obs_info_lst.append(get_cylinder_from_axis(pos_fr, pos_to, 0.08, black, name))
 
         with torch.no_grad():
-            ps_ = soro(motor_control)[0].detach().cpu().numpy()
+            # ps_ = soro(motor_control)[0].detach().cpu().numpy()
+            ps_ = soro(motor_control)[0].detach().cpu().numpy() - p_offset.reshape(3,1)
+            
             p_plat = chain_ur.joint[-1].p.astype(np.float32)
             R_plat = chain_ur.joint[-1].R.astype(np.float32)
-            ps_ = np.vstack((np.zeros((1,3,1), dtype=np.float32), ps_))
+            zero_point = np.array([0.0043,0.0032,0]).astype(np.float32).reshape(1,3,1)
+            ps_ = np.vstack((zero_point, ps_))
             ps = p_plat + R_plat @ ps_
             
         i = 0
@@ -268,12 +273,13 @@ from numpy.linalg import norm
 
 
 
+# p_offset = np.array([0,0,0]).astype(np.float32)
 
 def forward_model(p_plat, R_plat, soro, motor_control):
     p_plat = torch.FloatTensor(p_plat)
     R_plat = torch.FloatTensor(R_plat)
     p_soro_ = soro(motor_control)[0, -1]
-    p_EE = p_plat + R_plat @ p_soro_
+    p_EE = p_plat + R_plat @ (p_soro_- p_offset) 
     return p_EE
 
 def get_hybrid_grad_auto(p_plat, R_plat, soro, motor_control, scale_rate):
@@ -327,6 +333,8 @@ def get_hybrid_grad_explicit(p_plat, R_plat, soro:PRIMNET, motor_control, scale_
         dp_dq, p_soro= kinematic_grad(soro, q_values)
         
     dp_dq = dp_dq.numpy(); 
+    
+    p_soro = p_soro - p_offset
     p_soro = p_soro.numpy().reshape(3,1)
     p_EE = p_plat + R_plat @ p_soro
     return R_plat@dp_dq@dq_dm* scale_rate, p_EE
@@ -400,17 +408,19 @@ def solve_ik_traj(chain_ur, qs,
             
             J_sph = p_plat_EE.T @ p_J_soro
             ## Grasp constraint
-            l_grasp = 0.03 * grasp
+            l_grasp = 0.01 * grasp
             assert np.abs(np.linalg.norm(grasp_dir) - 1) < 1e-3
             assert grasp_dir.shape == (3,)
             R_ = chain_ur.joint[8].R.astype(np.float32)
-            u = (grasp_dir[0] * R_[:,0] + grasp_dir[1] * R_[:,1] + grasp_dir[2] * R_[:,2] ).reshape(3,1)
-            # u = grasp_dir
+            # u = (grasp_dir[0] * R_[:,0] + grasp_dir[1] * R_[:,1] + grasp_dir[2] * R_[:,2] ).reshape(3,1)
+            u = grasp_dir.reshape(3,1)
+            p_plat_EE_tar = l_grasp * u
+            
             # u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
             
-            J_grasp = u.T @ p_J_soro
+            J_grasp = (R_.T @ p_J_soro)[:-1]
             
-            grasp_err = l_grasp - u.T @ p_plat_EE
+            grasp_err = (R_.T @ (p_plat_EE_tar - p_plat_EE))[:-1]
             
             ## Motor constraint
             margin = 200/scale_rate
@@ -437,20 +447,20 @@ def solve_ik_traj(chain_ur, qs,
                                 ))
                     
             # Break
-            if norm(p_ik_err) < 3e-3 and\
+            if norm(p_ik_err) < 1e-3 and\
                 norm(w_ik_err) < 0.01 and\
-                    norm(grasp_err) < 0.015 and\
+                    norm(grasp_err) < 5e-3 and\
                         norm(sph_err) < 0.01:
                 break
             # Or Solve & Update
             A = []
             b = []
             A.append(np.hstack([J_UR, J_soro]))
-            A.append(np.hstack([np.zeros((1,6),dtype=np.float32), J_grasp]))
+            A.append(np.hstack([np.zeros((len(J_grasp),6),dtype=np.float32), J_grasp]))
             A.append(np.hstack([np.zeros((1,6),dtype=np.float32), J_sph]))
             
             b.append(np.vstack([p_ik_err,w_ik_err]))
-            b.append(100*grasp_err)
+            b.append(10*grasp_err)
             b.append(sph_err)
             if llimit:
                 oor_motor_num = J_llimit.shape[0]
@@ -496,7 +506,7 @@ def solve_ik_traj(chain_ur, qs,
             #     # qs = np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
             #     motor_control_np = np.zeros_like(motor_control_np)
 
-            if norm(p_ik_err) < 3e-3 and update_number > 100:
+            if norm(p_ik_err) < 3e-3 and update_number > 300:
                 break
 
                 
