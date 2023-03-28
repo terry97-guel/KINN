@@ -1,2 +1,6 @@
 temp/dataset/FINGER_DATASET/unused
 *.pyc
+results/FC_PRIMNET/FINGER/weights/*.pth
+results/*
+code/wandb/*
+wandb/*
