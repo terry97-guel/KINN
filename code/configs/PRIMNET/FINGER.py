@@ -50,7 +50,7 @@ class ARGS():
     lrd:float = 0.95
     wd:float = 0.0
     w_vec:float = 5e-3
-    epochs:int = 500
+    epochs:int = 2000
     focus_ratio:float = 0.0
     data_ratio:float = 1.0
     n_workers:int = 2
@@ -68,7 +68,7 @@ class ARGS():
         "R"
     )
     marker_num:int = 1
-    motor_dim:int = 4
+    motor_dim:int = 2
     
     # DEVICE
     device = "cpu"

@@ -9,7 +9,7 @@ import torch
 # p_loss_fn = F.mse_loss
 
 def p_loss_fn(x,y):
-    loss =  F.smooth_l1_loss(x,y, reduction='none')
+    loss =  F.l1_loss(x,y, reduction='none')
     loss = torch.mean(loss, dim=list(range(1,loss.ndim)))
     return loss
 

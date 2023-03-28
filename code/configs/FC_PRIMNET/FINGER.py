@@ -49,7 +49,7 @@ class ARGS():
     # ARCHITECTURE
     actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
     marker_num:int = 1
-    motor_dim:int = 4
+    motor_dim:int = 2
     
     # DEVICE
     device = "cpu"
