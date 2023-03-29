@@ -8,4 +8,3 @@ temp/dataset/FINGER_DATASET/unused
 results/*
 code/wandb/*
 wandb/*
-results/PRIMNET/FINGER/weights/epoch_1.pth
