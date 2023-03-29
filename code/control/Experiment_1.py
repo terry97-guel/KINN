@@ -26,6 +26,8 @@ import argparse
 from utils.args import read_ARGS
 from model.PRIMNET import PRIMNET
 import torch
+import numpy as np
+
 
 
 parser = argparse.ArgumentParser(description= 'parse for DLPG')
@@ -47,7 +49,7 @@ print(rest_pos)
 from torch.nn import functional as F
 
 def interpolate(a, b, n_points):
-    interp_points = torch.linspace(0, 1, n_points+2)[1:-1]
+    interp_points = torch.linspace(0, 1, n_points+2)[1:]
     output = (1 - interp_points)[:, None] * a + interp_points[:, None] * b
     return output
 
@@ -113,15 +115,19 @@ position_list = []
 actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
 
 for i in range(len(target_trajectory)-1):
-    target_position_tensor = interpolate(target_trajectory[i], target_trajectory[i+1], 2)
+    target_position_tensor = interpolate(target_trajectory[i], target_trajectory[i+1], 10)
 
     for target_position_ in target_position_tensor:
         # print(target_position_)
         # target_position_ = soro(torch.FloatTensor([[100,0]]))[:,-1,:2,0]
         
-        actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
+        # actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
         idx = 0
         while True:
+            if actuation.isnan().any():
+                print("Found NAN!")
+                break
+
             jac, pos_EE = jacobian(partial(forward_soro,soro), actuation)
             J_use = jac[0,:,0,:]
 
@@ -136,16 +142,15 @@ for i in range(len(target_trajectory)-1):
             if err<1e-4:
                 break
 
-            if idx > 2000 and err>1e-4:
+            if idx > 1000 and err>1e-4:
                 # print("Ground")
                 # actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
                 print("Warning: IK not converged")
                 break
 
-            lambda_ = 0.0001
+            lambda_ = 0.001
             J_n_ctrl = torch.matmul(J_use.T, J_use) + lambda_* torch.eye(2, 2).to(torch.float)
-            delta_actuation = torch.matmul(torch.linalg.solve(J_n_ctrl, J_use.T), ik_err.flatten())
-            
+            delta_actuation = torch.matmul(torch.linalg.solve(J_n_ctrl, J_use.T), ik_err.flatten())                        
             if torch.linalg.norm(delta_actuation)< 1e-4:
                 delta_actuation = delta_actuation* (1e-4/torch.linalg.norm(delta_actuation))
             actuation = actuation + 1000 * delta_actuation
@@ -164,8 +169,6 @@ for i in range(len(target_trajectory)-1):
 
 
 # %%
-import numpy as np
-
 position_array = np.array(position_list)
 position_array = position_array.reshape(-1,2)
 

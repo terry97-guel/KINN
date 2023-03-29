@@ -22,6 +22,9 @@ transformation_matrix = np.array(
     ]
 )
 
+np.array([-1,0,0])@transformation_matrix, np.array([0,1,0])@transformation_matrix,np.array([0,0,-1])@transformation_matrix
+
+# %%
 import numpy as np
 
 for key in data.keys():
