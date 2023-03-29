@@ -106,7 +106,7 @@ class Sampler():
             self.sel_idx = self.indices[self.current_iter]
             idx = torch.cat([self.sel_idx, self.keep_idx])
             self.current_iter += 1
-            return self.dataset[self.sel_idx]
+            return self.dataset[idx]
     
     def update(self, loss:Tensor):
         assert (len(self.sel_idx) + len(self.keep_idx)) == len(loss)

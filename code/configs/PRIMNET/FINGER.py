@@ -57,7 +57,7 @@ class ARGS():
     batch_size:int = 64
     
     # ARCHITECTURE
-    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
+    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
     joint_seqs:tuple = (
         "F",
         "R",

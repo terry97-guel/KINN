@@ -40,14 +40,14 @@ class ARGS():
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    epochs:int = 500
+    epochs:int = 2000
     focus_ratio:float = 0.0
     data_ratio:float = 1.0
     n_workers:int = 2
     batch_size:int = 64
     
     # ARCHITECTURE
-    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
+    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
     marker_num:int = 1
     motor_dim:int = 2
     

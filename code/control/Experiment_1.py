@@ -20,36 +20,39 @@ sys.path.append(str(BASEDIR))
 
 # %%
 ## Load mode
-path = "PRIMNET/FINGER"
+model = "FC_PRIMNET"
+path = model+"/FINGER"
 
 import argparse
 from utils.args import read_ARGS
 from model.PRIMNET import PRIMNET
+from model.FC_PRIMNET import FC_PRIMNET
 import torch
 import numpy as np
 
 
 
 parser = argparse.ArgumentParser(description= 'parse for DLPG')
-parser.add_argument("--configs", default="PRIMNET/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS]
+parser.add_argument("--configs", default=model+"/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS]
 args= parser.parse_args([])
 args = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
 
-soro = PRIMNET(args=args).to("cpu")
-soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_2000.pth"))
+if args.MODEL == "PRIMNET":
+    soro = PRIMNET(args=args).to("cpu")
+elif args.MODEL == 'FC_PRIMNET':
+    soro = FC_PRIMNET(args=args).to("cpu")
+else: raise TypeError("MODEL not found")
+
+soro.load_state_dict(torch.load(BASEDIR.parent/'results'/path/"weights/epoch_1000.pth"))
 # %%
 # Reference
-ps = soro(torch.FloatTensor([[0,0]]))
-
-rest_pos = ps[0,-1,:,0]
-print(rest_pos)
 
 
 # %%
 from torch.nn import functional as F
 
 def interpolate(a, b, n_points):
-    interp_points = torch.linspace(0, 1, n_points+2)[1:]
+    interp_points = torch.linspace(0, 1, n_points+2)[:]
     output = (1 - interp_points)[:, None] * a + interp_points[:, None] * b
     return output
 
@@ -64,15 +67,20 @@ def p_loss_fn(x,y):
 # %%
 from torch.optim import LBFGS
 
-# Circular
-
-# target_trajectory = torch.FloatTensor(
-#     [[0,0,0],[-0.5,-0.5,0],[0.5,-0.5,0],[0.5,0.5,0],[-0.5,0.5,0],[-0.5,-0.5,0]]
-#     ) * 40/1000 + rest_pos
+# Square
 
 target_trajectory = torch.FloatTensor(
-    [[0,0,0], [0,-0.5,0], [0.5,-0.5,0], [0.5,0.5,0]]
-    ) * 10/1000 + rest_pos
+    [[0,0,0],[-0.5,-0.5,0],[0.5,-0.5,0],[0.5,0.5,0],[-0.5,0.5,0],[-0.5,-0.5,0]]
+    ) * 40/1000
+
+
+# Circle
+# theta = torch.linspace(0,2*torch.pi, 50)
+# target_trajectory = torch.stack([torch.cos(theta), torch.sin(theta), torch.zeros_like(theta)], dim=1) * 20/1000
+
+
+
+
 
 
 from matplotlib import pyplot as plt
@@ -115,13 +123,13 @@ position_list = []
 actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
 
 for i in range(len(target_trajectory)-1):
-    target_position_tensor = interpolate(target_trajectory[i], target_trajectory[i+1], 10)
+    target_position_tensor = interpolate(target_trajectory[i], target_trajectory[i+1], 0)
 
+    actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
     for target_position_ in target_position_tensor:
         # print(target_position_)
         # target_position_ = soro(torch.FloatTensor([[100,0]]))[:,-1,:2,0]
         
-        # actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
         idx = 0
         while True:
             if actuation.isnan().any():
@@ -142,7 +150,7 @@ for i in range(len(target_trajectory)-1):
             if err<1e-4:
                 break
 
-            if idx > 1000 and err>1e-4:
+            if idx > 10_000 and err>1e-4:
                 # print("Ground")
                 # actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
                 print("Warning: IK not converged")
@@ -153,21 +161,21 @@ for i in range(len(target_trajectory)-1):
             delta_actuation = torch.matmul(torch.linalg.solve(J_n_ctrl, J_use.T), ik_err.flatten())                        
             if torch.linalg.norm(delta_actuation)< 1e-4:
                 delta_actuation = delta_actuation* (1e-4/torch.linalg.norm(delta_actuation))
-            actuation = actuation + 1000 * delta_actuation
+            actuation = actuation + 10_000 * delta_actuation
 
         print(err * 1e4)
 
         position_list.append(pos_EE[0].detach().numpy())
-        actuation_list.append(actuation.detach().numpy())
+        actuation_list.append(actuation.detach().numpy().tolist())
 
         position_array = np.array(position_list)
         position_array = position_array.reshape(-1,2)
 
         plt.plot(position_array[:,0], position_array[:,1])
         plt.plot(target_trajectory_np[:,0], target_trajectory_np[:,1], alpha=0.5)
-        plt.show()
+        # plt.show()
 
-
+plt.show()
 # %%
 position_array = np.array(position_list)
 position_array = position_array.reshape(-1,2)
@@ -175,38 +183,20 @@ position_array = position_array.reshape(-1,2)
 plt.plot(position_array[:,0], position_array[:,1])
 plt.plot(target_trajectory_np[:,0], target_trajectory_np[:,1], alpha=0.5)
 
+
+Path("control/planned_traj/small_square3").mkdir(parents=True, exist_ok=True)
+
+actuation_array = np.array(actuation_list)
+np.savez("control/planned_traj/small_square3/"+model+".npz",
+          actuation=actuation_array,
+            target_trajectory=target_trajectory)
+
+
+data = np.load('control/planned_traj/small_square3/'+model+'.npz')
+
+temp = data['actuation']
+temp
+
+print(np.max(temp))
+
 # %%
-
-
-optimizer = LBFGS([actuation], lr=0.1, max_iter=100, max_eval=100, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn="strong_wolfe")
-
-for i in range(len(target_trajectory)-1):
-    target_position_tensor = interpolate(target_trajectory[i], target_trajectory[i+1], 5)
-    
-    for target_position_ in target_position_tensor:
-        
-        def closure():
-            optimizer.zero_grad()
-            ps = soro(actuation)
-            pos_EE = ps[:,-1,:,0]
-            target = target_position_.detach().reshape(1,3)
-
-            assert pos_EE.shape == target.shape
-
-            loss = p_loss_fn(pos_EE, target)
-            loss.backward()
-            return loss
-        
-
-        loss_list = []
-        for _ in range(100):
-            loss = optimizer.step(closure)
-            
-            print(loss,end="\r")
-            loss_list.append(loss.detach().numpy())
-            if loss < 1e-3:
-                break
-        
-        plt.plot(loss_list)
-        plt.show()
-        
