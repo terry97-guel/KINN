@@ -5,7 +5,7 @@ temp/dataset/FINGER_DATASET/unused
 # results/PCC_PRIMNET/ABAQUS32/weights/epoch_275.pth
 # results/FC_PRIMNET/FINGER/weights/*.pth
 # results/PRIMNET/FINGER/weights/*.pth
-# results/*
-# code/wandb/*
-# wandb/*
-# results/PRIMNET/FINGER/weights/epoch_1.pth
+results/*
+code/wandb/*
+wandb/*
+results/PRIMNET/FINGER/weights/epoch_1.pth
