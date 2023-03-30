@@ -264,13 +264,13 @@ class PRIMNET(nn.Module):
     def t2p(self, joint_se3, OUTPUT_NORMALIZE = True):
         # Get position from joint_se3
         joint_positions = []
-        # position_mean, position_std = self.get_buffer("position_mean"), self.get_buffer("position_std")
+        position_mean, position_std = self.get_buffer("position_mean"), self.get_buffer("position_std")
         for joint_se3_ in swap_dim_0_1(joint_se3):
             joint_position_ = t2p(joint_se3_)
             
-            # # Output Scale
-            # if OUTPUT_NORMALIZE:
-            #     joint_position_ = unnormalize_tensor(joint_position_, mean = position_mean, std= position_std)
+            # Output Scale
+            if OUTPUT_NORMALIZE:
+                joint_position_ = unnormalize_tensor(joint_position_, mean = position_mean, std= position_std)
                 
             joint_positions.append(joint_position_)
             

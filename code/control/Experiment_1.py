@@ -71,7 +71,7 @@ from torch.optim import LBFGS
 
 target_trajectory = torch.FloatTensor(
     [[0,0,0],[-0.5,-0.5,0],[0.5,-0.5,0],[0.5,0.5,0],[-0.5,0.5,0],[-0.5,-0.5,0]]
-    ) * 80/1000
+    ) * 60/1000
 
 
 # Circle
@@ -150,7 +150,7 @@ for i in range(len(target_trajectory)-1):
             if err<1e-4:
                 break
 
-            if idx > 10_000 and err>1e-4:
+            if idx > 2_000 and err>1e-4:
                 # print("Ground")
                 # actuation = torch.FloatTensor([[0,0]]).requires_grad_(True)
                 print("Warning: IK not converged")
@@ -184,15 +184,15 @@ plt.plot(position_array[:,0], position_array[:,1])
 plt.plot(target_trajectory_np[:,0], target_trajectory_np[:,1], alpha=0.5)
 
 
-Path("control/planned_traj/small_square3").mkdir(parents=True, exist_ok=True)
+Path("control/planned_traj/temp").mkdir(parents=True, exist_ok=True)
 
 actuation_array = np.array(actuation_list)
-np.savez("control/planned_traj/small_square3/"+model+".npz",
+np.savez("control/planned_traj/temp/"+model+".npz",
           actuation=actuation_array,
             target_trajectory=target_trajectory)
 
 
-data = np.load('control/planned_traj/small_square3/'+model+'.npz')
+data = np.load('control/planned_traj/temp/'+model+'.npz')
 
 temp = data['actuation']
 temp

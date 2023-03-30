@@ -66,7 +66,8 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     if args.MODEL == "PRIMNET":
         model = PRIMNET(args=args).to(args.device)
         model.register_motor_std_mean(motor_std, motor_mean)
-        model.register_position_std_mean(pos_std, pos_mean)
+        if args.OUTPUT_NORMALIZE:
+            model.register_position_std_mean(pos_std, pos_mean)
         
         if args.EVEN_JOINT:
             model = INITALZE_EVEN_JOINTS(model, args)
@@ -74,13 +75,15 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     elif args.MODEL == "FC_PRIMNET":
         model = FC_PRIMNET(args=args).to(args.device)
         model.register_motor_std_mean(motor_std, motor_mean)
-        model.register_position_std_mean(pos_std, pos_mean)
+        if args.OUTPUT_NORMALIZE:
+            model.register_position_std_mean(pos_std, pos_mean)
         
         
     elif args.MODEL == "PCC_PRIMNET":
         model = PCC_PRIMNET(args=args).to(args.device)
         model.register_motor_std_mean(motor_std, motor_mean)
-        model.register_position_std_mean(pos_std, pos_mean)
+        if args.OUTPUT_NORMALIZE:
+            model.register_position_std_mean(pos_std, pos_mean)
     else:
         raise LookupError(f"model should be one of ['PRIMNET', 'FC_PRIMNET', 'PCC_PRIMNET'] \n, Found {args.MODEL}")
     
@@ -168,7 +171,7 @@ if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="PRIMNET/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS_32]
+    parser.add_argument("--configs", default="FC_PRIMNET/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS_32]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
@@ -177,7 +180,8 @@ if __name__ == "__main__":
     import shutil
     SAVEPATH = Path(BASEDIR).parent/"results"/ARGS.MODEL/ARGS.runname
     
-    ask_and_make_folder(SAVEPATH, ask = (RUNMODE is RUN))
+    # ask_and_make_folder(SAVEPATH, ask = (RUNMODE is RUN))
+    ask_and_make_folder(SAVEPATH, ask = True)
     shutil.copyfile((BASEDIR/'configs'/args.configs).absolute(), SAVEPATH/"args.py")
     
 

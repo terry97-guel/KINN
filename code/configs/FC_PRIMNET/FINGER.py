@@ -41,7 +41,7 @@ class ARGS():
     lrd:float = 0.95
     wd:float = 0.0
     epochs:int = 2000
-    focus_ratio:float = 0.0
+    focus_ratio:float = 0.2
     data_ratio:float = 1.0
     n_workers:int = 2
     batch_size:int = 64

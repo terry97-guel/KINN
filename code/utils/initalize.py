@@ -35,7 +35,9 @@ from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PC
 
 def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     device = torch.device(args.device)
-    position_std, position_mean = model.get_buffer("position_std"), model.get_buffer("position_mean")
+
+    if args.OUTPUT_NORMALIZE:
+        position_std, position_mean = model.get_buffer("position_std"), model.get_buffer("position_mean")
     
     ## Set p_offset, rpy_offset ###
     Tpose = torch.FloatTensor(args.TPOSE).to(device)
@@ -51,7 +53,10 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     
     for chunk_idx, joint_idxs in enumerate(joint_idxs_chunk):
         end_pose = Tpose[chunk_idx].reshape(3,1)
-        # end_pose = normalize_tensor(end_pose, mean = position_mean, std = position_std)
+        
+        if args.OUTPUT_NORMALIZE:
+            end_pose = normalize_tensor(end_pose, mean = position_mean, std = position_std)
+
         # Count number of joints execpet Tjoint
         joint_count = 0
         for joint_idx in joint_idxs:
@@ -84,6 +89,8 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
             prim_idx = i//aux_joints            
             t_position_EE = t_position[0, i].flatten()
             t_position_GT = Tpose[prim_idx]
+            if args.OUTPUT_NORMALIZE:
+                t_position_GT = normalize_tensor(t_position_GT.reshape(3,1), mean = position_mean, std = position_std).flatten()
 
             assert t_position_EE.shape == t_position_GT.shape
             

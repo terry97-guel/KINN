@@ -55,7 +55,7 @@ def update_primnet(model:PRIMNET, batch, args:PRIMNET_ARGS_TEMPLATE, TRAIN = Tru
     assert position_loss.shape == vector_loss.shape
     total_loss = position_loss + vector_loss * args.w_vec
     if TRAIN:
-        # sampler.update(position_loss)
+        sampler.update(position_loss)
         assert total_loss.ndim == 1
         total_loss = torch.mean(total_loss)
         total_loss.backward()
@@ -79,7 +79,7 @@ def update_fc_primnet(model:FC_PRIMNET,batch, args:FC_PRIMNET_ARGS_TEMPLATE, TRA
     position_loss = p_loss_fn(joint_position, target_position)
     
     if TRAIN:
-        # sampler.update(position_loss)
+        sampler.update(position_loss)
         position_loss = torch.mean(position_loss)
         position_loss.backward()
         model.optimizer.step()
@@ -101,7 +101,7 @@ def update_pcc_primnet(model:PCC_PRIMNET, batch, args:PCC_PRIMNET_ARGS_TEMPLATE,
     position_loss = p_loss_fn(joint_position, target_position)
     
     if TRAIN:
-        # sampler.update(position_loss)
+        sampler.update(position_loss)
         position_loss = torch.mean(position_loss)
         position_loss.backward()
         model.optimizer.step()

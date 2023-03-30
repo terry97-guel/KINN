@@ -36,7 +36,7 @@ class ARGS():
     axis_std:float = 0.1
     
     # NORMALIZATION
-    OUTPUT_NORMALIZE:bool = True
+    OUTPUT_NORMALIZE:bool = False
     
     # SEED
     seed:int = 0
@@ -49,9 +49,9 @@ class ARGS():
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    w_vec:float = 5e-3
+    w_vec:float = 1e-1
     epochs:int = 2000
-    focus_ratio:float = 0.0
+    focus_ratio:float = 0.2
     data_ratio:float = 1.0
     n_workers:int = 2
     batch_size:int = 64
