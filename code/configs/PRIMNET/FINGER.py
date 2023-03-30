@@ -36,7 +36,7 @@ class ARGS():
     axis_std:float = 0.1
     
     # NORMALIZATION
-    OUTPUT_NORMALIZE:bool = False
+    OUTPUT_NORMALIZE:bool = True
     
     # SEED
     seed:int = 0

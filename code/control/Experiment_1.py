@@ -71,7 +71,7 @@ from torch.optim import LBFGS
 
 target_trajectory = torch.FloatTensor(
     [[0,0,0],[-0.5,-0.5,0],[0.5,-0.5,0],[0.5,0.5,0],[-0.5,0.5,0],[-0.5,-0.5,0]]
-    ) * 40/1000
+    ) * 80/1000
 
 
 # Circle

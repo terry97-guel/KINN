@@ -27,7 +27,7 @@ class ARGS():
     INIT_FC_LAYER = nn.init.xavier_normal_
     
     # NORMALIZATION
-    OUTPUT_NORMALIZE:bool = False
+    OUTPUT_NORMALIZE:bool = True
     
     # SEED
     seed:int = 0
