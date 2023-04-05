@@ -171,7 +171,7 @@ if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="FC_PRIMNET/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET] # [FINGER, ABAQUS_32]
+    parser.add_argument("--configs", default="PRIMNET_FULL/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
