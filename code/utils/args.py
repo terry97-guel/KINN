@@ -1,4 +1,6 @@
-def read_ARGS(path):
+from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
+from typing import Union
+def read_ARGS(path) -> Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE]:
     import importlib
     spec = importlib.util.spec_from_file_location("config", path)
     module = importlib.util.module_from_spec(spec)

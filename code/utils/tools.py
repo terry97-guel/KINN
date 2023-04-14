@@ -109,11 +109,19 @@ def average_dict(dict_list:List[Dict]):
 ### Consturcting ###
 from torch import nn
 
-def get_linear_layer(hdim, hidden_actv) -> nn.Module:
+def get_linear_layer(hdim, hidden_actv, bias='full') -> nn.Module:
     hdim = tuple(hdim)
     layers = []
     for hdim_idx in range(0,len(hdim)-1):
-        layer = nn.Linear(hdim[hdim_idx],hdim[hdim_idx+1])
+        if bias == 'zero':
+            layer = nn.Linear(hdim[hdim_idx],hdim[hdim_idx+1],bias=True)
+            layer.bias.data = torch.zeros_like(layer.bias.data)
+        elif bias == 'none':
+            layer = nn.Linear(hdim[hdim_idx],hdim[hdim_idx+1],bias=False)
+        elif bias == "full":    
+            layer = nn.Linear(hdim[hdim_idx],hdim[hdim_idx+1])
+        else: 
+            raise LookupError("bias type not found")
         # torch.nn.init.normal_(layer.weight,.0,std)
         torch.nn.init.xavier_normal_(layer.weight)
         layers.append(layer)

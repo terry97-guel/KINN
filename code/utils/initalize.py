@@ -35,7 +35,9 @@ from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PC
 
 def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     device = torch.device(args.device)
-    position_std, position_mean = model.get_buffer("position_std"), model.get_buffer("position_mean")
+
+    if args.OUTPUT_NORMALIZE:
+        position_std, position_mean = model.get_buffer("position_std"), model.get_buffer("position_mean")
     
     ## Set p_offset, rpy_offset ###
     Tpose = torch.FloatTensor(args.TPOSE).to(device)
@@ -51,7 +53,10 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
     
     for chunk_idx, joint_idxs in enumerate(joint_idxs_chunk):
         end_pose = Tpose[chunk_idx].reshape(3,1)
-        end_pose = normalize_tensor(end_pose, mean = position_mean, std = position_std)
+        
+        if args.OUTPUT_NORMALIZE:
+            end_pose = normalize_tensor(end_pose, mean = position_mean, std = position_std)
+
         # Count number of joints execpet Tjoint
         joint_count = 0
         for joint_idx in joint_idxs:
@@ -69,37 +74,61 @@ def INITALZE_EVEN_JOINTS(model:PRIMNET, args:PRIMNET_ARGS_TEMPLATE):
                 joint.p_offset.data = p_offset
                 rpy_offset = joint.rpy_offset.data
                 R = R @ rpy2r(rpy_offset)
+        
+        start_pose = end_pose
 
     # Asserting Tpose has been set up correctly
-    ## 1st
-    # q_values = model.forward_q(motor_control=torch.zeros(16,args.motor_dim))
-    t_position = model(motor_control = torch.zeros(16,args.motor_dim))
-
-
-    ## 2nd
+    ## 1st    
     joint_se3 = model.FK_LAYER.forward_kinematics(q_values=torch.zeros(16,len(args.joint_seqs)))
-    t_position = model.unnormalize(joint_se3, True)
-    
+    t_position = model.t2p(joint_se3, False)
 
     aux_joints = len(args.joint_seqs) // args.marker_num
     # assertion of proper initalization
     for i in range(len(args.joint_seqs)):
         if (i+1)%aux_joints == 0:
             prim_idx = i//aux_joints            
-            t_position_EE = t_position[0, prim_idx].flatten()
+            t_position_EE = t_position[0, i].flatten()
+            t_position_GT = Tpose[prim_idx]
+            if args.OUTPUT_NORMALIZE:
+                t_position_GT = normalize_tensor(t_position_GT.reshape(3,1), mean = position_mean, std = position_std).flatten()
+
+            assert t_position_EE.shape == t_position_GT.shape
+            
+            similarity = torch.cosine_similarity(t_position_EE, t_position_GT, dim=0)
+            assert similarity > 0.99
+
+            from torch.linalg import norm as torch_norm
+            
+            similarity = (torch_norm(t_position_EE) - torch_norm(t_position_GT))/torch_norm(t_position_GT)
+            assert similarity < 0.01
+            
+    
+    
+    ## 2nd
+    q_values = model.forward_q(motor_control = torch.zeros(16,args.motor_dim))
+    t_position = model(motor_control = torch.zeros(16,args.motor_dim))
+    
+    aux_joints = len(args.joint_seqs) // args.marker_num
+    # assertion of proper initalization
+    for i in range(len(args.joint_seqs)):
+        if (i+1)%aux_joints == 0:
+            prim_idx = i//aux_joints            
+            t_position_EE = t_position[0, i].flatten()
             t_position_GT = Tpose[prim_idx]
 
             assert t_position_EE.shape == t_position_GT.shape
             
             similarity = torch.cosine_similarity(t_position_EE, t_position_GT, dim=0)
-            assert similarity > 0.95
+            assert similarity > 0.9
 
             from torch.linalg import norm as torch_norm
             
             similarity = (torch_norm(t_position_EE) - torch_norm(t_position_GT))/torch_norm(t_position_GT)
-            assert similarity < 0.05
-            
+            assert similarity < 0.1
+
     return model
+
+
 
 '''
 def SET_TPOSE(model, args):

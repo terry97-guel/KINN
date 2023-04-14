@@ -1,0 +1,60 @@
+2023-02-06 03:42:57,220 INFO    StreamThr :2024456 [internal.py:wandb_internal():87] W&B internal server running at pid: 2024456, started at: 2023-02-06 03:42:57.219212
+2023-02-06 03:42:57,242 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status
+2023-02-06 03:42:57,250 INFO    WriterThread:2024456 [datastore.py:open_for_write():85] open: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/run-c0687fj6.wandb
+2023-02-06 03:42:57,253 DEBUG   SenderThread:2024456 [sender.py:send():334] send: header
+2023-02-06 03:42:57,253 DEBUG   SenderThread:2024456 [sender.py:send():334] send: run
+2023-02-06 03:42:57,763 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: check_version
+2023-02-06 03:42:57,765 INFO    SenderThread:2024456 [dir_watcher.py:__init__():216] watching files in: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files
+2023-02-06 03:42:57,766 INFO    SenderThread:2024456 [sender.py:_start_run_threads():1065] run started: c0687fj6 with start time 1675654977.209781
+2023-02-06 03:42:57,766 DEBUG   SenderThread:2024456 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 03:42:57,767 INFO    SenderThread:2024456 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 03:42:57,768 DEBUG   SenderThread:2024456 [sender.py:send_request():361] send_request: check_version
+2023-02-06 03:42:57,897 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: run_start
+2023-02-06 03:42:57,907 DEBUG   HandlerThread:2024456 [system_info.py:__init__():31] System info init
+2023-02-06 03:42:57,907 DEBUG   HandlerThread:2024456 [system_info.py:__init__():46] System info init done
+2023-02-06 03:42:57,908 INFO    HandlerThread:2024456 [system_monitor.py:start():151] Starting system monitor
+2023-02-06 03:42:57,922 INFO    HandlerThread:2024456 [system_monitor.py:probe():172] Collecting system info
+2023-02-06 03:42:57,923 INFO    SystemMonitor:2024456 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-02-06 03:42:57,927 INFO    SystemMonitor:2024456 [interfaces.py:start():168] Started cpu
+2023-02-06 03:42:57,931 INFO    SystemMonitor:2024456 [interfaces.py:start():168] Started disk
+2023-02-06 03:42:57,936 INFO    SystemMonitor:2024456 [interfaces.py:start():168] Started gpu
+2023-02-06 03:42:57,939 INFO    SystemMonitor:2024456 [interfaces.py:start():168] Started memory
+2023-02-06 03:42:57,943 INFO    SystemMonitor:2024456 [interfaces.py:start():168] Started network
+2023-02-06 03:42:57,977 DEBUG   HandlerThread:2024456 [system_info.py:probe():195] Probing system
+2023-02-06 03:42:57,990 DEBUG   HandlerThread:2024456 [system_info.py:_probe_git():180] Probing git
+2023-02-06 03:42:58,016 DEBUG   HandlerThread:2024456 [system_info.py:_probe_git():188] Probing git done
+2023-02-06 03:42:58,016 DEBUG   HandlerThread:2024456 [system_info.py:probe():241] Probing system done
+2023-02-06 03:42:58,017 DEBUG   HandlerThread:2024456 [system_monitor.py:probe():181] {'os': 'Linux-5.4.0-135-generic-x86_64-with-glibc2.29', 'python': '3.8.10', 'heartbeatAt': '2023-02-06T03:42:57.977561', 'startedAt': '2023-02-06T03:42:57.198233', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/taerim/PRIMNET-V2/code/main.py', 'codePath': 'code/main.py', 'git': {'remote': 'https://github.com/terry97-guel/PRIMNET-V2.git', 'commit': '0c4c65eeb54ec219f1ca9fb7fd5d9312c82b4cf9'}, 'email': 'taerimyoon@korea.ac.kr', 'root': '/home/taerim/PRIMNET-V2', 'host': 'd17ace90ec45', 'username': 'taerim', 'executable': '/usr/bin/python3', 'cpu_count': 48, 'cpu_count_logical': 48, 'cpu_freq': {'current': 1661.7780624999998, 'min': 1500.0, 'max': 2300.0}, 'cpu_freq_per_core': [{'current': 1499.706, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.707, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.613, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.429, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.646, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.671, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.494, 'min': 1500.0, 'max': 2300.0}, {'current': 1500.02, 'min': 1500.0, 'max': 2300.0}, {'current': 1393.074, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.789, 'min': 1500.0, 'max': 2300.0}, {'current': 1507.091, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.506, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.114, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.774, 'min': 1500.0, 'max': 2300.0}, {'current': 1496.783, 'min': 1500.0, 'max': 2300.0}, {'current': 1485.212, 'min': 1500.0, 'max': 2300.0}, {'current': 1494.253, 'min': 1500.0, 'max': 2300.0}, {'current': 2443.005, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.582, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.252, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.786, 'min': 1500.0, 'max': 2300.0}, {'current': 2423.248, 'min': 1500.0, 'max': 2300.0}, {'current': 1474.641, 'min': 1500.0, 'max': 2300.0}, {'current': 1486.997, 'min': 1500.0, 'max': 2300.0}, {'current': 1797.674, 'min': 1500.0, 'max': 2300.0}, {'current': 1500.118, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.581, 'min': 1500.0, 'max': 2300.0}, {'current': 1500.05, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.898, 'min': 1500.0, 'max': 2300.0}, {'current': 1454.259, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.489, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.855, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.158, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.688, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.343, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.419, 'min': 1500.0, 'max': 2300.0}, {'current': 1484.559, 'min': 1500.0, 'max': 2300.0}, {'current': 1863.942, 'min': 1500.0, 'max': 2300.0}, {'current': 1490.456, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.659, 'min': 1500.0, 'max': 2300.0}, {'current': 1495.468, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.357, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.538, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.842, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.419, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.92, 'min': 1500.0, 'max': 2300.0}, {'current': 1484.651, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.396, 'min': 1500.0, 'max': 2300.0}], 'disk': {'total': 3518.7138671875, 'used': 1869.045639038086}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 4, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 503.57722091674805}}
+2023-02-06 03:42:58,017 INFO    HandlerThread:2024456 [system_monitor.py:probe():182] Finished collecting system info
+2023-02-06 03:42:58,017 INFO    HandlerThread:2024456 [system_monitor.py:probe():185] Publishing system info
+2023-02-06 03:42:58,018 DEBUG   HandlerThread:2024456 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-02-06 03:42:58,020 DEBUG   HandlerThread:2024456 [system_info.py:_save_pip():67] Saving pip packages done
+2023-02-06 03:42:58,028 INFO    HandlerThread:2024456 [system_monitor.py:probe():187] Finished publishing system info
+2023-02-06 03:42:58,033 DEBUG   SenderThread:2024456 [sender.py:send():334] send: files
+2023-02-06 03:42:58,034 INFO    SenderThread:2024456 [sender.py:_save_file():1319] saving file wandb-metadata.json with policy now
+2023-02-06 03:42:58,055 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: stop_status
+2023-02-06 03:42:58,058 DEBUG   SenderThread:2024456 [sender.py:send_request():361] send_request: stop_status
+2023-02-06 03:42:58,279 DEBUG   SenderThread:2024456 [sender.py:send():334] send: telemetry
+2023-02-06 03:42:58,279 DEBUG   SenderThread:2024456 [sender.py:send():334] send: telemetry
+2023-02-06 03:42:58,280 DEBUG   SenderThread:2024456 [sender.py:send():334] send: run
+2023-02-06 03:42:58,556 INFO    SenderThread:2024456 [sender.py:send_run():942] updated run: c0687fj6
+2023-02-06 03:42:58,774 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/config.yaml
+2023-02-06 03:42:58,775 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/output.log
+2023-02-06 03:42:58,776 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/requirements.txt
+2023-02-06 03:42:58,776 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/wandb-metadata.json
+2023-02-06 03:42:58,776 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/wandb-summary.json
+2023-02-06 03:42:58,797 INFO    Thread-21 :2024456 [upload_job.py:push():143] Uploaded file /tmp/tmpg4bvbnanwandb/hyn153b7-wandb-metadata.json
+2023-02-06 03:43:00,767 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/output.log
+2023-02-06 03:43:02,576 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:07,578 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:12,579 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:13,050 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 03:43:17,580 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:18,051 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 03:43:22,582 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:23,053 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 03:43:27,588 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:28,053 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 03:43:28,787 INFO    Thread-18 :2024456 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_034257-c0687fj6/files/config.yaml
+2023-02-06 03:43:32,988 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 03:43:33,056 DEBUG   HandlerThread:2024456 [handler.py:handle_request():144] handle_request: keepalive

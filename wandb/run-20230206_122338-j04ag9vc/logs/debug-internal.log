@@ -1,0 +1,1027 @@
+2023-02-06 12:23:38,092 INFO    StreamThr :2336818 [internal.py:wandb_internal():87] W&B internal server running at pid: 2336818, started at: 2023-02-06 12:23:38.091060
+2023-02-06 12:23:38,105 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status
+2023-02-06 12:23:38,112 INFO    WriterThread:2336818 [datastore.py:open_for_write():85] open: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/run-j04ag9vc.wandb
+2023-02-06 12:23:38,115 DEBUG   SenderThread:2336818 [sender.py:send():334] send: header
+2023-02-06 12:23:38,115 DEBUG   SenderThread:2336818 [sender.py:send():334] send: run
+2023-02-06 12:23:38,632 INFO    SenderThread:2336818 [dir_watcher.py:__init__():216] watching files in: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files
+2023-02-06 12:23:38,633 INFO    SenderThread:2336818 [sender.py:_start_run_threads():1065] run started: j04ag9vc with start time 1675686218.081431
+2023-02-06 12:23:38,633 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:38,634 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: check_version
+2023-02-06 12:23:38,635 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:38,636 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: check_version
+2023-02-06 12:23:38,766 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: run_start
+2023-02-06 12:23:38,777 DEBUG   HandlerThread:2336818 [system_info.py:__init__():31] System info init
+2023-02-06 12:23:38,777 DEBUG   HandlerThread:2336818 [system_info.py:__init__():46] System info init done
+2023-02-06 12:23:38,778 INFO    HandlerThread:2336818 [system_monitor.py:start():151] Starting system monitor
+2023-02-06 12:23:38,779 INFO    HandlerThread:2336818 [system_monitor.py:probe():172] Collecting system info
+2023-02-06 12:23:38,780 INFO    SystemMonitor:2336818 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-02-06 12:23:38,784 INFO    SystemMonitor:2336818 [interfaces.py:start():168] Started cpu
+2023-02-06 12:23:38,790 INFO    SystemMonitor:2336818 [interfaces.py:start():168] Started disk
+2023-02-06 12:23:38,793 INFO    SystemMonitor:2336818 [interfaces.py:start():168] Started gpu
+2023-02-06 12:23:38,797 INFO    SystemMonitor:2336818 [interfaces.py:start():168] Started memory
+2023-02-06 12:23:38,799 INFO    SystemMonitor:2336818 [interfaces.py:start():168] Started network
+2023-02-06 12:23:38,845 DEBUG   HandlerThread:2336818 [system_info.py:probe():195] Probing system
+2023-02-06 12:23:38,858 DEBUG   HandlerThread:2336818 [system_info.py:_probe_git():180] Probing git
+2023-02-06 12:23:38,888 DEBUG   HandlerThread:2336818 [system_info.py:_probe_git():188] Probing git done
+2023-02-06 12:23:38,888 DEBUG   HandlerThread:2336818 [system_info.py:probe():241] Probing system done
+2023-02-06 12:23:38,888 DEBUG   HandlerThread:2336818 [system_monitor.py:probe():181] {'os': 'Linux-5.4.0-135-generic-x86_64-with-glibc2.29', 'python': '3.8.10', 'heartbeatAt': '2023-02-06T12:23:38.845804', 'startedAt': '2023-02-06T12:23:38.069739', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/taerim/PRIMNET-V2/code/main.py', 'codePath': 'code/main.py', 'git': {'remote': 'https://github.com/terry97-guel/PRIMNET-V2.git', 'commit': '0c4c65eeb54ec219f1ca9fb7fd5d9312c82b4cf9'}, 'email': 'taerimyoon@korea.ac.kr', 'root': '/home/taerim/PRIMNET-V2', 'host': 'd17ace90ec45', 'username': 'taerim', 'executable': '/usr/bin/python3', 'cpu_count': 48, 'cpu_count_logical': 48, 'cpu_freq': {'current': 1498.4746041666667, 'min': 1500.0, 'max': 2300.0}, 'cpu_freq_per_core': [{'current': 1478.791, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.326, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.065, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.351, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.811, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.93, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.948, 'min': 1500.0, 'max': 2300.0}, {'current': 1616.444, 'min': 1500.0, 'max': 2300.0}, {'current': 1513.232, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.407, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.876, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.065, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.69, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.749, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.552, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.491, 'min': 1500.0, 'max': 2300.0}, {'current': 1496.459, 'min': 1500.0, 'max': 2300.0}, {'current': 1500.073, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.735, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.541, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.67, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.322, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.798, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.906, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.824, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.273, 'min': 1500.0, 'max': 2300.0}, {'current': 1403.259, 'min': 1500.0, 'max': 2300.0}, {'current': 1399.882, 'min': 1500.0, 'max': 2300.0}, {'current': 1481.782, 'min': 1500.0, 'max': 2300.0}, {'current': 1401.192, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.72, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.662, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.126, 'min': 1500.0, 'max': 2300.0}, {'current': 1477.765, 'min': 1500.0, 'max': 2300.0}, {'current': 1479.66, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.614, 'min': 1500.0, 'max': 2300.0}, {'current': 1498.342, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.773, 'min': 1500.0, 'max': 2300.0}, {'current': 1497.304, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.685, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.867, 'min': 1500.0, 'max': 2300.0}, {'current': 1500.581, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.929, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.62, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.406, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.191, 'min': 1500.0, 'max': 2300.0}, {'current': 1496.284, 'min': 1500.0, 'max': 2300.0}, {'current': 1499.672, 'min': 1500.0, 'max': 2300.0}], 'disk': {'total': 3518.7138671875, 'used': 1869.1550979614258}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 4, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}, {'name': 'NVIDIA RTX A6000', 'memory_total': 51527024640}], 'memory': {'total': 503.57722091674805}}
+2023-02-06 12:23:38,889 INFO    HandlerThread:2336818 [system_monitor.py:probe():182] Finished collecting system info
+2023-02-06 12:23:38,889 INFO    HandlerThread:2336818 [system_monitor.py:probe():185] Publishing system info
+2023-02-06 12:23:38,889 DEBUG   HandlerThread:2336818 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-02-06 12:23:38,891 DEBUG   HandlerThread:2336818 [system_info.py:_save_pip():67] Saving pip packages done
+2023-02-06 12:23:38,901 INFO    HandlerThread:2336818 [system_monitor.py:probe():187] Finished publishing system info
+2023-02-06 12:23:38,906 DEBUG   SenderThread:2336818 [sender.py:send():334] send: files
+2023-02-06 12:23:38,907 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-metadata.json with policy now
+2023-02-06 12:23:38,921 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: stop_status
+2023-02-06 12:23:38,928 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: stop_status
+2023-02-06 12:23:39,148 DEBUG   SenderThread:2336818 [sender.py:send():334] send: telemetry
+2023-02-06 12:23:39,148 DEBUG   SenderThread:2336818 [sender.py:send():334] send: telemetry
+2023-02-06 12:23:39,149 DEBUG   SenderThread:2336818 [sender.py:send():334] send: run
+2023-02-06 12:23:39,416 INFO    SenderThread:2336818 [sender.py:send_run():942] updated run: j04ag9vc
+2023-02-06 12:23:39,636 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/config.yaml
+2023-02-06 12:23:39,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:39,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-metadata.json
+2023-02-06 12:23:39,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:39,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_created():275] file/dir created: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/requirements.txt
+2023-02-06 12:23:39,651 INFO    Thread-21 :2336818 [upload_job.py:push():143] Uploaded file /tmp/tmp8hq82hwnwandb/3vezrvaa-wandb-metadata.json
+2023-02-06 12:23:41,633 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:41,726 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:41,849 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:41,901 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:41,969 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:43,634 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:43,995 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:23:44,309 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:44,312 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:44,313 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:44,313 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:44,364 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:44,415 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:44,480 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:44,634 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:45,635 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:46,824 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:46,825 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:46,825 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:46,826 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:46,885 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:46,936 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:47,001 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:47,636 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:47,636 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:49,025 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:23:49,458 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:49,460 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:49,460 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:49,461 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:49,521 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:49,573 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:49,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:49,639 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:49,640 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:51,637 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:51,981 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:51,982 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:51,983 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:51,983 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:52,034 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:52,084 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:52,150 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:52,638 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:53,638 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:53,915 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:23:54,174 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:23:54,557 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:54,559 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:54,559 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:54,559 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:54,610 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:54,639 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:54,661 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:54,725 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:55,639 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:57,079 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:57,081 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:57,081 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:57,082 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:57,132 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:57,184 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:57,249 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:57,640 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:57,640 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:23:58,915 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:23:59,272 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:23:59,606 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:59,608 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:23:59,608 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:23:59,614 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:23:59,641 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:23:59,664 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:59,715 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:23:59,779 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:01,642 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:02,168 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:02,169 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:02,169 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:02,170 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:02,223 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:02,278 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:02,343 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:02,642 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:03,642 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:03,916 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:04,366 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:04,705 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:04,707 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:04,707 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:04,711 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:04,762 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:04,813 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:04,880 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:05,643 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:05,644 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:07,327 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:07,329 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:07,330 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:07,330 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:07,385 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:07,436 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:07,501 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:07,644 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:07,644 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:08,918 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:08,918 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:09,530 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:09,993 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:09,995 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:09,995 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:09,996 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:10,052 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:10,122 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:10,209 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:10,645 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:10,645 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/config.yaml
+2023-02-06 12:24:11,645 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:12,493 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:12,494 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:12,495 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:12,495 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:12,603 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:12,646 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:12,654 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:12,720 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:13,646 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:13,919 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:15,153 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:15,154 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:15,155 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:15,155 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:15,159 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:15,210 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:15,261 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:15,327 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:15,648 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:15,648 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:16,648 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:17,745 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:17,747 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:17,747 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:17,747 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:17,799 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:17,850 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:17,918 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:18,649 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:18,925 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:19,649 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:20,320 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:20,322 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:20,322 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:20,322 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:20,323 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:20,374 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:20,426 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:20,492 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:20,650 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:20,650 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:21,650 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:22,651 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:22,844 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:22,846 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:22,846 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:22,847 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:22,898 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:22,949 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:23,015 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:23,651 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:23,652 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:23,925 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:24,652 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:25,361 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:25,363 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:25,363 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:25,363 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:25,364 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:25,415 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:25,466 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:25,531 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:25,652 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:25,652 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:26,652 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:27,975 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:27,977 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:27,977 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:27,980 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:28,032 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:28,086 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:28,154 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:28,653 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:28,926 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:29,653 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:30,498 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:30,499 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:30,499 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:30,500 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:30,504 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:30,555 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:30,610 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:30,654 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:30,654 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:30,675 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:31,654 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:32,655 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:33,076 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:33,078 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:33,078 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:33,079 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:33,155 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:33,217 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:33,282 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:33,655 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:33,655 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:33,927 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:34,656 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:35,684 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:35,685 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:35,686 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:35,686 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:35,692 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:35,744 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:35,795 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:35,862 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:36,656 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:37,657 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:38,206 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:38,207 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:38,207 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:38,208 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:38,258 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:38,310 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:38,376 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:38,657 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:38,658 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:38,800 DEBUG   SystemMonitor:2336818 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2023-02-06 12:24:38,803 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:24:38,928 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:39,660 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:40,660 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:40,804 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:40,839 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:40,840 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:40,840 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:40,841 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:40,892 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:40,943 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:41,009 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:41,661 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:42,661 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:43,370 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:43,371 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:43,371 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:43,372 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:43,422 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:43,473 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:43,539 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:43,662 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:43,928 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:44,662 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:45,942 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:45,943 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:45,943 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:45,944 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:45,944 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:45,994 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:46,046 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:46,111 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:46,663 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:48,490 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:48,491 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:48,491 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:48,492 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:48,542 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:48,593 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:48,660 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:48,664 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:48,664 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:48,929 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:50,665 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:50,996 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:50,998 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:50,999 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:50,999 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:51,000 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:51,050 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:51,100 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:51,167 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:51,665 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:52,665 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:53,532 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:53,533 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:53,534 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:53,534 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:53,585 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:53,636 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:53,666 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:53,706 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:53,930 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:24:54,666 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:56,056 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:56,057 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:56,058 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:56,058 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:56,059 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:24:56,109 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:56,160 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:56,260 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:56,667 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:56,667 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:58,560 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:58,562 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:24:58,562 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:24:58,563 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:24:58,637 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:58,667 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:24:58,668 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:24:58,702 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:58,768 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:24:58,931 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:00,668 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:01,072 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:01,074 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:01,075 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:01,075 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:01,076 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:01,208 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:01,261 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:01,327 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:01,669 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:02,669 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:03,748 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:03,749 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:03,749 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:03,750 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:03,801 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:03,852 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:03,921 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:03,942 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:04,670 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:06,251 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:06,252 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:06,253 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:06,253 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:06,254 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:06,304 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:06,355 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:06,420 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:06,671 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:06,671 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:08,672 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:08,806 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:25:08,807 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:08,809 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:08,810 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:08,810 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:08,861 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:08,914 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:08,943 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:08,984 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:09,672 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:10,672 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:11,372 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:11,374 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:11,374 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:11,374 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:11,375 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:11,426 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:11,487 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:11,554 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:11,673 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:12,673 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:13,944 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:13,986 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:13,988 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:13,988 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:13,989 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:14,046 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:14,098 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:14,165 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:14,674 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:16,499 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:16,501 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:16,501 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:16,502 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:16,502 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:16,555 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:16,607 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:16,674 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:16,675 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:16,675 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:18,675 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:18,945 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:19,061 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:19,063 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:19,063 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:19,064 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:19,119 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:19,171 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:19,235 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:19,676 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:20,676 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:21,583 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:21,585 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:21,585 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:21,586 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:21,586 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:21,637 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:21,677 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:21,690 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:21,756 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:22,677 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:23,946 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:24,090 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:24,091 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:24,092 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:24,092 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:24,144 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:24,195 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:24,261 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:24,678 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:24,678 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:26,583 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:26,585 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:26,586 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:26,587 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:26,588 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:26,639 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:26,678 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:26,679 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:26,691 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:26,756 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:28,679 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:28,946 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:29,238 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:29,239 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:29,239 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:29,240 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:29,291 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:29,343 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:29,408 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:29,680 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:30,681 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:31,885 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:31,887 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:31,888 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:31,888 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:31,889 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:31,940 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:31,992 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:32,061 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:32,681 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:33,947 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:34,492 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:34,494 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:34,494 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:34,495 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:34,546 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:34,598 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:34,664 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:34,682 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:34,683 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:36,684 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:37,071 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:37,073 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:37,073 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:37,074 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:37,074 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:37,126 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:37,178 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:37,244 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:37,684 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:38,684 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:38,808 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:25:38,950 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:39,633 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:39,634 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:39,635 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:39,635 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:39,685 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:39,686 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:39,737 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:39,804 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:40,685 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:42,212 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:42,213 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:42,214 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:42,214 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:42,215 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:42,266 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:42,320 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:42,385 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:42,686 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:42,687 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:43,950 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:44,687 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:44,795 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:44,796 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:44,796 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:44,797 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:44,848 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:44,903 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:44,994 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:45,687 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:46,688 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:47,331 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:47,333 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:47,333 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:47,334 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:47,335 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:47,420 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:47,541 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:47,615 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:47,688 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:48,689 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:48,951 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:50,011 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:50,013 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:50,014 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:50,015 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:50,066 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:50,124 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:50,201 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:50,690 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:52,644 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:52,646 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:52,646 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:52,647 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:52,648 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:52,690 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:52,691 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:52,698 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:52,752 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:52,819 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:53,952 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:25:54,691 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:55,175 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:55,176 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:55,176 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:55,177 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:55,228 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:55,280 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:55,347 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:55,691 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:56,692 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:25:57,780 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:57,782 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:25:57,782 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:25:57,783 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:25:57,784 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:25:57,836 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:57,890 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:57,955 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:25:58,692 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:25:58,952 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:00,401 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:00,402 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:00,403 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:00,403 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:00,455 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:00,507 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:00,573 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:00,693 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:00,694 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:02,694 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:02,919 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:02,921 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:02,922 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:02,923 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:02,923 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:02,975 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:03,028 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:03,095 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:03,694 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:03,953 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:04,695 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:05,496 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:05,498 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:05,498 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:05,499 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:05,550 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:05,602 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:05,668 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:05,695 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:06,695 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:08,072 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:08,074 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:08,074 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:08,075 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:08,075 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:08,126 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:08,178 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:08,246 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:08,696 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:08,811 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:26:08,954 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:10,697 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:10,715 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:10,717 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:10,717 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:10,718 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:10,769 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:10,821 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:10,889 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:11,697 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:12,698 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:13,313 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:13,315 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:13,315 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:13,316 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:13,316 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:13,368 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:13,419 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:13,491 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:13,698 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:13,957 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:14,699 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:15,864 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:15,865 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:15,866 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:15,866 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:15,918 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:15,970 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:16,035 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:16,700 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:18,449 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:18,451 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:18,451 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:18,451 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:18,452 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:18,503 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:18,555 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:18,621 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:18,700 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:18,701 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:18,956 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:20,701 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:21,026 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:21,028 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:21,029 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:21,029 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:21,081 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:21,133 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:21,199 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:21,701 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:22,702 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:23,519 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:23,521 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:23,521 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:23,522 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:23,522 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:23,574 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:23,626 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:23,694 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:23,702 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:23,956 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:24,703 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:26,106 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:26,107 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:26,108 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:26,108 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:26,164 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:26,252 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:26,325 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:26,703 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:28,704 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:28,778 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:28,780 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:28,781 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:28,781 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:28,782 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:28,833 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:28,886 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:28,954 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:28,962 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:29,704 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:30,705 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:31,394 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:31,396 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:31,397 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:31,398 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:31,461 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:31,513 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:31,580 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:31,705 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:32,706 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:33,976 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:34,036 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:34,038 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:34,039 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:34,040 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:34,040 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:34,092 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:34,144 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:34,210 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:34,707 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:36,574 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:36,575 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:36,576 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:36,577 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:36,628 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:36,680 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:36,707 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:36,708 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:36,748 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:38,708 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:38,814 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:26:38,976 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:39,119 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:39,121 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:39,121 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:39,122 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:39,123 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:39,174 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:39,227 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:39,294 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:39,709 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:40,709 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:41,670 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:41,671 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:41,672 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:41,673 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:41,709 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:41,784 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:41,837 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:41,904 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:42,710 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:43,977 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:44,252 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:44,254 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:44,255 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:44,255 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:44,256 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:44,307 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:44,369 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:44,435 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:44,711 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:44,711 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:46,712 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:46,911 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:46,913 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:46,914 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:46,915 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:46,966 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:47,020 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:47,087 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:47,712 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:48,713 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:48,978 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:49,561 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:49,564 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:49,565 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:49,566 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:49,567 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:49,618 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:49,670 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:49,713 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:49,739 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:50,713 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:52,091 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:52,093 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:52,094 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:52,095 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:52,146 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:52,198 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:52,264 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:52,715 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:53,979 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:54,654 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:54,657 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:54,657 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:54,658 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:54,659 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:54,711 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:54,715 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:54,716 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:54,764 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:54,831 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:56,716 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:57,189 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:57,191 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:57,192 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:57,192 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:57,253 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:57,307 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:57,375 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:57,716 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:26:58,716 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:26:58,980 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:26:59,771 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:59,773 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:26:59,774 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:26:59,775 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:26:59,776 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:26:59,827 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:59,879 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:26:59,946 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:00,717 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:00,718 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:02,322 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:02,323 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:02,323 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:02,324 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:02,375 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:02,429 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:02,498 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:02,718 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:02,719 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:03,980 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:04,719 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:04,821 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:04,822 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:04,823 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:04,824 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:04,825 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:04,876 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:04,928 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:04,995 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:05,719 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:06,720 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:07,444 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:07,446 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:07,447 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:07,448 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:07,499 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:07,580 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:07,679 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:07,720 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:08,720 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:08,817 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:27:08,981 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:10,045 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:10,047 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:10,047 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:10,048 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:10,056 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:10,173 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:10,225 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:10,292 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:10,721 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:12,633 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:12,635 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:12,635 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:12,636 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:12,687 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:12,722 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:12,722 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:12,740 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:12,806 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:13,982 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:14,722 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:15,145 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:15,147 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:15,148 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:15,148 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:15,149 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:15,200 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:15,252 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:15,318 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:15,723 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:16,723 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:17,713 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:17,714 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:17,715 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:17,716 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:17,724 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:17,768 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:17,820 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:17,888 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:18,724 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:18,983 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:20,272 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:20,274 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:20,275 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:20,275 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:20,281 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:20,332 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:20,385 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:20,452 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:20,725 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:22,726 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:22,807 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:22,809 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:22,810 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:22,811 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:22,863 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:22,915 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:22,982 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:23,726 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:23,989 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:24,727 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:25,401 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:25,403 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:25,404 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:25,405 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:25,406 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:25,457 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:25,510 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:25,576 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:25,727 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:26,728 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:27,981 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:27,982 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:27,982 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:27,983 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:28,035 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:28,088 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:28,155 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:28,729 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:28,989 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:30,603 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:30,606 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:30,606 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:30,607 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:30,608 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:30,660 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:30,716 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:30,730 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:30,730 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:30,787 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:32,731 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:33,279 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:33,282 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:33,282 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:33,283 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:33,335 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:33,421 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:33,493 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:33,731 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:33,990 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:34,732 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:35,863 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:35,865 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:35,866 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:35,866 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:35,867 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:35,918 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:35,969 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:36,035 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:36,732 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:36,733 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:38,465 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:38,467 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:38,467 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:38,468 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:38,520 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:38,573 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:38,640 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:38,734 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:38,822 DEBUG   SenderThread:2336818 [sender.py:send():334] send: stats
+2023-02-06 12:27:38,991 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:40,734 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:41,159 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:41,162 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:41,163 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:41,164 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:41,165 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:41,217 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:41,269 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:41,335 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:41,735 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:42,735 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:43,701 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:43,703 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:43,704 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:43,705 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:43,736 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json
+2023-02-06 12:27:43,758 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:43,810 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:43,877 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:43,991 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: keepalive
+2023-02-06 12:27:44,737 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/output.log
+2023-02-06 12:27:46,293 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:46,295 DEBUG   SenderThread:2336818 [sender.py:send():334] send: history
+2023-02-06 12:27:46,296 DEBUG   SenderThread:2336818 [sender.py:send_request():361] send_request: summary_record
+2023-02-06 12:27:46,296 INFO    SenderThread:2336818 [sender.py:_save_file():1319] saving file wandb-summary.json with policy end
+2023-02-06 12:27:46,297 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: status_report
+2023-02-06 12:27:46,350 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:46,433 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:46,514 DEBUG   HandlerThread:2336818 [handler.py:handle_request():144] handle_request: partial_history
+2023-02-06 12:27:46,737 INFO    Thread-18 :2336818 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/taerim/PRIMNET-V2/wandb/run-20230206_122338-j04ag9vc/files/wandb-summary.json

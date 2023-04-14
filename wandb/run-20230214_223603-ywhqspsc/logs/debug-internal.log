@@ -1,0 +1,416 @@
+2023-02-14 22:36:03,565 INFO    StreamThr :41513 [internal.py:wandb_internal():87] W&B internal server running at pid: 41513, started at: 2023-02-14 22:36:03.563807
+2023-02-14 22:36:03,573 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: status
+2023-02-14 22:36:03,576 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: status
+2023-02-14 22:36:03,580 INFO    WriterThread:41513 [datastore.py:open_for_write():75] open: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/run-ywhqspsc.wandb
+2023-02-14 22:36:03,581 DEBUG   SenderThread:41513 [sender.py:send():303] send: header
+2023-02-14 22:36:03,593 DEBUG   SenderThread:41513 [sender.py:send():303] send: run
+2023-02-14 22:36:04,267 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: check_version
+2023-02-14 22:36:04,290 INFO    SenderThread:41513 [dir_watcher.py:__init__():216] watching files in: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files
+2023-02-14 22:36:04,290 INFO    SenderThread:41513 [sender.py:_start_run_threads():928] run started: ywhqspsc with start time 1676381763.558816
+2023-02-14 22:36:04,291 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:04,291 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:04,292 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: check_version
+2023-02-14 22:36:04,361 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: run_start
+2023-02-14 22:36:04,372 DEBUG   HandlerThread:41513 [system_info.py:__init__():31] System info init
+2023-02-14 22:36:04,372 DEBUG   HandlerThread:41513 [system_info.py:__init__():46] System info init done
+2023-02-14 22:36:04,372 INFO    HandlerThread:41513 [system_monitor.py:start():150] Starting system monitor
+2023-02-14 22:36:04,373 INFO    HandlerThread:41513 [system_monitor.py:probe():171] Collecting system info
+2023-02-14 22:36:04,373 INFO    SystemMonitor:41513 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-02-14 22:36:04,374 INFO    SystemMonitor:41513 [interfaces.py:start():168] Started cpu
+2023-02-14 22:36:04,376 INFO    SystemMonitor:41513 [interfaces.py:start():168] Started disk
+2023-02-14 22:36:04,378 INFO    SystemMonitor:41513 [interfaces.py:start():168] Started gpu
+2023-02-14 22:36:04,379 INFO    SystemMonitor:41513 [interfaces.py:start():168] Started memory
+2023-02-14 22:36:04,381 INFO    SystemMonitor:41513 [interfaces.py:start():168] Started network
+2023-02-14 22:36:04,555 DEBUG   HandlerThread:41513 [system_info.py:probe():195] Probing system
+2023-02-14 22:36:04,566 DEBUG   HandlerThread:41513 [system_info.py:_probe_git():180] Probing git
+2023-02-14 22:36:04,591 DEBUG   HandlerThread:41513 [system_info.py:_probe_git():188] Probing git done
+2023-02-14 22:36:04,591 DEBUG   HandlerThread:41513 [system_info.py:probe():241] Probing system done
+2023-02-14 22:36:04,591 DEBUG   HandlerThread:41513 [system_monitor.py:probe():180] {'os': 'Linux-5.15.0-60-generic-x86_64-with-glibc2.29', 'python': '3.8.10', 'heartbeatAt': '2023-02-14T13:36:04.555755', 'startedAt': '2023-02-14T13:36:03.544149', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/terry/Rilab/sOftrobot/PRIMNET-V2/code/main.py', 'codePath': 'code/main.py', 'git': {'remote': 'https://github.com/terry97-guel/PRIMNET-V2.git', 'commit': '1808707e710697395ae9292c21489f2a8965d04c'}, 'email': 'taerimyoon@korea.ac.kr', 'root': '/home/terry/Rilab/sOftrobot/PRIMNET-V2', 'host': 'terry-TFG155', 'username': 'terry', 'executable': '/usr/bin/python3', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 3218.0954166666666, 'min': 800.0, 'max': 4100.0}, 'cpu_freq_per_core': [{'current': 3174.842, 'min': 800.0, 'max': 4100.0}, {'current': 3204.623, 'min': 800.0, 'max': 4100.0}, {'current': 3226.867, 'min': 800.0, 'max': 4100.0}, {'current': 3215.059, 'min': 800.0, 'max': 4100.0}, {'current': 3219.828, 'min': 800.0, 'max': 4100.0}, {'current': 3253.769, 'min': 800.0, 'max': 4100.0}, {'current': 3300.077, 'min': 800.0, 'max': 4100.0}, {'current': 3300.0, 'min': 800.0, 'max': 4100.0}, {'current': 3300.0, 'min': 800.0, 'max': 4100.0}, {'current': 3300.049, 'min': 800.0, 'max': 4100.0}, {'current': 3222.127, 'min': 800.0, 'max': 4100.0}, {'current': 3208.598, 'min': 800.0, 'max': 4100.0}], 'disk': {'total': 914.8291778564453, 'used': 35.183738708496094}, 'gpu': 'NVIDIA GeForce GTX 1050 Ti', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce GTX 1050 Ti', 'memory_total': 4294967296}], 'memory': {'total': 15.484748840332031}}
+2023-02-14 22:36:04,592 INFO    HandlerThread:41513 [system_monitor.py:probe():181] Finished collecting system info
+2023-02-14 22:36:04,592 INFO    HandlerThread:41513 [system_monitor.py:probe():184] Publishing system info
+2023-02-14 22:36:04,592 DEBUG   HandlerThread:41513 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-02-14 22:36:04,594 DEBUG   HandlerThread:41513 [system_info.py:_save_pip():67] Saving pip packages done
+2023-02-14 22:36:04,597 INFO    HandlerThread:41513 [system_monitor.py:probe():186] Finished publishing system info
+2023-02-14 22:36:04,605 DEBUG   SenderThread:41513 [sender.py:send():303] send: files
+2023-02-14 22:36:04,605 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2023-02-14 22:36:04,625 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:36:04,626 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:36:04,980 DEBUG   SenderThread:41513 [sender.py:send():303] send: telemetry
+2023-02-14 22:36:04,980 DEBUG   SenderThread:41513 [sender.py:send():303] send: telemetry
+2023-02-14 22:36:04,980 DEBUG   SenderThread:41513 [sender.py:send():303] send: run
+2023-02-14 22:36:05,299 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/config.yaml
+2023-02-14 22:36:05,300 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/requirements.txt
+2023-02-14 22:36:05,301 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:05,302 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-metadata.json
+2023-02-14 22:36:05,385 INFO    SenderThread:41513 [sender.py:send_run():812] updated run: ywhqspsc
+2023-02-14 22:36:05,588 INFO    Thread-21 :41513 [upload_job.py:push():143] Uploaded file /tmp/tmpwnpt2yyqwandb/jl34k77x-wandb-metadata.json
+2023-02-14 22:36:06,291 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:07,435 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:07,447 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:07,467 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:07,485 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:08,292 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:09,795 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:09,797 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:09,798 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:09,799 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:09,807 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:09,818 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:09,833 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,293 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:10,294 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:10,406 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,408 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:10,409 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:10,410 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:10,448 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,449 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,451 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,925 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,926 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:10,929 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:10,930 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:10,936 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,951 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:10,968 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:11,294 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:11,445 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:11,446 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:11,447 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:11,447 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:11,456 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:11,467 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:11,481 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,027 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,029 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:12,029 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:12,030 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:12,039 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,049 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,063 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,294 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:12,295 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:12,549 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,550 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:12,551 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:12,552 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:12,559 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,570 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:12,584 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,053 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,055 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:13,055 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:13,056 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:13,063 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,074 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,089 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,295 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:13,563 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,565 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:13,565 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:13,566 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:13,574 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,584 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:13,599 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,069 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,070 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:14,071 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:14,071 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:14,080 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,090 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,104 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,295 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:14,296 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:14,579 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,580 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:14,580 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:14,581 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:14,589 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,599 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:14,613 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,089 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,090 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:15,090 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:15,091 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:15,133 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,134 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,135 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,296 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:15,598 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,599 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:15,600 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:15,600 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:15,608 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,619 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:15,634 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,106 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,108 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:16,115 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:16,116 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,118 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:16,127 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,141 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,296 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:16,297 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:16,616 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,617 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:16,617 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:16,618 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:16,627 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,637 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:16,655 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,143 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,145 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:17,146 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:17,146 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:17,154 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,165 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,178 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,297 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:17,650 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,651 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:17,651 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:17,652 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:17,660 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,670 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:17,684 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,156 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,158 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:18,158 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:18,159 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:18,166 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,177 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,190 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,297 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:18,298 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:18,659 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,661 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:18,661 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:18,662 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:18,670 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,680 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:18,693 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,168 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,169 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:19,170 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:19,171 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:19,178 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,188 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,202 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,298 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:19,674 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,675 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:19,676 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:19,676 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:19,684 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,694 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,708 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:19,999 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:36:19,999 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:36:20,180 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,190 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,200 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,213 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,237 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:20,237 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:20,239 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:20,298 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:20,299 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:20,685 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,686 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:20,686 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:20,687 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:20,728 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,729 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:20,731 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,186 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,187 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:21,188 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:21,188 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:21,196 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,207 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,221 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,299 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:21,691 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,692 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:21,693 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:21,693 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:21,701 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,712 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:21,725 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,195 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,197 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:22,197 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:22,198 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:22,205 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,216 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,231 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,299 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:22,300 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:22,700 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,701 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:22,702 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:22,702 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:22,711 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,722 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:22,737 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,209 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,210 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:23,210 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:23,211 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:23,219 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,230 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,243 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,300 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:23,712 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,714 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:23,714 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:23,715 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:23,723 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,733 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:23,747 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,216 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,217 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:24,217 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:24,218 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:24,226 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,236 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,249 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,300 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:24,301 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:24,719 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,720 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:24,721 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:24,721 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:24,730 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,740 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:24,754 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,221 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,223 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:25,224 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:25,225 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:25,231 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,242 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,285 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,301 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:25,727 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,728 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:25,729 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:25,729 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:25,737 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,747 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:25,760 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,236 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,238 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:26,238 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:26,239 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:26,247 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,257 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,270 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,301 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:26,302 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:26,793 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,795 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:26,795 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:26,796 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:26,805 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,817 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:26,832 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,302 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:27,317 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,318 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:27,318 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:27,319 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:27,327 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,338 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,351 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,822 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,823 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:27,824 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:27,824 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:27,832 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,843 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:27,857 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,302 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:28,303 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:28,327 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,329 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:28,329 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:28,330 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:28,338 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,348 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,361 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,889 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,890 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:28,891 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:28,892 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:28,901 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,913 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:28,927 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,303 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:29,446 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,447 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:29,448 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:29,448 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:29,457 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,468 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,482 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,994 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:29,996 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:29,996 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:29,997 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:30,004 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,015 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,028 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,304 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:30,304 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:30,502 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,503 DEBUG   SenderThread:41513 [sender.py:send():303] send: history
+2023-02-14 22:36:30,504 DEBUG   SenderThread:41513 [sender.py:send():303] send: summary
+2023-02-14 22:36:30,505 INFO    SenderThread:41513 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:36:30,544 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,545 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:30,546 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: partial_history
+2023-02-14 22:36:31,306 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/wandb-summary.json
+2023-02-14 22:36:32,306 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/output.log
+2023-02-14 22:36:35,241 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:36:35,241 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:36:35,307 INFO    Thread-18 :41513 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_223603-ywhqspsc/files/config.yaml
+2023-02-14 22:36:50,497 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:36:50,497 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:37:04,382 DEBUG   SystemMonitor:41513 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2023-02-14 22:37:04,383 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:37:05,861 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:37:05,861 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:37:21,222 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:37:21,222 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:37:34,384 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:37:36,583 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:37:36,584 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:37:51,945 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:37:51,946 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:38:04,385 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:38:07,308 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:38:07,308 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:38:22,671 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:38:22,671 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:38:34,386 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:38:38,032 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:38:38,033 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:38:53,394 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:38:53,394 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:39:04,386 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:39:08,755 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:39:08,756 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:39:24,219 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:39:24,220 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:39:34,388 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:39:39,581 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:39:39,581 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:39:54,947 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:39:54,947 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:40:04,389 DEBUG   SenderThread:41513 [sender.py:send():303] send: stats
+2023-02-14 22:40:10,202 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:40:10,202 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:40:25,666 DEBUG   HandlerThread:41513 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:40:25,667 DEBUG   SenderThread:41513 [sender.py:send_request():317] send_request: stop_status

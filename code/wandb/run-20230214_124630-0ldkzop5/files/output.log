@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "main.py", line 185, in <module>
+    main(ARGS)
+  File "main.py", line 54, in main
+    train_dataset,val_dataset,test_dataset,ext_dataset  = get_dataset(f"dataset/{args.DATASET}.json", args.data_ratio)
+  File "/home/taerim/PRIMNET-V2/code/utils/dataloader.py", line 52, in get_dataset
+    with open(data_path, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'dataset/FINGER.json'

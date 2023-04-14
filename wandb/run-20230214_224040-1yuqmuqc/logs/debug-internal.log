@@ -1,0 +1,55 @@
+2023-02-14 22:40:40,434 INFO    StreamThr :46572 [internal.py:wandb_internal():87] W&B internal server running at pid: 46572, started at: 2023-02-14 22:40:40.432112
+2023-02-14 22:40:40,441 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: status
+2023-02-14 22:40:40,448 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: status
+2023-02-14 22:40:40,453 INFO    WriterThread:46572 [datastore.py:open_for_write():75] open: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/run-1yuqmuqc.wandb
+2023-02-14 22:40:40,454 DEBUG   SenderThread:46572 [sender.py:send():303] send: header
+2023-02-14 22:40:40,454 DEBUG   SenderThread:46572 [sender.py:send():303] send: run
+2023-02-14 22:40:41,186 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: check_version
+2023-02-14 22:40:41,197 INFO    SenderThread:46572 [dir_watcher.py:__init__():216] watching files in: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files
+2023-02-14 22:40:41,198 INFO    SenderThread:46572 [sender.py:_start_run_threads():928] run started: 1yuqmuqc with start time 1676382040.423658
+2023-02-14 22:40:41,198 DEBUG   SenderThread:46572 [sender.py:send():303] send: summary
+2023-02-14 22:40:41,199 INFO    SenderThread:46572 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-02-14 22:40:41,201 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: check_version
+2023-02-14 22:40:41,290 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: run_start
+2023-02-14 22:40:41,301 DEBUG   HandlerThread:46572 [system_info.py:__init__():31] System info init
+2023-02-14 22:40:41,302 DEBUG   HandlerThread:46572 [system_info.py:__init__():46] System info init done
+2023-02-14 22:40:41,302 INFO    HandlerThread:46572 [system_monitor.py:start():150] Starting system monitor
+2023-02-14 22:40:41,303 INFO    SystemMonitor:46572 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-02-14 22:40:41,303 INFO    HandlerThread:46572 [system_monitor.py:probe():171] Collecting system info
+2023-02-14 22:40:41,304 INFO    SystemMonitor:46572 [interfaces.py:start():168] Started cpu
+2023-02-14 22:40:41,305 INFO    SystemMonitor:46572 [interfaces.py:start():168] Started disk
+2023-02-14 22:40:41,307 INFO    SystemMonitor:46572 [interfaces.py:start():168] Started gpu
+2023-02-14 22:40:41,310 INFO    SystemMonitor:46572 [interfaces.py:start():168] Started memory
+2023-02-14 22:40:41,311 INFO    SystemMonitor:46572 [interfaces.py:start():168] Started network
+2023-02-14 22:40:41,451 DEBUG   HandlerThread:46572 [system_info.py:probe():195] Probing system
+2023-02-14 22:40:41,462 DEBUG   HandlerThread:46572 [system_info.py:_probe_git():180] Probing git
+2023-02-14 22:40:41,490 DEBUG   HandlerThread:46572 [system_info.py:_probe_git():188] Probing git done
+2023-02-14 22:40:41,491 DEBUG   HandlerThread:46572 [system_info.py:probe():241] Probing system done
+2023-02-14 22:40:41,491 DEBUG   HandlerThread:46572 [system_monitor.py:probe():180] {'os': 'Linux-5.15.0-60-generic-x86_64-with-glibc2.29', 'python': '3.8.10', 'heartbeatAt': '2023-02-14T13:40:41.452012', 'startedAt': '2023-02-14T13:40:40.400784', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/terry/Rilab/sOftrobot/PRIMNET-V2/code/main.py', 'codePath': 'code/main.py', 'git': {'remote': 'https://github.com/terry97-guel/PRIMNET-V2.git', 'commit': '1808707e710697395ae9292c21489f2a8965d04c'}, 'email': 'taerimyoon@korea.ac.kr', 'root': '/home/terry/Rilab/sOftrobot/PRIMNET-V2', 'host': 'terry-TFG155', 'username': 'terry', 'executable': '/usr/bin/python3', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 3384.045833333332, 'min': 800.0, 'max': 4100.0}, 'cpu_freq_per_core': [{'current': 3279.666, 'min': 800.0, 'max': 4100.0}, {'current': 3310.005, 'min': 800.0, 'max': 4100.0}, {'current': 3124.967, 'min': 800.0, 'max': 4100.0}, {'current': 3084.448, 'min': 800.0, 'max': 4100.0}, {'current': 3242.314, 'min': 800.0, 'max': 4100.0}, {'current': 3444.394, 'min': 800.0, 'max': 4100.0}, {'current': 3206.685, 'min': 800.0, 'max': 4100.0}, {'current': 3511.999, 'min': 800.0, 'max': 4100.0}, {'current': 3480.365, 'min': 800.0, 'max': 4100.0}, {'current': 3630.025, 'min': 800.0, 'max': 4100.0}, {'current': 3322.698, 'min': 800.0, 'max': 4100.0}, {'current': 3479.073, 'min': 800.0, 'max': 4100.0}], 'disk': {'total': 914.8291778564453, 'used': 35.18600845336914}, 'gpu': 'NVIDIA GeForce GTX 1050 Ti', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce GTX 1050 Ti', 'memory_total': 4294967296}], 'memory': {'total': 15.484748840332031}}
+2023-02-14 22:40:41,491 INFO    HandlerThread:46572 [system_monitor.py:probe():181] Finished collecting system info
+2023-02-14 22:40:41,491 INFO    HandlerThread:46572 [system_monitor.py:probe():184] Publishing system info
+2023-02-14 22:40:41,491 DEBUG   HandlerThread:46572 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-02-14 22:40:41,494 DEBUG   HandlerThread:46572 [system_info.py:_save_pip():67] Saving pip packages done
+2023-02-14 22:40:41,496 INFO    HandlerThread:46572 [system_monitor.py:probe():186] Finished publishing system info
+2023-02-14 22:40:41,504 DEBUG   SenderThread:46572 [sender.py:send():303] send: files
+2023-02-14 22:40:41,504 INFO    SenderThread:46572 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2023-02-14 22:40:41,523 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:40:41,523 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:40:41,912 DEBUG   SenderThread:46572 [sender.py:send():303] send: telemetry
+2023-02-14 22:40:41,912 DEBUG   SenderThread:46572 [sender.py:send():303] send: telemetry
+2023-02-14 22:40:41,912 DEBUG   SenderThread:46572 [sender.py:send():303] send: run
+2023-02-14 22:40:42,204 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/config.yaml
+2023-02-14 22:40:42,204 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/wandb-metadata.json
+2023-02-14 22:40:42,205 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/requirements.txt
+2023-02-14 22:40:42,205 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/wandb-summary.json
+2023-02-14 22:40:42,208 INFO    SenderThread:46572 [sender.py:send_run():812] updated run: 1yuqmuqc
+2023-02-14 22:40:42,412 INFO    Thread-21 :46572 [upload_job.py:push():143] Uploaded file /tmp/tmpi8h0n4o7wandb/200ugbv6-wandb-metadata.json
+2023-02-14 22:40:43,199 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_created():275] file/dir created: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/output.log
+2023-02-14 22:40:45,200 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/output.log
+2023-02-14 22:40:56,930 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:40:56,931 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:41:12,159 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:41:12,159 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: stop_status
+2023-02-14 22:41:12,209 INFO    Thread-18 :46572 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/terry/Rilab/sOftrobot/PRIMNET-V2/wandb/run-20230214_224040-1yuqmuqc/files/config.yaml
+2023-02-14 22:41:27,520 DEBUG   HandlerThread:46572 [handler.py:handle_request():139] handle_request: stop_status
+2023-02-14 22:41:27,521 DEBUG   SenderThread:46572 [sender.py:send_request():317] send_request: stop_status

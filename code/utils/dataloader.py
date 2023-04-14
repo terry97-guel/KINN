@@ -53,17 +53,17 @@ def get_dataset(data_path, data_ratio=1.0):
         data = json.load(f)
     
     train_data = data["train"]
-    data_len = int(len(train_data['position']) * data_ratio)
+    # data_len = int(len(train_data['position']) * data_ratio)
     
-    motor_control = cast_tensor(train_data['motor_control'])
-    position      = cast_tensor(train_data['position'])
+    # motor_control = cast_tensor(train_data['motor_control'])
+    # position      = cast_tensor(train_data['position'])
     
-    motor_control_norm = torch.norm(motor_control, dim = 1)
-    idx = torch.argsort(motor_control_norm)[:data_len]
+    # motor_control_norm = torch.norm(motor_control, dim = 1)
+    # idx = torch.argsort(motor_control_norm)[:data_len]
     
     
-    train_data['motor_control'] = motor_control[idx]
-    train_data['position'] = position[idx]
+    # train_data['motor_control'] = motor_control[idx]
+    # train_data['position'] = position[idx]
     
     val_data = data["val"]
     test_data = data["test"]
@@ -98,21 +98,21 @@ class Sampler():
             self.current_iter = 0
             self.indices = torch.chunk(torch.randperm(len(self)), self.max_iter)
             
-            # sort_idx = torch.argsort(self.loss_restore, descending=True)
-            # self.keep_idx = sort_idx[:int(len(sort_idx)*self.focus_ratio)]
+            sort_idx = torch.argsort(self.loss_restore, descending=True)
+            self.keep_idx = sort_idx[:int(len(sort_idx)*self.focus_ratio)]
             raise StopIteration()
 
         else:
             self.sel_idx = self.indices[self.current_iter]
-            # idx = torch.cat([self.sel_idx, self.keep_idx])
+            idx = torch.cat([self.sel_idx, self.keep_idx])
             self.current_iter += 1
-            return self.dataset[self.sel_idx]
+            return self.dataset[idx]
     
-    # def update(self, loss:Tensor):
-    #     assert (len(self.sel_idx) + len(self.keep_idx)) == len(loss)
+    def update(self, loss:Tensor):
+        assert (len(self.sel_idx) + len(self.keep_idx)) == len(loss)
         
-    #     sel_idx_loss = loss[:len(self.sel_idx)]
-    #     self.loss_restore[self.sel_idx] = sel_idx_loss
+        sel_idx_loss = loss[:len(self.sel_idx)]
+        self.loss_restore[self.sel_idx] = sel_idx_loss
         
     
     def sample_all(self):

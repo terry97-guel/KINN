@@ -1,0 +1,180 @@
+train_dataset: 1903
+val_dataset: 238
+test_dataset: 238
+ext_dataset: 1020
+No Weights Found!! Starting From Scratch
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:17: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  motor_control = torch.tensor(data["motor_control"],dtype=torch.float32)
+/home/taerim/PRIMNET-V2/code/utils/dataloader.py:18: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  position = torch.tensor(data["position"],dtype=torch.float32)
+  0%|                                                                                                                          | 0/500 [00:00<?, ?it/s]
+val_total_loss:1.22E-03, val_vector_loss:4.70E-01, val_position_loss:7.45E-04,
+
+  0%|▏                                                                                                              | 1/500 [01:20<11:09:18, 80.48s/it]
+val_total_loss:1.67E-03, val_vector_loss:6.42E-01, val_position_loss:1.03E-03,
+
+  0%|▍                                                                                                               | 2/500 [01:43<6:25:24, 46.43s/it]
+val_total_loss:1.80E-03, val_vector_loss:6.37E-01, val_position_loss:1.16E-03,
+
+  1%|▋                                                                                                               | 3/500 [02:05<4:54:47, 35.59s/it]
+
+  1%|▉                                                                                                               | 4/500 [02:28<4:11:57, 30.48s/it]
+ext_total_loss:3.85E-03, ext_vector_loss:6.94E-01, ext_position_loss:3.15E-03,
+val_total_loss:2.69E-03, val_vector_loss:4.33E-01, val_position_loss:2.25E-03,
+
+  1%|█                                                                                                               | 5/500 [02:51<3:48:39, 27.72s/it]
+val_total_loss:2.67E-03, val_vector_loss:5.08E-01, val_position_loss:2.16E-03,
+
+  1%|█▎                                                                                                              | 6/500 [03:13<3:34:01, 26.00s/it]
+
+  1%|█▌                                                                                                              | 7/500 [03:36<3:24:48, 24.93s/it]
+ext_total_loss:3.38E-03, ext_vector_loss:4.79E-01, ext_position_loss:2.90E-03,
+val_total_loss:1.92E-03, val_vector_loss:2.10E-01, val_position_loss:1.71E-03,
+
+  2%|█▊                                                                                                              | 8/500 [03:59<3:18:28, 24.20s/it]
+val_total_loss:1.14E-03, val_vector_loss:2.33E-01, val_position_loss:9.03E-04,
+
+  2%|██                                                                                                              | 9/500 [04:22<3:14:48, 23.81s/it]
+val_total_loss:1.06E-03, val_vector_loss:1.64E-01, val_position_loss:8.95E-04,
+
+  2%|██▏                                                                                                            | 10/500 [04:44<3:11:31, 23.45s/it]
+val_total_loss:1.51E-03, val_vector_loss:2.94E-01, val_position_loss:1.22E-03,
+
+  2%|██▍                                                                                                            | 11/500 [05:07<3:09:23, 23.24s/it]
+val_total_loss:1.85E-03, val_vector_loss:1.96E-01, val_position_loss:1.65E-03,
+
+  2%|██▋                                                                                                            | 12/500 [05:30<3:07:29, 23.05s/it]
+val_total_loss:2.16E-03, val_vector_loss:2.66E-01, val_position_loss:1.89E-03,
+
+  3%|██▉                                                                                                            | 13/500 [05:53<3:06:41, 23.00s/it]
+val_total_loss:1.84E-03, val_vector_loss:2.05E-01, val_position_loss:1.63E-03,
+
+  3%|███                                                                                                            | 14/500 [06:15<3:05:29, 22.90s/it]
+val_total_loss:1.33E-03, val_vector_loss:1.75E-01, val_position_loss:1.16E-03,
+
+  3%|███▎                                                                                                           | 15/500 [06:38<3:04:32, 22.83s/it]
+val_total_loss:1.46E-03, val_vector_loss:2.21E-01, val_position_loss:1.24E-03,
+
+  3%|███▌                                                                                                           | 16/500 [07:01<3:03:47, 22.78s/it]
+val_total_loss:1.69E-03, val_vector_loss:1.67E-01, val_position_loss:1.52E-03,
+
+  3%|███▊                                                                                                           | 17/500 [07:24<3:03:50, 22.84s/it]
+
+  4%|███▉                                                                                                           | 18/500 [07:46<3:03:04, 22.79s/it]
+ext_total_loss:2.73E-03, ext_vector_loss:4.54E-01, ext_position_loss:2.27E-03,
+val_total_loss:3.21E-03, val_vector_loss:2.06E-01, val_position_loss:3.01E-03,
+
+  4%|████▏                                                                                                          | 19/500 [08:09<3:02:21, 22.75s/it]
+val_total_loss:3.76E-03, val_vector_loss:2.71E-01, val_position_loss:3.49E-03,
+
+  4%|████▍                                                                                                          | 20/500 [08:32<3:01:59, 22.75s/it]
+
+  4%|████▋                                                                                                          | 21/500 [08:55<3:01:58, 22.80s/it]
+ext_total_loss:3.34E-03, ext_vector_loss:4.46E-01, ext_position_loss:2.89E-03,
+val_total_loss:2.36E-03, val_vector_loss:2.00E-01, val_position_loss:2.16E-03,
+
+  4%|████▉                                                                                                          | 22/500 [09:17<3:01:38, 22.80s/it]
+val_total_loss:1.58E-03, val_vector_loss:1.81E-01, val_position_loss:1.40E-03,
+
+  5%|█████                                                                                                          | 23/500 [09:40<3:00:46, 22.74s/it]
+
+  5%|█████▎                                                                                                         | 24/500 [10:03<3:00:24, 22.74s/it]
+ext_total_loss:1.90E-03, ext_vector_loss:4.00E-01, ext_position_loss:1.50E-03,
+val_total_loss:2.37E-03, val_vector_loss:1.80E-01, val_position_loss:2.19E-03,
+
+  5%|█████▌                                                                                                         | 25/500 [10:26<3:00:20, 22.78s/it]
+val_total_loss:3.83E-03, val_vector_loss:1.77E-01, val_position_loss:3.65E-03,
+
+  5%|█████▊                                                                                                         | 26/500 [10:48<2:59:55, 22.78s/it]
+val_total_loss:4.60E-03, val_vector_loss:1.93E-01, val_position_loss:4.41E-03,
+
+  5%|█████▉                                                                                                         | 27/500 [11:11<2:59:19, 22.75s/it]
+val_total_loss:4.65E-03, val_vector_loss:1.78E-01, val_position_loss:4.47E-03,
+
+  6%|██████▏                                                                                                        | 28/500 [11:34<2:58:38, 22.71s/it]
+val_total_loss:3.65E-03, val_vector_loss:1.77E-01, val_position_loss:3.47E-03,
+
+  6%|██████▍                                                                                                        | 29/500 [11:56<2:58:02, 22.68s/it]
+val_total_loss:2.87E-03, val_vector_loss:1.50E-01, val_position_loss:2.72E-03,
+
+  6%|██████▋                                                                                                        | 30/500 [12:19<2:58:14, 22.75s/it]
+val_total_loss:1.68E-03, val_vector_loss:1.57E-01, val_position_loss:1.52E-03,
+
+  6%|██████▉                                                                                                        | 31/500 [12:42<2:57:32, 22.71s/it]
+val_total_loss:1.40E-03, val_vector_loss:1.42E-01, val_position_loss:1.26E-03,
+
+  6%|███████                                                                                                        | 32/500 [13:04<2:57:03, 22.70s/it]
+val_total_loss:1.42E-03, val_vector_loss:1.50E-01, val_position_loss:1.27E-03,
+
+  7%|███████▎                                                                                                       | 33/500 [13:27<2:56:28, 22.67s/it]
+val_total_loss:2.32E-03, val_vector_loss:1.64E-01, val_position_loss:2.15E-03,
+
+  7%|███████▌                                                                                                       | 34/500 [13:50<2:56:28, 22.72s/it]
+val_total_loss:2.45E-03, val_vector_loss:1.53E-01, val_position_loss:2.30E-03,
+
+  7%|███████▊                                                                                                       | 35/500 [14:13<2:55:54, 22.70s/it]
+val_total_loss:2.98E-03, val_vector_loss:1.76E-01, val_position_loss:2.81E-03,
+
+  7%|███████▉                                                                                                       | 36/500 [14:35<2:55:31, 22.70s/it]
+val_total_loss:2.54E-03, val_vector_loss:1.53E-01, val_position_loss:2.39E-03,
+
+  7%|████████▏                                                                                                      | 37/500 [14:58<2:55:15, 22.71s/it]
+
+  8%|████████▍                                                                                                      | 38/500 [15:21<2:55:14, 22.76s/it]
+ext_total_loss:2.64E-03, ext_vector_loss:3.99E-01, ext_position_loss:2.24E-03,
+val_total_loss:1.78E-03, val_vector_loss:1.53E-01, val_position_loss:1.63E-03,
+
+  8%|████████▋                                                                                                      | 39/500 [15:44<2:54:42, 22.74s/it]
+val_total_loss:1.74E-03, val_vector_loss:1.50E-01, val_position_loss:1.59E-03,
+
+  8%|████████▉                                                                                                      | 40/500 [16:06<2:54:08, 22.71s/it]
+val_total_loss:1.44E-03, val_vector_loss:1.56E-01, val_position_loss:1.28E-03,
+
+  8%|█████████                                                                                                      | 41/500 [16:29<2:53:39, 22.70s/it]
+val_total_loss:1.83E-03, val_vector_loss:1.40E-01, val_position_loss:1.69E-03,
+
+  8%|█████████▎                                                                                                     | 42/500 [16:52<2:53:24, 22.72s/it]
+val_total_loss:1.85E-03, val_vector_loss:1.57E-01, val_position_loss:1.69E-03,
+
+  9%|█████████▌                                                                                                     | 43/500 [17:14<2:53:12, 22.74s/it]
+
+  9%|█████████▊                                                                                                     | 44/500 [17:37<2:53:01, 22.77s/it]
+ext_total_loss:2.29E-03, ext_vector_loss:3.99E-01, ext_position_loss:1.89E-03,
+val_total_loss:1.76E-03, val_vector_loss:1.50E-01, val_position_loss:1.61E-03,
+
+  9%|█████████▉                                                                                                     | 45/500 [18:00<2:52:34, 22.76s/it]
+val_total_loss:1.66E-03, val_vector_loss:1.48E-01, val_position_loss:1.51E-03,
+
+  9%|██████████▏                                                                                                    | 46/500 [18:23<2:52:16, 22.77s/it]
+val_total_loss:1.33E-03, val_vector_loss:1.41E-01, val_position_loss:1.19E-03,
+
+  9%|██████████▍                                                                                                    | 47/500 [18:46<2:52:12, 22.81s/it]
+val_total_loss:9.99E-04, val_vector_loss:1.51E-01, val_position_loss:8.48E-04,
+
+ 10%|██████████▋                                                                                                    | 48/500 [19:08<2:51:34, 22.78s/it]
+val_total_loss:8.73E-04, val_vector_loss:1.36E-01, val_position_loss:7.37E-04,
+
+ 10%|██████████▉                                                                                                    | 49/500 [19:31<2:50:56, 22.74s/it]
+val_total_loss:9.86E-04, val_vector_loss:1.53E-01, val_position_loss:8.34E-04,
+
+ 10%|███████████                                                                                                    | 50/500 [19:54<2:50:36, 22.75s/it]
+val_total_loss:1.15E-03, val_vector_loss:1.38E-01, val_position_loss:1.01E-03,
+
+ 10%|███████████▎                                                                                                   | 51/500 [20:17<2:50:26, 22.78s/it]
+
+ 10%|███████████▌                                                                                                   | 52/500 [20:40<2:50:19, 22.81s/it]
+ext_total_loss:1.71E-03, ext_vector_loss:4.04E-01, ext_position_loss:1.31E-03,
+val_total_loss:9.35E-04, val_vector_loss:1.42E-01, val_position_loss:7.93E-04,
+
+ 11%|███████████▊                                                                                                   | 53/500 [21:02<2:49:45, 22.79s/it]
+val_total_loss:8.41E-04, val_vector_loss:1.45E-01, val_position_loss:6.96E-04,
+
+ 11%|███████████▉                                                                                                   | 54/500 [21:25<2:48:55, 22.72s/it]
+val_total_loss:6.35E-04, val_vector_loss:1.44E-01, val_position_loss:4.91E-04,
+
+ 11%|████████████▏                                                                                                  | 55/500 [21:48<2:48:49, 22.76s/it]
+val_total_loss:9.48E-04, val_vector_loss:1.41E-01, val_position_loss:8.07E-04,
+
+ 11%|████████████▍                                                                                                  | 56/500 [22:10<2:48:26, 22.76s/it]
+val_total_loss:1.23E-03, val_vector_loss:1.47E-01, val_position_loss:1.08E-03,
+

@@ -15,16 +15,18 @@ class CSVLogger:
             writer = csv.DictWriter(csvfile, fieldnames=data.keys())
             writer.writeheader()
 
-    def log(self, data:dict):
-        data = {f"{key}":float(value) for key, value in data.items()} 
+    def log(self, *data:dict):
+        logging = {}
+        for data_ in data:
+            logging.update({f"{key}":float(value) for key, value in data_.items()})
         
         if self.clear:
-            self.create(data)
+            self.create(logging)
             self.clear = False
         
         with open(self.path, 'a', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=data.keys())
-            writer.writerow(data)
+            writer = csv.DictWriter(csvfile, fieldnames=logging.keys())
+            writer.writerow(logging)
 
 from pathlib import Path
 import os
