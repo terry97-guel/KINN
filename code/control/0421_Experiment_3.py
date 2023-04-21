@@ -170,7 +170,11 @@ motor_control_np = np.array([0,0]).astype(np.float32)
 result_motor_control_list = []
 result_qs_list = []
 result_p_EE_list = []
-obj_info_list = []
+obj_info_list = [None]
+
+# offset = np.array([30,-30,0]).reshape(3,1)/1000
+offset = np.array([0,0,0]).reshape(3,1)/1000
+
 
 
 scale_rate = 30
@@ -195,6 +199,7 @@ for i in range(len(grasp_array)):
 
         # get Jacobian
         p_J_soro, p_EE = get_hybrid_grad_explicit(p_plat, R_plat, soro, motor_control, scale_rate)
+        p_EE = p_EE + (R_plat@offset)
         J_UR = get_ur_jacobian(chain_ur, p_EE)
         J_soro = np.vstack([p_J_soro, np.zeros((3,2), dtype=np.float32)])
 
@@ -217,8 +222,7 @@ for i in range(len(grasp_array)):
 
         J_grasp = (R_.T @ p_J_soro)[:-1]
 
-        grasp_err = (R_.T @ (p_plat_EE_tar - p_plat_EE))[:-1]
-
+        grasp_err = (R_.T @ (p_plat_EE_tar - p_plat_EE + offset))[:-1]
         pbar.set_description(
             "update_number:{}, \
                 p_ik_err:{:.2E},\
@@ -288,9 +292,17 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = False
+        VIZ = True
         if VIZ:
-            viz_robot(chain_ur, soro, motor_control, obj_info_list)
+            obj_info_list[0] = make_markers(name=f"maker_{i}",
+                                            type="sphere",  
+                                            pos= p_EE_tar.flatten().tolist(),
+                                            rot=[0,0,0], 
+                                            size=[radius, radius, radius], 
+                                            color=[0,0,1,1])
+
+
+            viz_robot(chain_ur, soro, motor_control, obj_info_list, offset=offset, render_time=0.1)
         pbar.update()
         update_number = update_number + 1
 
@@ -319,6 +331,7 @@ dir_list = []
 grasp_list = []
 
 target_position = np.load("control/planned_traj/bottle/center_position.npy")[[1,0,2]]
+target_position[-1] = target_position[-1] + 0.02
 plt.scatter(-target_position[1],target_position[0],c="r")
 
 
@@ -347,7 +360,7 @@ radius = 0.02
 
 resolution = 10
 for i in range(resolution):
-    theta = -PI/8 *4 + i/(resolution-1) * PI * 6/8
+    theta = -PI/8 *6 + i/(resolution-1) * PI * 8/8
     point = center + radius * np.array([np.cos(theta), np.sin(theta), 0])
     diff_pos = point - target_position
     u = diff_pos / np.linalg.norm(diff_pos)
@@ -368,7 +381,6 @@ grasp_array = np.stack(grasp_list)
 u_array = np.stack(dir_list)
 
 
-# %%
 
 # %%
 # Init values
@@ -409,6 +421,7 @@ for i in range(len(grasp_array)):
         J_UR = get_ur_jacobian(chain_ur, p_EE)
         J_soro = np.vstack([p_J_soro, np.zeros((3,2), dtype=np.float32)])
 
+        J_plat = get_ur_jacobian(chain_ur, p_plat)[:2]
 
 
         # IK error
@@ -443,25 +456,31 @@ for i in range(len(grasp_array)):
 
 
         # Break
-        if norm(w_plat_ik_err) < 0.01 and\
-                norm(grasp_err) < 2e-3:
-            break
-
-        # if norm(p_EE_ik_err) < 6e-3 and\
-        #     norm(w_plat_ik_err) < 0.01 and\
-        #         norm(grasp_err) < 5e-3:
+        # if norm(w_plat_ik_err) < 0.01 and\
+        #         norm(grasp_err) < 2e-3:
         #     break
-        #     print("Done")
+
+        if norm(p_EE_ik_err) < 2e-3 and\
+            norm(w_plat_ik_err) < 0.01 and\
+                norm(grasp_err) < 5e-3:
+            break
+            print("Done")
 
 
         # Or Solve & Update
         A = []
         b = []
-        # A.append(np.hstack([J_UR, J_soro]))
+
+        A.append(np.hstack([J_UR, J_soro]))
         A.append(np.hstack([np.zeros((len(J_grasp),6),dtype=np.float32), J_grasp]))
 
-        # b.append(np.vstack([p_EE_ik_err,w_plat_ik_err]))
+
+        b.append(np.vstack([p_EE_ik_err,w_plat_ik_err]))
         b.append(10*grasp_err)
+
+        # 일직선에 있도록
+        A.append(np.hstack([J_plat, np.zeros((2,2))]))
+        b.append(np.zeros((2,1)))
 
         A = np.vstack(A).astype(np.float32)
         b = np.vstack(b).astype(np.float32)
@@ -503,9 +522,9 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = False
+        VIZ = True
         if VIZ:
-            viz_robot(chain_ur, soro, motor_control, obj_info_list)
+            viz_robot(chain_ur, soro, motor_control, obj_info_list, offset=offset, render_time=0.1)
         pbar.update()
         update_number = update_number + 1
 
