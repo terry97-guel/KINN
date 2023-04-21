@@ -187,7 +187,7 @@ if VIZ:
         viz_trg_robot = publish_viz_robot(viz_links)
         pub_robot.publish(viz_trg_robot)
 
-    def publish_soro(chain_ur:CHAIN, soro:PRIMNET, motor_control):
+    def publish_soro(chain_ur:CHAIN, soro:PRIMNET, motor_control, offset=np.array([0,0,0])):
         obs_info_lst = []
         
         black = [0.1,0.1,0.1,0.3]
@@ -202,11 +202,12 @@ if VIZ:
 
         with torch.no_grad():
             # ps_ = soro(motor_control)[0].detach().cpu().numpy()
-            ps_ = soro(motor_control)[0].detach().cpu().numpy() - p_offset.reshape(3,1)
             
             p_plat = chain_ur.joint[-1].p.astype(np.float32)
             R_plat = chain_ur.joint[-1].R.astype(np.float32)
-            zero_point = np.array([0.0043,0.0032,0]).astype(np.float32).reshape(1,3,1)
+
+            ps_ = soro(motor_control)[0].detach().cpu().numpy() - p_offset.reshape(3,1) + (offset).reshape(3,1)
+            zero_point = np.array([0.0043,0.0032,0]).astype(np.float32).reshape(1,3,1)  + (offset).reshape(1,3,1)
             ps_ = np.vstack((zero_point, ps_))
             ps = p_plat + R_plat @ ps_
             
@@ -530,7 +531,7 @@ def solve_ik_traj(chain_ur, qs,
     return qs_list, motor_list, qs, motor_control_np, p_EE_cur_list
 
 
-def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0.1):
+def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0.1, offset=np.array([0,0,0])):
     
     frequency = 60
     rate = rospy.Rate(frequency)
@@ -541,7 +542,7 @@ def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0
         if rendering == max_rendering: break
 
         publish_robot(chain_ur)
-        publish_soro(chain_ur, soro, motor_control)
+        publish_soro(chain_ur, soro, motor_control, offset)
         if obj_info_list is not None:
             publish_markers(obj_info_list)
         rendering = rendering + 1
