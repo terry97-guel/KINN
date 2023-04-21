@@ -63,8 +63,6 @@ PLOT = False
 
 # %%
 from matplotlib import pyplot as plt
-# z_down = 0.545
-# z_up = z_down + 50/1000 # 50mm up
 
 rpy_plat_tar = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00], dtype=np.float32)
 R_plat_tar = rpy2r_np(rpy_plat_tar)
@@ -88,24 +86,6 @@ class Traj():
 
         return grasp_array, pos_array, u_array
 
-# # %%
-# traj = Traj()
-
-# target_position = np.load("control/planned_traj/bottle/target_position.npy")
-# target_position = target_position + np.array([0,0.04,0])
-# u_array = np.array([1,0,0], dtype=np.float32)
-# grasp_array = np.array([0], dtype=np.float32)
-
-# for i in range(4):
-#     plt.plot(-target_position[i,:,0], target_position[i,:,1])
-
-# plt.axis('equal')
-
-
-# pos_array1 = target_position[0].reshape(-1,3,1)
-# pos_array2 = target_position[1].reshape(-1,3,1)
-# pos_array3 = target_position[2].reshape(-1,3,1)
-# pos_array4 = target_position[3].reshape(-1,3,1)
 
 
 # %%
@@ -144,14 +124,11 @@ target_position = np.load("control/planned_traj/bottle/center_position.npy")[[1,
 
 pos_list = []
 pos_list.append(np.array([target_position[0],target_position[1],target_position[2]+0.1]))
-pos_list.append(np.array([target_position[0],target_position[1],target_position[2]]))
 
 grasp_list = []
 grasp_list.append(0)
-grasp_list.append(0)
 
 u_list = []
-u_list.append(np.array([1,0,0]))
 u_list.append(np.array([1,0,0]))
 
 pos_array = np.stack(pos_list).reshape(-1,3,1)
@@ -292,8 +269,9 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = True
+        VIZ = False
         if VIZ:
+            radius = 0.01
             obj_info_list[0] = make_markers(name=f"maker_{i}",
                                             type="sphere",  
                                             pos= p_EE_tar.flatten().tolist(),
@@ -324,14 +302,14 @@ q_last = qs
 motor_last = motor_control_np
 
 # %%
-
+# 1ST
 runname = "bottle_open"
 pos_list = []
 dir_list = []
 grasp_list = []
 
 target_position = np.load("control/planned_traj/bottle/center_position.npy")[[1,0,2]]
-target_position[-1] = target_position[-1] + 0.02
+target_position[-1] = target_position[-1] + 0.025
 plt.scatter(-target_position[1],target_position[0],c="r")
 
 
@@ -350,22 +328,30 @@ grasp_list.append(grasp)
 prev_point = point
 
 # 안으로 넣고
-center = target_position +  2 * delta
+center = target_position +  2.0 * delta
 plt.scatter(-center[1],center[0],c="g")
 
 
 
-
-radius = 0.02
-
 resolution = 10
 for i in range(resolution):
-    theta = -PI/8 *6 + i/(resolution-1) * PI * 8/8
-    point = center + radius * np.array([np.cos(theta), np.sin(theta), 0])
+    if i == 0 :
+        point = np.array([center[0]-0.01, target_position[1]+0.005,center[2]])
+    elif i == resolution-1:
+        point = np.array([target_position[0]-0.005, center[1]+0.01,center[2]])
+    else:
+        radius = 0.01
+
+        theta = -PI/8 * 8 + i/(resolution-1) * PI * 12/8
+        point = center + radius * np.array([np.cos(theta), np.sin(theta), 0])
+    
     diff_pos = point - target_position
     u = diff_pos / np.linalg.norm(diff_pos)
     grasp = np.linalg.norm(diff_pos)/0.02
+    
+    
 
+    # point[-1] = point[-1] + 0.002/resolution * i
     pos_list.append(point)
     dir_list.append(u)
     grasp_list.append(grasp)
@@ -390,10 +376,10 @@ chain_ur = update_ur_q(chain_ur, qs)
 
 
 
-result_motor_control_list = []
-result_qs_list = []
-result_p_EE_list = []
-obj_info_list = []
+# result_motor_control_list = []
+# result_qs_list = []
+# result_p_EE_list = []
+# obj_info_list = []
 
 
 scale_rate = 30
@@ -522,8 +508,16 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = True
+        VIZ = False
         if VIZ:
+            radius = 0.01
+            obj_info_list[0] = make_markers(name=f"maker_{i}",
+                                            type="sphere",  
+                                            pos= p_EE_tar.flatten().tolist(),
+                                            rot=[0,0,0], 
+                                            size=[radius, radius, radius], 
+                                            color=[0,0,1,1])
+
             viz_robot(chain_ur, soro, motor_control, obj_info_list, offset=offset, render_time=0.1)
         pbar.update()
         update_number = update_number + 1
@@ -554,6 +548,17 @@ for p_EE in result_p_EE_array:
     alpha = alpha * 0.9
 
 plt.axis('equal')
+plt.show()
+
+alpha = 1
+for p_EE in result_p_EE_array:
+
+    plt.scatter(-p_EE[1], p_EE[2], c='r', alpha = alpha)
+    alpha = alpha * 0.9
+
+plt.axis('equal')
+plt.show()
+
 
 
 Path.mkdir((BASEDIR/f"control/planned_traj/{runname}"), parents=True, exist_ok=True)
