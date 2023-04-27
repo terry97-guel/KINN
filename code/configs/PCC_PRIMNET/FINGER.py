@@ -5,9 +5,7 @@ from torch import nn
 
 @dataclass
 class ARGS():
-    # MODEL
-    MODEL:str = "PRIMNET"
-    EVEN_JOINTS:bool = True
+    MODEL:str = "PCC_PRIMNET"
     
     # LOG
     WANDB:bool = True
@@ -16,9 +14,6 @@ class ARGS():
     
     # DATASET
     DATASET: str = "FINGER"                         # DATASET
-    TPOSE:tuple = (
-        (0,0,0.120),
-        )
     
     # DATAIO
     LOAD_WEIGHTPATH:str = None                      # Path to load weight
@@ -29,27 +24,21 @@ class ARGS():
     
     # INITALIZATION
     INIT_FC_LAYER = nn.init.xavier_normal_
-    JOINT_INITALIZE = nn.init.uniform_
-    EVEN_JOINT:bool = True
-    p_offset_std:float = 0.1
-    rpy_offset_std:float = 0.01
-    axis_std:float = 0.1
     
     # NORMALIZATION
-    OUTPUT_NORMALIZE:bool = False
+    OUTPUT_NORMALIZE:bool = True
     
     # SEED
     seed:int = 0
 
     # DIMENSION
-    hdim:tuple = (16,16)
+    hdim:tuple = (8,8)
     motor_embed_dim:int = 4
     
     # TRAINING
     lr:float = 0.0015
     lrd:float = 0.95
     wd:float = 0.0
-    w_vec:float = 1e-1
     epochs:int = 2000
     focus_ratio:float = 0.2
     data_ratio:float = 1.0
@@ -58,15 +47,6 @@ class ARGS():
     
     # ARCHITECTURE
     actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
-    joint_seqs:tuple = (
-        "T",
-        "R",
-        "R",
-        "R",
-        "R",
-        "T",
-        "P"
-    )
     marker_num:int = 1
     motor_dim:int = 2
     

@@ -12,10 +12,10 @@ class ARGS():
     # LOG
     WANDB:bool = True
     pname:str = "PRIMNET_v2.2"                      # WANDB project Name
-    runname:str = "FINGER"                         # WANDB runname. If unspecified, set to datetime.
+    runname:str = "ELASTICA"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET
-    DATASET: str = "FINGER"                         # DATASET
+    DATASET: str = "ELASTICA"                         # DATASET
     TPOSE:tuple = (
         (0,0,0.120),
         )

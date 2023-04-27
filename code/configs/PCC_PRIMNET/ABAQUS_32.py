@@ -6,12 +6,12 @@ from torch import nn
 @dataclass
 class ARGS():
     # MODEL
-    MODEL:str = "FC_PRIMNET"
+    MODEL:str = "PCC_PRIMNET"
     
     # LOG
     WANDB:bool = True
-    pname:str = "PRIMNET_v2.1"                      # WANDB project Name
-    runname:str = "ABAQUS64"                         # WANDB runname. If unspecified, set to datetime.
+    pname:str = "PRIMNET_v2.2"                      # WANDB project Name
+    runname:str = "ABAQUS32"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET
     DATASET: str = "ABAQUS"                         # DATASET
@@ -33,7 +33,7 @@ class ARGS():
     seed:int = 0
 
     # DIMENSION
-    hdim:tuple = (64,64)
+    hdim:tuple = (32,32)
     motor_embed_dim:int = 64
     
     # TRAINING
