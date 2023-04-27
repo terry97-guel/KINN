@@ -269,7 +269,7 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = False
+        VIZ = True
         if VIZ:
             radius = 0.01
             obj_info_list[0] = make_markers(name=f"maker_{i}",
@@ -307,6 +307,7 @@ runname = "bottle_open"
 pos_list = []
 dir_list = []
 grasp_list = []
+R_tar_list= []
 
 target_position = np.load("control/planned_traj/bottle/center_position.npy")[[1,0,2]]
 target_position[-1] = target_position[-1] + 0.025
@@ -321,10 +322,12 @@ plt.scatter(-point[1],point[0],c="b")
 diff_pos = point - target_position
 u = diff_pos / np.linalg.norm(diff_pos)
 grasp = np.linalg.norm(diff_pos)/0.02
+rpy_plat_tar = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00], dtype=np.float32)
 
 pos_list.append(point)
 dir_list.append(u)
 grasp_list.append(grasp)
+R_tar_list.append(rpy2r_np(rpy_plat_tar))
 prev_point = point
 
 # 안으로 넣고
@@ -334,6 +337,7 @@ plt.scatter(-center[1],center[0],c="g")
 
 
 resolution = 10
+num = 0
 for i in range(resolution):
     if i == 0 :
         point = np.array([center[0]-0.01, target_position[1]+0.005,center[2]])
@@ -345,6 +349,12 @@ for i in range(resolution):
         theta = -PI/8 * 8 + i/(resolution-1) * PI * 12/8
         point = center + radius * np.array([np.cos(theta), np.sin(theta), 0])
     
+    a = resolution//4
+    b = (resolution//4) *3
+    if a<i and i<b:
+        num = num + 1
+        rpy_plat_tar = np.array([-3.14079618e+00, -4.37113875e-08, -1.57079625e+00+PI/3*num/(b-a)], dtype=np.float32)
+    R_tar_list.append(rpy2r_np(rpy_plat_tar))
     diff_pos = point - target_position
     u = diff_pos / np.linalg.norm(diff_pos)
     grasp = np.linalg.norm(diff_pos)/0.02
@@ -389,7 +399,7 @@ for i in range(len(grasp_array)):
     grasp    = grasp_array[i]
     u        = u_array[i]
     p_EE_tar = pos_array[i]
-    
+    R_plat_tar = R_tar_list[i]
     step_size = 0.1
 
     
@@ -508,7 +518,7 @@ for i in range(len(grasp_array)):
         qs = qs + dq[:6]
         motor_control_np = motor_control_np+ dq[6:] * scale_rate
 
-        VIZ = False
+        VIZ = True
         if VIZ:
             radius = 0.01
             obj_info_list[0] = make_markers(name=f"maker_{i}",
