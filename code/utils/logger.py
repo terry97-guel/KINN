@@ -18,8 +18,14 @@ class CSVLogger:
     def log(self, *data:dict):
         logging = {}
         for data_ in data:
-            logging.update({f"{key}":float(value) for key, value in data_.items()})
-        
+            
+            # logging.update({f"{key}":float(value) for key, value in data_.items()})
+            for key,value in data_.items():
+                if isinstance(value,tuple) or isinstance(value,list):
+                    logging.update({f"{key}":value})
+                else:
+                    logging.update({f"{key}":float(value)})
+            
         if self.clear:
             self.create(logging)
             self.clear = False

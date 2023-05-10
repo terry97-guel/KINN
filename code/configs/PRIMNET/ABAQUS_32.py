@@ -11,7 +11,7 @@ class ARGS():
     
     # LOG
     WANDB:bool = True
-    pname:str = "PRIMNET_v2.1"                      # WANDB project Name
+    pname:str = "PRIMNET_v2.2"                      # WANDB project Name
     runname:str = "ABAQUS32"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET
@@ -67,15 +67,7 @@ class ARGS():
     marker_num:int = 7
     motor_dim:int = 3
     joint_seqs:tuple = (
-        "F",
-        "R",
-        "P",
-        "R",
-        "R",
-        "P",
-        "R"
-    ) * marker_num
-    
+        'R', 'R', 'P', 'F', 'P', 'R', 'F', 'R', 'F', 'T', 'P', 'P', 'R', 'R', 'P', 'P', 'P', 'P', 'R', 'R', 'P', 'T', 'F', 'P', 'P', 'P', 'R', 'R', 'T', 'R', 'P', 'R', 'F', 'P', 'T', 'P', 'F', 'P', 'P', 'R', 'T', 'P', 'R', 'F', 'P', 'P', 'R', 'F', 'R')
     # DEVICE
     device = "cpu"
     

@@ -103,8 +103,8 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     
     # Train Loop
     from tqdm import tqdm
-    train_dict_list = []
     for epoch in tqdm(range(args.epochs)):
+        train_dict_list = []
         for batch in train_sampler:
             if args.MODEL == "PRIMNET":
                 train_log_dict = update_primnet(model, batch, args, TRAIN = True, sampler = train_sampler)
@@ -167,11 +167,14 @@ def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET
     
         model.save_weights(epoch)
 
+    if args.WANDB:
+        wandb.finish()
+        
 if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="PRIMNET_FULL/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32]
+    parser.add_argument("--configs", default="PCC_PRIMNET/ABAQUS_32.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32, ELASTICA]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())

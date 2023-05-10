@@ -10,7 +10,7 @@ class ARGS():
     
     # LOG
     WANDB:bool = True
-    pname:str = "PRIMNET_v2.1"                      # WANDB project Name
+    pname:str = "PRIMNET_v2.2"                      # WANDB project Name
     runname:str = "ABAQUS32"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET
@@ -47,7 +47,7 @@ class ARGS():
     batch_size:int = 128
     
     # ARCHITECTURE
-    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
+    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
     marker_num:int = 7
     motor_dim:int = 3
 

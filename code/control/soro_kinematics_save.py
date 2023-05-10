@@ -155,9 +155,7 @@ def t2p_np(T):
 # %%
 from tqdm import tqdm
 
-# p_offset = np.array([-0.0059, -0.0067, 0]).astype(np.float32)
-p_offset = torch.FloatTensor([-0.0059, -0.0067, 0])
-
+p_offset = np.array([-0.0059, -0.0067, 0]).astype(np.float32)
 
 if VIZ:
     import rospy
@@ -189,7 +187,7 @@ if VIZ:
         viz_trg_robot = publish_viz_robot(viz_links)
         pub_robot.publish(viz_trg_robot)
 
-    def publish_soro(chain_ur:CHAIN, soro:PRIMNET, motor_control):
+    def publish_soro(chain_ur:CHAIN, soro:PRIMNET, motor_control, offset=np.array([0,0,0])):
         obs_info_lst = []
         
         black = [0.1,0.1,0.1,0.3]
@@ -204,11 +202,12 @@ if VIZ:
 
         with torch.no_grad():
             # ps_ = soro(motor_control)[0].detach().cpu().numpy()
-            ps_ = soro(motor_control)[0].detach().cpu().numpy() - p_offset.detach().cpu().numpy().reshape(3,1)
             
             p_plat = chain_ur.joint[-1].p.astype(np.float32)
             R_plat = chain_ur.joint[-1].R.astype(np.float32)
-            zero_point = np.array([0.0043,0.0032,0]).astype(np.float32).reshape(1,3,1)
+
+            ps_ = soro(motor_control)[0].detach().cpu().numpy() - p_offset.reshape(3,1) + (offset).reshape(3,1)
+            zero_point = np.array([0.0043,0.0032,0]).astype(np.float32).reshape(1,3,1)  + (offset).reshape(1,3,1)
             ps_ = np.vstack((zero_point, ps_))
             ps = p_plat + R_plat @ ps_
             
@@ -324,13 +323,6 @@ def kinematic_grad(soro:PRIMNET, q_values):
             pos_diff = EE_pos - joint_position[idx]
             dp_dq[:,idx] = joint_rotation[idx] @ joint.axis.data[:,0]
     
-    BRUSH = True
-    if BRUSH:
-        rel_pos = (joint_position[-1] - joint_position[-2])
-
-        brush_position = joint_position[-1] + rel_pos/torch.norm(rel_pos) * 20/1000
-        return dp_dq, brush_position
-    
     return dp_dq, joint_position[-1]
 
 
@@ -347,177 +339,6 @@ def get_hybrid_grad_explicit(p_plat, R_plat, soro:PRIMNET, motor_control, scale_
     p_soro = p_soro.numpy().reshape(3,1)
     p_EE = p_plat + R_plat @ p_soro
     return R_plat@dp_dq@dq_dm* scale_rate, p_EE
-
-
-def solve_ik(chain_ur, qs,
-                soro, motor_control_np,
-                grasp, u, rpy_EE_tar, p_EE_tar,
-                scale_rate=30, step_size=0.1,):
-
-        grasp_dir = u
-
-
-        R_EE_tar = rpy2r_np(rpy_EE_tar)
-        
-        pbar = tqdm(generator(), leave=True)
-        update_number = 0
-        for _ in pbar:
-            ## FK UR & SORO
-            chain_ur = update_ur_q(chain_ur, qs)
-            motor_control = torch.tensor(scale_rate * motor_control_np).unsqueeze(0).cpu()
-            p_plat = chain_ur.joint[-1].p.astype(np.float32); R_plat = chain_ur.joint[-1].R.astype(np.float32)
-
-            # dp_dm, p_EE = get_hybrid_grad_auto(p_plat, R_plat, soro, motor_control, scale_rate)
-            dp_dm, p_EE = get_hybrid_grad_explicit(p_plat, R_plat, soro, motor_control, scale_rate)
-            R_EE_cur = R_plat
-            p_EE_cur = p_EE
-            
-            ## IK for UR
-            # get ik_error
-            p_ik_err = get_p_ik_err(p_EE_cur, p_EE_tar)
-            w_ik_err = get_w_ik_err(R_EE_cur, R_EE_tar)
-
-            ## get jacobian
-            # position jacobian
-            p_J_UR = []
-            for joint in chain_ur.joint[1:7]:
-                assert joint.type == 'revolute'
-                
-                J_ = skew_np(joint.a)@(p_EE_cur-joint.p)
-                p_J_UR.append(J_)
-            p_J_UR = np.hstack(p_J_UR)
-            
-            # angular jacobian
-            w_J_UR = []
-            for joint in chain_ur.joint[1:7]:
-                assert joint.type == 'revolute'
-                
-                J_ = joint.R@joint.a
-                w_J_UR.append(J_)
-            w_J_UR  = np.hstack(w_J_UR)
-            
-            J_UR = np.vstack([p_J_UR, w_J_UR])
-
-            p_J_soro = dp_dm
-            J_soro = np.vstack([p_J_soro, np.zeros((3,4), dtype=np.float32)])
-
-            ## Grasp constraint
-            p_plat_EE = (p_EE_cur - chain_ur.joint[8].p).astype(np.float32)
-            l_grasp = 0.01 * grasp
-            assert np.abs(np.linalg.norm(grasp_dir) - 1) < 1e-3
-            assert grasp_dir.shape == (3,)
-            R_ = chain_ur.joint[8].R.astype(np.float32)
-            u = grasp_dir.reshape(3,1)
-            p_plat_EE_tar = l_grasp * u
-            
-            # u = (grasp_dir[0] * R_[:,0] + grasp_dir[1] * R_[:,1] + grasp_dir[2] * R_[:,2] ).reshape(3,1)
-            # u = chain_ur.joint[8].R[:,grasp_dir].reshape(3,1).astype(np.float32)
-            
-            J_grasp = (R_.T @ p_J_soro)[:-1]
-            
-            grasp_err = (R_.T @ (p_plat_EE_tar - p_plat_EE))[:-1]
-            
-            ## Motor constraint
-            margin = 200/scale_rate
-            llimit = (motor_control_np < margin).any()
-            J_llimit = np.eye(4, dtype=np.float32)[motor_control_np < margin].astype(np.float32)
-            llimit_err = (margin-motor_control_np)[motor_control_np < margin].reshape(-1,1)
-            
-            ulimit = (motor_control_np > 2000/scale_rate-margin).any()
-            J_ulimit = np.eye(4, dtype=np.float32)[motor_control_np > 2000/scale_rate-margin]
-            ulimit_err = ((2000/scale_rate-margin)-motor_control_np)[motor_control_np > 2000/scale_rate-margin].reshape(-1,1)
-
-            
-            pbar.set_description(
-                "update_number:{}, \
-                    p_ik_err:{:.2E},\
-                        w_ik_err:{:.2E},\
-                            grasp_err:{:.2E},\
-                                sph_err:{:.2E}".format(
-                                    update_number,
-                                    norm(p_ik_err),
-                                    norm(w_ik_err),
-                                    norm(grasp_err),
-                                ))
-                    
-            # Break
-            if norm(p_ik_err) < 1e-3 and\
-                norm(w_ik_err) < 0.01 and\
-                    norm(grasp_err) < 5e-3:
-                break
-            # Or Solve & Update
-            A = []
-            b = []
-            A.append(np.hstack([J_UR, J_soro]))
-            A.append(np.hstack([np.zeros((len(J_grasp),6),dtype=np.float32), J_grasp]))
-            
-            b.append(np.vstack([p_ik_err,w_ik_err]))
-            b.append(10*grasp_err)
-            if llimit:
-                oor_motor_num = J_llimit.shape[0]
-                A.append(np.hstack([np.zeros((oor_motor_num,6)), J_llimit]))
-                b.append(llimit_err)
-            if ulimit:
-                oor_motor_num = J_ulimit.shape[0]
-                A.append(np.hstack([np.zeros((oor_motor_num,6)), J_ulimit]))
-                b.append(ulimit_err)
-            
-            A = np.vstack(A).astype(np.float32)
-            b = np.vstack(b).astype(np.float32)
-            
-            J_use=A; ik_err=b; lambda_rate = 0.01
-            
-            lambda_min = 1e-6
-            lambda_max = 1e-3
-            
-            ik_err_avg = np.mean(abs(ik_err))
-            # Damping Term 
-            lambda_ = lambda_rate * ik_err_avg + lambda_min 
-            lambda_ = np.maximum(lambda_, lambda_max)
-
-            n_ctrl = (J_use).shape[1]
-            # Lamda Scheduling 
-            J_culumn_sum = abs(np.sum(J_use, axis =0))
-
-            for j in range(len(J_culumn_sum)):
-                for i in J_culumn_sum:
-                    idx_nz = j
-                    J_use_nz = J_use[:,idx_nz].reshape(1, -1)
-                    det_J = np.linalg.det(np.matmul(J_use_nz, J_use_nz.T))
-                    if i >0.1:
-                        if det_J > 1e-3:
-                            lambda_=1e-4
-                        elif det_J < 1e-20:
-                            lambda_ = lambda_max
-                            
-            J_n_ctrl = np.matmul(J_use.T, J_use) + lambda_* np.eye(n_ctrl, n_ctrl).astype(np.float32)
-            dq_raw = np.matmul(np.linalg.solve(J_n_ctrl, J_use.T), ik_err)
-
-            # if  (np.linalg.norm(dq_raw[6:] * scale_rate) < 3e-2) and norm(grasp_err) > 0.015:
-            #     # qs = np.array([0,-90,90,-90,-90, 0]).astype(np.float32) / 180 * PI
-            #     motor_control_np = np.zeros_like(motor_control_np)
-
-            if norm(p_ik_err) < 3e-3 and update_number > 300:
-                break
-
-                
-            # if update_number % 100 == 99:
-                # motor_control_np = np.zeros_like(motor_control_np)
-                # update_number = 0
-            step_size = step_size * 0.99
-            dq = step_size * dq_raw
-            
-            dq = dq.flatten()
-            qs = qs + dq[:6]
-            motor_control_np = motor_control_np+ dq[6:] * scale_rate
-            
-            if VIZ:
-                viz_robot(chain_ur, soro, motor_control)
-            pbar.update()
-            update_number = update_number + 1
-
-
-
 
 def solve_ik_traj(chain_ur, qs, 
                   soro, motor_control_np, 
@@ -710,7 +531,7 @@ def solve_ik_traj(chain_ur, qs,
     return qs_list, motor_list, qs, motor_control_np, p_EE_cur_list
 
 
-def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0.1):
+def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0.1, offset=np.array([0,0,0])):
     
     frequency = 60
     rate = rospy.Rate(frequency)
@@ -721,7 +542,7 @@ def viz_robot(chain_ur, soro, motor_control, obj_info_list=None, render_time = 0
         if rendering == max_rendering: break
 
         publish_robot(chain_ur)
-        publish_soro(chain_ur, soro, motor_control)
+        publish_soro(chain_ur, soro, motor_control, offset)
         if obj_info_list is not None:
             publish_markers(obj_info_list)
         rendering = rendering + 1

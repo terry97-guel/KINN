@@ -151,7 +151,7 @@ class FK_LAYER(nn.Module):
             elif joint_type == "P":
                 joints.append(Pjoint(args))
             elif joint_type == "T":
-                joints.append(Tjoint(args))
+                joints.append(Tjoint())
             else: raise LookupError("Joint type not found")
         
         self.joints = torch.nn.ModuleList(joints)
