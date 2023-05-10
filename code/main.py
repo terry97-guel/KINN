@@ -174,7 +174,7 @@ if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="PCC_PRIMNET/ELASTICA.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32, ELASTICA]
+    parser.add_argument("--configs", default="PCC_PRIMNET/ABAQUS_32.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32, ELASTICA]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())

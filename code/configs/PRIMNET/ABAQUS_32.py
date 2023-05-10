@@ -11,7 +11,7 @@ class ARGS():
     
     # LOG
     WANDB:bool = True
-    pname:str = "PRIMNET_v2.1"                      # WANDB project Name
+    pname:str = "PRIMNET_v2.2"                      # WANDB project Name
     runname:str = "ABAQUS32"                         # WANDB runname. If unspecified, set to datetime.
     
     # DATASET

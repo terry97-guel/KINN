@@ -43,13 +43,13 @@ def plot_result(result, target_trajectory, lim):
 
 
 # %%
-plot_result(LP_result, LP_target_trajectory, lim=0.042)
+plot_result(LP_result, LP_target_trajectory, lim=0.065)
 plot_result(LF_result, LF_target_trajectory, lim=0.065)
 
 
 # %%
-plot_result(SP_result, SP_target_trajectory, lim=0.022)
-plot_result(SF_result, SF_target_trajectory, lim=0.022)
+plot_result(SP_result, SP_target_trajectory, lim=0.065)
+plot_result(SF_result, SF_target_trajectory, lim=0.065)
 
 
 
@@ -72,3 +72,31 @@ ax[1,1].plot(SF_result[1:,0], SF_result[1:,1], label="result", c='k')
 ax[1,1].plot(SF_target_trajectory[1:,0], SF_target_trajectory[1:,1], '--', label="target", c='r')
 
 
+
+# %%
+def remove_even_idx(array):
+    length = len(array)
+    return array[1:length:2]
+
+# LP_result = remove_even_idx(LP_result)
+# LF_result = remove_even_idx(LF_result)
+# SP_result = remove_even_idx(SP_result)
+# SF_result = remove_even_idx(SF_result)
+
+
+import torch
+def p_loss_fn(pred, target):
+    pred = remove_even_idx(pred)
+    
+    pred = pred[:,:2]
+    target = target[:,:2]
+    
+    assert pred.shape == target.shape
+    pred = torch.tensor(pred)
+    target = torch.tensor(target)
+    return torch.nn.L1Loss()(pred, target)
+
+print("Proposed Model/ Small Square:", p_loss_fn(SP_result, SP_target_trajectory[1:]))
+print("Proposed Model/ Large Square:", p_loss_fn(LP_result, LP_target_trajectory[1:]))
+print("FC Model/ Small Square:", p_loss_fn(SF_result, SF_target_trajectory[1:]))
+print("FC Model/ Large Square:", p_loss_fn(LF_result, LF_target_trajectory[1:]))

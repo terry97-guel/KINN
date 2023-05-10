@@ -47,7 +47,7 @@ class ARGS():
     batch_size:int = 128
     
     # ARCHITECTURE
-    actv =  nn.ReLU # nn.ReLU, nn.LeakyReLU, nn.Mish
+    actv =  nn.Mish # nn.ReLU, nn.LeakyReLU, nn.Mish
     marker_num:int = 7
     motor_dim:int = 3
 
