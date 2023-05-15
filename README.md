@@ -42,7 +42,7 @@ Choose,
 
 ## Train (with Discrete Optimization)
 ```
-python3 code/main_kas.py
+python3 code/main_kas.py --configs "${MODEL}/${DATASET}.py" --generation_num 100 --agent_num 50 --epochs 1000
 ```
 
 ## Control - Following Square Trajectories
