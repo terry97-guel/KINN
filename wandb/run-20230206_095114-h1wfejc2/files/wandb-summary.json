@@ -1,1 +1,0 @@
-{"train_position_loss": 0.0017387658590450883, "_timestamp": 1675677111.2582088, "val_position_loss": 0.00018556563009042293, "test_position_loss": 0.00017738109454512596, "ext_position_loss": 0.00026986567536368966, "_runtime": 36.34948778152466, "_step": 500, "_wandb": {"runtime": 24}}
