@@ -2,7 +2,10 @@
 # Kinematics-Informed Neural Networks: A Unified Model for Soft and Rigid Robots
 
 ## DEMO - Painting Letters with Soft Finger and Rigid Arm
-<iframe width="640" height="360" src="https://www.youtube.com/embed/VF38zmV2oHE" frameborder="0" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/VF38zmV2oHE/maxresdefault.jpg)](https://youtu.be/VF38zmV2oHE){:height="360px" width="640px"}
+<!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/VF38zmV2oHE" frameborder="0" allowfullscreen></iframe> -->
+
+
 
 ## DEMO - Opening Bottle with Soft Finger and Rigid Arm
 <iframe width="640" height="360" src="https://www.youtube.com/embed/jHM_LIhFlfM" frameborder="0" allowfullscreen></iframe>
