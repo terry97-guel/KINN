@@ -67,6 +67,7 @@ python3 Experiment_3.py
 
 ## Checkpoints
 Checkpoint can be downloaded [HERE]()
+But, notice that training only take ~10min
 
 
 ## Source Code for Data Generation
