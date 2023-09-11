@@ -35,9 +35,9 @@ Training configs can be found in `code/configs` and, use arguments to choose mod
 python3 code/main.py --configs "${MODEL}/${DATASET}.py"
 ```
 Choose, 
-`${MODEL}` from `[PureNN, KINN, PCCNN, KINN_FULL]`
-`${DATASET}` from `[FINGER, ABAQUS, ELASTICA]`
-(e.g. To train `PureNN` on `FINGER` dataset,  `python3 code/main.py --configs "PureNN/FINGER.py"`)
+`${MODEL}` from `[FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL]`
+`${DATASET}` from `[FINGER, ABAQUS_32, ELASTICA]`
+(e.g. To train `PureNN` on `FINGER` dataset,  `python3 code/main.py --configs "PRIMNET/FINGER.py"`)
 
 
 ## Train (with Discrete Optimization)
