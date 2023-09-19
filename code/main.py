@@ -174,7 +174,7 @@ if __name__ == "__main__":
     BASEDIR, RUNMODE = get_BASERDIR(__file__)
 
     parser = argparse.ArgumentParser(description= 'parse for DLPG')
-    parser.add_argument("--configs", default="FC_PRIMNET/FINGER.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32, ELASTICA]
+    parser.add_argument("--configs", default="PCC_PRIMNET/ELASTICA.py",type=str) # [FC_PRIMNET, PRIMNET, PCC_PRIMNET, PRIMNET_FULL] # [FINGER, ABAQUS_32, ELASTICA]
     args= parser.parse_args()
 
     ARGS = read_ARGS((BASEDIR/'configs'/args.configs).absolute())
@@ -196,7 +196,7 @@ if __name__ == "__main__":
     Path.mkdir(ARGS.SAVE_RESULT_PATH,exist_ok=True, parents=True)
     
     # if RUNMODE is not RUN:
-    ARGS.WANDB = False
+    ARGS.WANDB = True
     
     main(ARGS)
 

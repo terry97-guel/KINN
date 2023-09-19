@@ -2,7 +2,7 @@
 import json
 
 
-data = json.load(open("unused/ELASTICA_RAW.json","r"))
+data = json.load(open("ELASTICA_RAW.json","r"))
 # %%
 data.keys()
 
@@ -54,11 +54,11 @@ test_idx = interpolation_idx[train_data_number+val_data_number:]
 
 # %%
 save_data = {}
-
-save_data['train'] = dict(motor_control=motor_control[train_idx].tolist(), position=position[train_idx].reshape(-1,1,3).tolist())
-save_data['val'] = dict(motor_control=motor_control[val_idx].tolist(), position=position[val_idx].reshape(-1,1,3).tolist())
-save_data['test'] = dict(motor_control=motor_control[test_idx].tolist(), position=position[test_idx].reshape(-1,1,3).tolist())
-save_data['ext'] = dict(motor_control=motor_control[extrapolation_idx].tolist(), position=position[extrapolation_idx].reshape(-1,1,3).tolist())
+scale = 0.1
+save_data['train'] = dict(motor_control=motor_control[train_idx].tolist(),       position=(scale * position[train_idx]         ).reshape(-1,1,3).tolist())
+save_data['val'] = dict(motor_control=motor_control[val_idx].tolist(),           position=(scale * position[val_idx]           ).reshape(-1,1,3).tolist())
+save_data['test'] = dict(motor_control=motor_control[test_idx].tolist(),         position=(scale * position[test_idx]          ).reshape(-1,1,3).tolist())
+save_data['ext'] = dict(motor_control=motor_control[extrapolation_idx].tolist(), position=(scale * position[extrapolation_idx] ).reshape(-1,1,3).tolist())
 
 
 # %%
