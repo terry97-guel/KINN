@@ -72,8 +72,8 @@ We test out method on three dataset,
 `ELASTICA`: Tendon-Driven Robot (Simuation, [Elastica](https://github.com/GazzolaLab/PyElastica))
 `FINGER`: Tendon-Driven Robot (Real-World, [Motion Caputre Device](https://optitrack.com/cameras/flex-13/))
 
-We made available the syenthetic dataset of `ABAQUS`, `ELASTICA`.
-The generated data can be found in `dataset`, also available on [IEEE DataPort](10.21227/5h7v-aq35)
+We made available the syenthetic dataset of `ABAQUS`, `ELASTICA` and real-world dataset of `FINGER`.
+The dataset can be found in `dataset` folder, also available on [IEEE DataPort](10.21227/5h7v-aq35)
 
 
 
