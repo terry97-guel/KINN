@@ -65,7 +65,7 @@ cd code/control
 python3 Experiment_3.py
 ```
 
-## Source Code for Data Generation
+## Dataset
 We test out method on three dataset,
 
 `ABAQUS`: Pneumatic Robot (Simuation, [ABAQUS](https://www.3ds.com/products-services/simulia/products/abaqus/))
