@@ -65,15 +65,15 @@ cd code/control
 python3 Experiment_3.py
 ```
 
-## Source Code for Data Generation
+## Dataset
 We test out method on three dataset,
 
 `ABAQUS`: Pneumatic Robot (Simuation, [ABAQUS](https://www.3ds.com/products-services/simulia/products/abaqus/))
 `ELASTICA`: Tendon-Driven Robot (Simuation, [Elastica](https://github.com/GazzolaLab/PyElastica))
 `FINGER`: Tendon-Driven Robot (Real-World, [Motion Caputre Device](https://optitrack.com/cameras/flex-13/))
 
-We made available the syenthetic dataset of `ABAQUS`, `ELASTICA`.
-The generated data can be found in `dataset`, also available on [IEEE DataPort](10.21227/5h7v-aq35)
+We made available the syenthetic dataset of `ABAQUS`, `ELASTICA` and real-world dataset of "FINGER.
+The data can be found in `dataset`, also available on [IEEE DataPort](10.21227/5h7v-aq35)
 
 
 
