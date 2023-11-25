@@ -1,5 +1,5 @@
-from configs.template import FC_PRIMNET_ARGS_TEMPLATE
-from utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor
+from kinn.configs.template import FC_PRIMNET_ARGS_TEMPLATE
+from kinn.utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor
 
 import torch
 from torch import nn

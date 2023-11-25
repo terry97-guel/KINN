@@ -3,12 +3,12 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 import numpy as np
-from utils.tools import get_int_from_ratio, cast_tensor
+from kinn.utils.tools import get_int_from_ratio, cast_tensor
 import os 
 import json
 import random
 from typing import Union
-from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
+from kinn.configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
 from torch import Tensor
 
 

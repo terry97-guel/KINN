@@ -8,11 +8,11 @@ sys.path.append(BASEDIR)
 import torch
 import torch.nn as nn
 
-from utils.pyart import pr2t, rpy2r, t2r, t2p, rodrigues, r2quat
-from configs.template import PRIMNET_ARGS_TEMPLATE
+from kinn.utils.pyart import pr2t, rpy2r, t2r, t2p, rodrigues, r2quat
+from kinn.configs.template import PRIMNET_ARGS_TEMPLATE
 from torch.nn import init
-from utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor, bmul_1d, swap_dim_0_1
-from utils.pyart import check_ps
+from kinn.utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor, bmul_1d, swap_dim_0_1
+from kinn.utils.pyart import check_ps
 
 
 

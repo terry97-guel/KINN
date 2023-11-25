@@ -1,9 +1,9 @@
-from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
-from model.PRIMNET import PRIMNET
-from model.FC_PRIMNET import FC_PRIMNET
-from model.PCC_PRIMNET import PCC_PRIMNET
-from utils.tools import swap_dim_0_1, cast_dict_numpy
-from utils.dataloader import Sampler
+from kinn.configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
+from kinn.model.PRIMNET import PRIMNET
+from kinn.model.FC_PRIMNET import FC_PRIMNET
+from kinn.model.PCC_PRIMNET import PCC_PRIMNET
+from kinn.utils.tools import swap_dim_0_1, cast_dict_numpy
+from kinn.utils.dataloader import Sampler
 from torch.nn import functional as F
 import torch
 

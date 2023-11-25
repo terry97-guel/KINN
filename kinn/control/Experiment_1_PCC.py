@@ -12,11 +12,11 @@ BASEDIR = Path().absolute()
 BASEDIR
 
 # %%
-from utils.dataloader import get_dataset, Sampler
+from kinn.utils.dataloader import get_dataset, Sampler
 train_dataset,val_dataset,test_dataset,ext_dataset  = get_dataset(f"../dataset/{dataset}.json", 1.0)
 
 # %%
-from utils.args import read_ARGS
+from kinn.utils.args import read_ARGS
 configs = f"PRIMNET/{dataset}.py"
 
 
@@ -33,7 +33,7 @@ def eye_batch(batch_size, dim = 4):
     return torch.tile(torch.eye(dim),dims=(batch_size,1,1))
 
 # %%
-from utils.pyart import r2t,rpy2r,pr2t, t2p
+from kinn.utils.pyart import r2t,rpy2r,pr2t, t2p
 
 batch_size = 16
 

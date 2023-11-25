@@ -1,6 +1,6 @@
 # %%
-from configs.template import PCC_PRIMNET_ARGS_TEMPLATE
-from utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor,swap_dim_0_1
+from kinn.configs.template import PCC_PRIMNET_ARGS_TEMPLATE
+from kinn.utils.tools import get_linear_layer, normalize_tensor, unnormalize_tensor,swap_dim_0_1
 
 import torch
 from torch import nn
@@ -75,7 +75,7 @@ class PCC_PRIMNET(nn.Module):
             
         return torch.stack(joint_positions, dim=1)
     
-from utils.pyart import r2t,rpy2r,pr2t, t2p
+from kinn.utils.pyart import r2t,rpy2r,pr2t, t2p
 def eye_batch(batch_size, dim = 4):
     return torch.tile(torch.eye(dim),dims=(batch_size,1,1))
 
@@ -119,7 +119,7 @@ def forward_pcc(phi, theta, radius):
 
 # %%
 if __name__ == "__main__":
-    from configs.PCC_PRIMNET.ABAQUS_32 import ARGS
+    from kinn.configs.PCC_PRIMNET.ABAQUS_32 import ARGS
     args = ARGS()
     model = PCC_PRIMNET(args)
 

@@ -21,8 +21,8 @@ sys.path.append(str(BASEDIR))
 path = "PRIMNET/FINGER"
 
 import argparse
-from utils.args import read_ARGS
-from model.PRIMNET import PRIMNET
+from kinn.utils.args import read_ARGS
+from kinn.model.PRIMNET import PRIMNET
 import torch
 
 

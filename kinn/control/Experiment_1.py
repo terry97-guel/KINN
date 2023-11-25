@@ -24,9 +24,9 @@ model = "FC_PRIMNET"
 path = model+"/FINGER"
 
 import argparse
-from utils.args import read_ARGS
-from model.PRIMNET import PRIMNET
-from model.FC_PRIMNET import FC_PRIMNET
+from kinn.utils.args import read_ARGS
+from kinn.model.PRIMNET import PRIMNET
+from kinn.model.FC_PRIMNET import FC_PRIMNET
 import torch
 import numpy as np
 
@@ -85,7 +85,7 @@ target_trajectory = torch.FloatTensor(
 
 from matplotlib import pyplot as plt
 
-from utils.tools import cast_numpy
+from kinn.utils.tools import cast_numpy
 target_trajectory_np = cast_numpy(target_trajectory)
 plt.plot(target_trajectory_np[:,0], target_trajectory_np[:,1])
 

@@ -433,7 +433,7 @@ def rodriguesNoBatch(v,k,θ):
 if __name__=="__main__":
     # %%
     ## UnitTest: r2rpy, rpy2r
-    from utils.pyart import rpy2r, r2rpy
+    from kinn.utils.pyart import rpy2r, r2rpy
     rpys = torch.rand(16,3) 
     Rs = rpy2r(rpys)
     recon_rpys = r2rpy(Rs)

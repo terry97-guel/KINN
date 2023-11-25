@@ -21,8 +21,8 @@ sys.path.append(str(BASEDIR))
 path = "PRIMNET/FINGER_FULL"
 
 import argparse
-from utils.args import read_ARGS
-from model.PRIMNET import PRIMNET
+from kinn.utils.args import read_ARGS
+from kinn.model.PRIMNET import PRIMNET
 import torch
 
 
@@ -89,7 +89,7 @@ class Traj():
         return grasp_array, pos_array, u_array
 
 # %%
-from utils.pyart import r2rpy_numpy
+from kinn.utils.pyart import r2rpy_numpy
 # qs = np.array([-90, -110, 90, 110, 65, 0], dtype=np.float32) / 180 * PI
 
 qs = np.array([-90, -90, 90, 90, 55, 0], dtype=np.float32) / 180 * PI

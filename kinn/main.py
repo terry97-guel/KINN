@@ -13,9 +13,9 @@ from torch import nn
 import argparse
 
 import numpy as np
-from utils import dataloader
-from utils.initalize import INITALZE_EVEN_JOINTS
-from utils.update import  update_primnet, update_fc_primnet, update_pcc_primnet
+from kinn.utils import dataloader
+from kinn.utils.initalize import INITALZE_EVEN_JOINTS
+from kinn.utils.update import  update_primnet, update_fc_primnet, update_pcc_primnet
 
 
 import os
@@ -25,19 +25,19 @@ import wandb
 import time
 import json
 
-from utils.tools import set_seed, set_wandb, print_log_dict, prefix_dict, average_dict
-from utils.path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
-from utils.args import read_ARGS
-from utils.logger import CSVLogger,ask_and_make_folder
-from utils.tools import cast_numpy
+from kinn.utils.tools import set_seed, set_wandb, print_log_dict, prefix_dict, average_dict
+from kinn.utils.path_handler import JUPYTER, RUN, DEBUG, get_BASERDIR
+from kinn.utils.args import read_ARGS
+from kinn.utils.logger import CSVLogger,ask_and_make_folder
+from kinn.utils.tools import cast_numpy
 
-from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
-from model.PRIMNET import PRIMNET
-from model.FC_PRIMNET import FC_PRIMNET
-from model.PCC_PRIMNET import PCC_PRIMNET
+from kinn.configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
+from kinn.model.PRIMNET import PRIMNET
+from kinn.model.FC_PRIMNET import FC_PRIMNET
+from kinn.model.PCC_PRIMNET import PCC_PRIMNET
 from typing import Union
 
-from utils.dataloader import get_dataset, Sampler
+from kinn.utils.dataloader import get_dataset, Sampler
 # %%
 def main(args:Union[PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE]):
     ### SEED ###

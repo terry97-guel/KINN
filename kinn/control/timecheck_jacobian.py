@@ -21,8 +21,8 @@ sys.path.append(str(BASEDIR))
 path = "PRIMNET/FINGER"
 
 import argparse
-from utils.args import read_ARGS
-from model.PRIMNET import PRIMNET
+from kinn.utils.args import read_ARGS
+from kinn.model.PRIMNET import PRIMNET
 import torch
 
 
@@ -182,7 +182,7 @@ scale_rate = 70
 l_tar = 0.15
 
 from tqdm import tqdm
-from model.PRIMNET import PRIMNET, Fjoint, Tjoint, Rjoint, Pjoint
+from kinn.model.PRIMNET import PRIMNET, Fjoint, Tjoint, Rjoint, Pjoint
 from jacobian import jacobian
 from functools import partial
 from numpy.linalg import norm
@@ -220,7 +220,7 @@ def forward_q(model:PRIMNET, motor_control):
     q_values = model.FK_LAYER.forward_q(act_embeds)[0]
     return q_values
 
-from utils.pyart import t2r
+from kinn.utils.pyart import t2r
 @ torch.jit.script_if_tracing
 def kinematic_grad(soro:PRIMNET, q_values):
     joint_se3 = soro.FK_LAYER.forward_kinematics(q_values)

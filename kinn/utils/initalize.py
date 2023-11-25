@@ -1,10 +1,10 @@
 import torch
-from model.PRIMNET import Tjoint, PRIMNET
+from kinn.model.PRIMNET import Tjoint, PRIMNET
 import numpy as np
-from utils.pyart import rodriguesNoBatch
-from utils.pyart import angle_axis_numpy, angle_numpy, pr2t, r2t, rpy2r, t2p
-from utils.tools import unnormalize_tensor, normalize_tensor
-from configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
+from kinn.utils.pyart import rodriguesNoBatch
+from kinn.utils.pyart import angle_axis_numpy, angle_numpy, pr2t, r2t, rpy2r, t2p
+from kinn.utils.tools import unnormalize_tensor, normalize_tensor
+from kinn.configs.template import PRIMNET_ARGS_TEMPLATE, FC_PRIMNET_ARGS_TEMPLATE, PCC_PRIMNET_ARGS_TEMPLATE
 
 # TPOSE = {
 #     "ABAQUS":
