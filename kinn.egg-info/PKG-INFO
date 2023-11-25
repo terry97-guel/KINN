@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: kinn
+Version: 0.1
+Summary: Kinematics Informed Neural Networks
+Home-page: https://github.com/terry97-guel/KINN.git
+Author: Taerim Yoon
+Author-email: taerimyoon@korea.ac.kr
+License: UNKNOWN
+Description: To identify and control soft robots in a data-efficient manner
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3

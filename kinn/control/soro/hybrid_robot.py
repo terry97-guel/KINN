@@ -14,7 +14,7 @@ import torch
 from torch import Tensor
 
 class RobotClass:
-    def __init__(self, file_name = "code/urdf/soro/ur5e_onrobot.urdf", base_offset=[0,0,0], number = 1):
+    def __init__(self, file_name = "kinn/urdf/soro/ur5e_onrobot.urdf", base_offset=[0,0,0], number = 1):
         if ROS:
             rospy.init_node("Run_Robot")
             self.pub_robot      = rospy.Publisher(f'viz_robot_{number}', MarkerArray, queue_size=10)

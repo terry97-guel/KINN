@@ -6,5 +6,5 @@ temp/dataset/FINGER_DATASET/unused
 # results/FC_PRIMNET/FINGER/weights/*.pth
 # results/PRIMNET/FINGER/weights/*.pth
 results/*
-code/wandb/*
+kinn/wandb/*
 wandb/*
