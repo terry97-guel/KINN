@@ -243,7 +243,7 @@ from functools import partial
 motor_control_list = []
 position_list = []
 
-scale_rate = 2000
+scale_rate = 1000
 
 for i in range(len(target_trajectory)):
     motor_actuation = torch.FloatTensor([[1, 0]]).requires_grad_(True)
