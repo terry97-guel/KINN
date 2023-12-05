@@ -34,7 +34,7 @@ def plot_result(result, target_trajectory, lim):
     plt.axis('equal')
     
     
-    fontsize = 18
+    fontsize = 24
     plt.xticks(fontsize=fontsize)
     plt.yticks(fontsize=fontsize)
     
@@ -60,7 +60,7 @@ plot_result(SC_result, SF_target_trajectory, lim=0.065)
 
 # %%
 
-fig,ax = plt.subplots(2,3,figsize=(10,10))
+fig,ax = plt.subplots(2,3,figsize=(15,15))
 
 ax[0,0].plot(LP_result[1:,0], LP_result[1:,1], label="result", c='k')
 ax[0,0].plot(LP_target_trajectory[1:,0], LP_target_trajectory[1:,1], '--', label="target", c='r')
@@ -100,6 +100,9 @@ for i in range(2):
     for j in range(3):
         ax[i, j].set_xlabel('X Label')
         ax[i, j].set_ylabel('Y Label')
+        # set x_limit 
+        ax[i, j].set_xlim(-62, 62)
+        ax[i, j].set_ylim(-62, 62)
         # ax[i, j].legend()
 
 # Show the plot
