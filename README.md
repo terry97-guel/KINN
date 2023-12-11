@@ -9,8 +9,8 @@ https://github.com/terry97-guel/KINN/assets/80967532/f968d812-89c2-4f8d-a142-0eb
 ## DEMO - Opening Bottle with Soft Finger and Rigid Arm
 https://github.com/terry97-guel/KINN/assets/80967532/87474e84-ab25-408e-867b-7042b3d5fb0e
 
-
-
+## Configuration of the soft robot
+https://github.com/terry97-guel/KINN/assets/80967532/7cb24b0f-27bc-4bd9-a8c3-783100cbc5de
 
 ## Requirements
 Python packages
